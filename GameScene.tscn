@@ -1,0 +1,493 @@
+[gd_scene format=3 uid="uid://cjq84ibsohi16"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f24su"]
+size = Vector2(110, 240)
+
+[node name="GameScene" type="Node2D" unique_id=561872483]
+
+[node name="Managers" type="Node" parent="." unique_id=26441964]
+
+[node name="WorldRoot" type="Node2D" parent="." unique_id=468784355]
+
+[node name="BagRoot" type="Node2D" parent="WorldRoot" unique_id=799973688]
+
+[node name="BagSlot_0" type="Node2D" parent="WorldRoot/BagRoot" unique_id=1388593214]
+position = Vector2(120, 140)
+
+[node name="Polygon2D" type="Polygon2D" parent="WorldRoot/BagRoot/BagSlot_0" unique_id=1224886784]
+color = Color(1, 0.08235294, 0, 1)
+polygon = PackedVector2Array(-30, 37, 40, 38, 33, -33, -39, -33)
+
+[node name="Label" type="Label" parent="WorldRoot/BagRoot/BagSlot_0" unique_id=2044123335]
+offset_left = -2.0
+offset_top = 36.0
+offset_right = 38.0
+offset_bottom = 59.0
+text = "0"
+
+[node name="BagSlot_1" type="Node2D" parent="WorldRoot/BagRoot" unique_id=1722276937]
+position = Vector2(280, 140)
+
+[node name="Polygon2D" type="Polygon2D" parent="WorldRoot/BagRoot/BagSlot_1" unique_id=1463999439]
+color = Color(0, 0, 1, 1)
+polygon = PackedVector2Array(-30, 37, 40, 38, 33, -33, -39, -33)
+
+[node name="Label" type="Label" parent="WorldRoot/BagRoot/BagSlot_1" unique_id=1690506864]
+offset_left = -2.0
+offset_top = 36.0
+offset_right = 38.0
+offset_bottom = 59.0
+text = "0"
+
+[node name="BagSlot_2" type="Node2D" parent="WorldRoot/BagRoot" unique_id=125905705]
+position = Vector2(440, 140)
+
+[node name="Polygon2D" type="Polygon2D" parent="WorldRoot/BagRoot/BagSlot_2" unique_id=1535279097]
+color = Color(1, 1, 0, 1)
+polygon = PackedVector2Array(-30, 37, 40, 38, 33, -33, -39, -33)
+
+[node name="Label" type="Label" parent="WorldRoot/BagRoot/BagSlot_2" unique_id=235369785]
+offset_left = -2.0
+offset_top = 36.0
+offset_right = 38.0
+offset_bottom = 59.0
+text = "0"
+
+[node name="BagSlot_3" type="Node2D" parent="WorldRoot/BagRoot" unique_id=532374235]
+position = Vector2(600, 140)
+
+[node name="Polygon2D" type="Polygon2D" parent="WorldRoot/BagRoot/BagSlot_3" unique_id=77441442]
+color = Color(0, 1, 0, 1)
+polygon = PackedVector2Array(-30, 37, 40, 38, 33, -33, -39, -33)
+
+[node name="Label" type="Label" parent="WorldRoot/BagRoot/BagSlot_3" unique_id=176429241]
+offset_left = -2.0
+offset_top = 36.0
+offset_right = 38.0
+offset_bottom = 59.0
+text = "0"
+
+[node name="BottleRoot" type="Node2D" parent="WorldRoot" unique_id=1048659728]
+
+[node name="Bottle_0" type="Area2D" parent="WorldRoot/BottleRoot" unique_id=1402174463]
+position = Vector2(160, 520)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldRoot/BottleRoot/Bottle_0" unique_id=1581569540]
+shape = SubResource("RectangleShape2D_f24su")
+
+[node name="BottleFrame" type="Line2D" parent="WorldRoot/BottleRoot/Bottle_0" unique_id=750159045]
+points = PackedVector2Array(-50, -110, -50, 110, 50, 110, 50, -110)
+width = 4.0
+
+[node name="LayerRoot" type="Node2D" parent="WorldRoot/BottleRoot/Bottle_0" unique_id=201931446]
+
+[node name="Layer_0" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_0/LayerRoot" unique_id=1373041861]
+position = Vector2(0, 60)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Layer_1" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_0/LayerRoot" unique_id=457406988]
+position = Vector2(0, 15)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Layer_2" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_0/LayerRoot" unique_id=1329571115]
+position = Vector2(0, -30)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Layer_3" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_0/LayerRoot" unique_id=657130572]
+position = Vector2(0, -75)
+color = Color(0, 1, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Question_0" type="Label" parent="WorldRoot/BottleRoot/Bottle_0/LayerRoot"]
+offset_left = -10.0
+offset_top = 48.0
+offset_right = 30.0
+offset_bottom = 72.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="Question_1" type="Label" parent="WorldRoot/BottleRoot/Bottle_0/LayerRoot"]
+offset_left = -10.0
+offset_top = 3.0
+offset_right = 30.0
+offset_bottom = 27.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="Question_2" type="Label" parent="WorldRoot/BottleRoot/Bottle_0/LayerRoot"]
+offset_left = -10.0
+offset_top = -42.0
+offset_right = 30.0
+offset_bottom = -18.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="Question_3" type="Label" parent="WorldRoot/BottleRoot/Bottle_0/LayerRoot"]
+offset_left = -10.0
+offset_top = -87.0
+offset_right = 30.0
+offset_bottom = -63.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="Bottle_1" type="Area2D" parent="WorldRoot/BottleRoot" unique_id=422736141]
+position = Vector2(360, 520)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldRoot/BottleRoot/Bottle_1" unique_id=552645553]
+shape = SubResource("RectangleShape2D_f24su")
+
+[node name="BottleFrame" type="Line2D" parent="WorldRoot/BottleRoot/Bottle_1" unique_id=1680023793]
+points = PackedVector2Array(-50, -110, -50, 110, 50, 110, 50, -110)
+width = 4.0
+
+[node name="LayerRoot" type="Node2D" parent="WorldRoot/BottleRoot/Bottle_1" unique_id=1996195950]
+
+[node name="Layer_0" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_1/LayerRoot" unique_id=1186284358]
+position = Vector2(0, 60)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Layer_1" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_1/LayerRoot" unique_id=330350439]
+position = Vector2(0, 15)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Layer_2" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_1/LayerRoot" unique_id=989741999]
+position = Vector2(0, -30)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Layer_3" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_1/LayerRoot" unique_id=1485837342]
+position = Vector2(0, -75)
+color = Color(0, 1, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Question_0" type="Label" parent="WorldRoot/BottleRoot/Bottle_1/LayerRoot"]
+offset_left = -10.0
+offset_top = 48.0
+offset_right = 30.0
+offset_bottom = 72.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="Question_1" type="Label" parent="WorldRoot/BottleRoot/Bottle_1/LayerRoot"]
+offset_left = -10.0
+offset_top = 3.0
+offset_right = 30.0
+offset_bottom = 27.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="Question_2" type="Label" parent="WorldRoot/BottleRoot/Bottle_1/LayerRoot"]
+offset_left = -10.0
+offset_top = -42.0
+offset_right = 30.0
+offset_bottom = -18.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="Question_3" type="Label" parent="WorldRoot/BottleRoot/Bottle_1/LayerRoot"]
+offset_left = -10.0
+offset_top = -87.0
+offset_right = 30.0
+offset_bottom = -63.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="Bottle_2" type="Area2D" parent="WorldRoot/BottleRoot" unique_id=1536738524]
+position = Vector2(560, 520)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldRoot/BottleRoot/Bottle_2" unique_id=434052370]
+shape = SubResource("RectangleShape2D_f24su")
+
+[node name="BottleFrame" type="Line2D" parent="WorldRoot/BottleRoot/Bottle_2" unique_id=747198216]
+points = PackedVector2Array(-50, -110, -50, 110, 50, 110, 50, -110)
+width = 4.0
+
+[node name="LayerRoot" type="Node2D" parent="WorldRoot/BottleRoot/Bottle_2" unique_id=1863111133]
+
+[node name="Layer_0" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_2/LayerRoot" unique_id=726347508]
+position = Vector2(0, 60)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Layer_1" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_2/LayerRoot" unique_id=226209237]
+position = Vector2(0, 15)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Layer_2" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_2/LayerRoot" unique_id=2101404741]
+position = Vector2(0, -30)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Layer_3" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_2/LayerRoot" unique_id=970155247]
+position = Vector2(0, -75)
+color = Color(0, 1, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Question_0" type="Label" parent="WorldRoot/BottleRoot/Bottle_2/LayerRoot"]
+offset_left = -10.0
+offset_top = 48.0
+offset_right = 30.0
+offset_bottom = 72.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="Question_1" type="Label" parent="WorldRoot/BottleRoot/Bottle_2/LayerRoot"]
+offset_left = -10.0
+offset_top = 3.0
+offset_right = 30.0
+offset_bottom = 27.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="Question_2" type="Label" parent="WorldRoot/BottleRoot/Bottle_2/LayerRoot"]
+offset_left = -10.0
+offset_top = -42.0
+offset_right = 30.0
+offset_bottom = -18.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="Question_3" type="Label" parent="WorldRoot/BottleRoot/Bottle_2/LayerRoot"]
+offset_left = -10.0
+offset_top = -87.0
+offset_right = 30.0
+offset_bottom = -63.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="Bottle_3" type="Area2D" parent="WorldRoot/BottleRoot" unique_id=2140159505]
+position = Vector2(160, 830)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldRoot/BottleRoot/Bottle_3" unique_id=624795241]
+shape = SubResource("RectangleShape2D_f24su")
+
+[node name="BottleFrame" type="Line2D" parent="WorldRoot/BottleRoot/Bottle_3" unique_id=127503112]
+points = PackedVector2Array(-50, -110, -50, 110, 50, 110, 50, -110)
+width = 4.0
+
+[node name="LayerRoot" type="Node2D" parent="WorldRoot/BottleRoot/Bottle_3" unique_id=1464695616]
+
+[node name="Layer_0" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_3/LayerRoot" unique_id=899778816]
+position = Vector2(0, 60)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Layer_1" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_3/LayerRoot" unique_id=1835511433]
+position = Vector2(0, 15)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Layer_2" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_3/LayerRoot" unique_id=120579824]
+position = Vector2(0, -30)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Layer_3" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_3/LayerRoot" unique_id=315115310]
+position = Vector2(0, -75)
+color = Color(0, 1, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Question_0" type="Label" parent="WorldRoot/BottleRoot/Bottle_3/LayerRoot"]
+offset_left = -10.0
+offset_top = 48.0
+offset_right = 30.0
+offset_bottom = 72.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="Question_1" type="Label" parent="WorldRoot/BottleRoot/Bottle_3/LayerRoot"]
+offset_left = -10.0
+offset_top = 3.0
+offset_right = 30.0
+offset_bottom = 27.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="Question_2" type="Label" parent="WorldRoot/BottleRoot/Bottle_3/LayerRoot"]
+offset_left = -10.0
+offset_top = -42.0
+offset_right = 30.0
+offset_bottom = -18.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="Question_3" type="Label" parent="WorldRoot/BottleRoot/Bottle_3/LayerRoot"]
+offset_left = -10.0
+offset_top = -87.0
+offset_right = 30.0
+offset_bottom = -63.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="Bottle_4" type="Area2D" parent="WorldRoot/BottleRoot" unique_id=626200695]
+position = Vector2(360, 830)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldRoot/BottleRoot/Bottle_4" unique_id=1092986549]
+shape = SubResource("RectangleShape2D_f24su")
+
+[node name="BottleFrame" type="Line2D" parent="WorldRoot/BottleRoot/Bottle_4" unique_id=276656296]
+points = PackedVector2Array(-50, -110, -50, 110, 50, 110, 50, -110)
+width = 4.0
+
+[node name="LayerRoot" type="Node2D" parent="WorldRoot/BottleRoot/Bottle_4" unique_id=709531736]
+
+[node name="Layer_0" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_4/LayerRoot" unique_id=2054047540]
+position = Vector2(0, 60)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Layer_1" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_4/LayerRoot" unique_id=634604845]
+position = Vector2(0, 15)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Layer_2" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_4/LayerRoot" unique_id=1095749493]
+position = Vector2(0, -30)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Layer_3" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_4/LayerRoot" unique_id=571425398]
+position = Vector2(0, -75)
+color = Color(0, 1, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Question_0" type="Label" parent="WorldRoot/BottleRoot/Bottle_4/LayerRoot"]
+offset_left = -10.0
+offset_top = 48.0
+offset_right = 30.0
+offset_bottom = 72.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="Question_1" type="Label" parent="WorldRoot/BottleRoot/Bottle_4/LayerRoot"]
+offset_left = -10.0
+offset_top = 3.0
+offset_right = 30.0
+offset_bottom = 27.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="Question_2" type="Label" parent="WorldRoot/BottleRoot/Bottle_4/LayerRoot"]
+offset_left = -10.0
+offset_top = -42.0
+offset_right = 30.0
+offset_bottom = -18.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="Question_3" type="Label" parent="WorldRoot/BottleRoot/Bottle_4/LayerRoot"]
+offset_left = -10.0
+offset_top = -87.0
+offset_right = 30.0
+offset_bottom = -63.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="Bottle_5" type="Area2D" parent="WorldRoot/BottleRoot" unique_id=78016689]
+position = Vector2(560, 830)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="WorldRoot/BottleRoot/Bottle_5" unique_id=1741216215]
+shape = SubResource("RectangleShape2D_f24su")
+
+[node name="BottleFrame" type="Line2D" parent="WorldRoot/BottleRoot/Bottle_5" unique_id=1961129791]
+points = PackedVector2Array(-50, -110, -50, 110, 50, 110, 50, -110)
+width = 4.0
+
+[node name="LayerRoot" type="Node2D" parent="WorldRoot/BottleRoot/Bottle_5"]
+
+[node name="Layer_0" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_5/LayerRoot"]
+position = Vector2(0, 60)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Layer_1" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_5/LayerRoot"]
+position = Vector2(0, 15)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Layer_2" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_5/LayerRoot"]
+position = Vector2(0, -30)
+color = Color(0, 0, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Layer_3" type="Polygon2D" parent="WorldRoot/BottleRoot/Bottle_5/LayerRoot"]
+position = Vector2(0, -75)
+color = Color(0, 1, 0, 1)
+polygon = PackedVector2Array(-42, -20, 42, -20, 42, 20, -42, 20)
+
+[node name="Question_0" type="Label" parent="WorldRoot/BottleRoot/Bottle_5/LayerRoot"]
+offset_left = -10.0
+offset_top = 48.0
+offset_right = 30.0
+offset_bottom = 72.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="Question_1" type="Label" parent="WorldRoot/BottleRoot/Bottle_5/LayerRoot"]
+offset_left = -10.0
+offset_top = 3.0
+offset_right = 30.0
+offset_bottom = 27.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="Question_2" type="Label" parent="WorldRoot/BottleRoot/Bottle_5/LayerRoot"]
+offset_left = -10.0
+offset_top = -42.0
+offset_right = 30.0
+offset_bottom = -18.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="Question_3" type="Label" parent="WorldRoot/BottleRoot/Bottle_5/LayerRoot"]
+offset_left = -10.0
+offset_top = -87.0
+offset_right = 30.0
+offset_bottom = -63.0
+text = "？"
+horizontal_alignment = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1275699926]
+
+[node name="RestartButton" type="Button" parent="CanvasLayer" unique_id=937279451]
+offset_left = 280.0
+offset_top = 1050.0
+offset_right = 440.0
+offset_bottom = 1110.0
+text = "重开"
+
+[node name="TipLabel" type="Label" parent="CanvasLayer" unique_id=2040191524]
+visible = false
+offset_left = 260.0
+offset_top = 1030.0
+offset_right = 460.0
+offset_bottom = 1080.0
+text = "不能倒入"
+horizontal_alignment = 1
+
+[node name="VictoryPopup" type="PopupPanel" parent="CanvasLayer" unique_id=175763897]
+visible = false
+oversampling_override = 1.0
+position = Vector2i(160, 460)
+size = Vector2i(400, 260)
+
+[node name="VictoryLabel" type="Label" parent="CanvasLayer/VictoryPopup" unique_id=1480952617]
+offset_left = 120.0
+offset_top = 60.0
+offset_right = 280.0
+offset_bottom = 110.0
+text = "通关成功"
+horizontal_alignment = 1
+
+[node name="PopupRestartButton" type="Button" parent="CanvasLayer/VictoryPopup" unique_id=2001887451]
+offset_left = 120.0
+offset_top = 150.0
+offset_right = 280.0
+offset_bottom = 210.0
+text = "重开"
