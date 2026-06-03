@@ -1,0 +1,1089 @@
+[gd_scene format=3 uid="uid://dc2s7jq36t70n"]
+
+[ext_resource type="Script" uid="uid://cgtinpkxxoo1p" path="res://scripts/view/HomeGardenView.cs" id="1_home_view"]
+[ext_resource type="Texture2D" uid="uid://c7jgd4jnja1pw" path="res://assets/home/backgrounds/home_garden_bg_v1.png" id="2_home_background"]
+[ext_resource type="Texture2D" uid="uid://b6i40farby104" path="res://assets/flowers/pink_rose/home_slots/pink_rose_slot_01.png" id="3_pink_rose_01"]
+[ext_resource type="Texture2D" uid="uid://c53t04pfcoekg" path="res://assets/flowers/pink_rose/home_slots/pink_rose_slot_02.png" id="4_pink_rose_02"]
+[ext_resource type="Texture2D" uid="uid://k2qtlo1gh042" path="res://assets/flowers/pink_rose/home_slots/pink_rose_slot_03.png" id="5_pink_rose_03"]
+[ext_resource type="Texture2D" uid="uid://cnyvy8dcomuk6" path="res://assets/flowers/pink_rose/home_slots/pink_rose_slot_04.png" id="6_pink_rose_04"]
+[ext_resource type="Texture2D" uid="uid://dd7023phfmdm0" path="res://assets/flowers/pink_rose/home_slots/pink_rose_slot_05.png" id="7_pink_rose_05"]
+[ext_resource type="Texture2D" uid="uid://kd844tupo8io" path="res://assets/flowers/pink_rose/home_slots/pink_rose_slot_06.png" id="8_pink_rose_06"]
+[ext_resource type="Texture2D" uid="uid://vp2ered1gfv7" path="res://assets/flowers/pink_rose/home_slots/pink_rose_slot_07.png" id="9_pink_rose_07"]
+[ext_resource type="Texture2D" uid="uid://bv10gcih3kr4a" path="res://assets/flowers/yellow_rose/home_slots/yellow_rose_slot_01.png" id="10_yellow_rose_01"]
+[ext_resource type="Texture2D" uid="uid://dyv0cor8ui3d1" path="res://assets/flowers/yellow_rose/home_slots/yellow_rose_slot_02.png" id="11_yellow_rose_02"]
+[ext_resource type="Texture2D" uid="uid://cvykjn7yt88q6" path="res://assets/flowers/yellow_rose/home_slots/yellow_rose_slot_03.png" id="12_yellow_rose_03"]
+[ext_resource type="Texture2D" uid="uid://c8qydl52jddja" path="res://assets/flowers/yellow_rose/home_slots/yellow_rose_slot_04.png" id="13_yellow_rose_04"]
+[ext_resource type="Texture2D" uid="uid://b5t5yuh14ohkf" path="res://assets/flowers/yellow_rose/home_slots/yellow_rose_slot_05.png" id="14_yellow_rose_05"]
+[ext_resource type="Texture2D" uid="uid://bpkode8me31rc" path="res://assets/flowers/yellow_rose/home_slots/yellow_rose_slot_06.png" id="15_yellow_rose_06"]
+[ext_resource type="Texture2D" uid="uid://bo6bcjllkh8yn" path="res://assets/flowers/yellow_rose/home_slots/yellow_rose_slot_07.png" id="16_yellow_rose_07"]
+[ext_resource type="Texture2D" uid="uid://mwrdjyfxx4t3" path="res://assets/flowers/lavender/home_slots/lavender_slot_01.png" id="17_lavender_01"]
+[ext_resource type="Texture2D" uid="uid://c2550ceauv2rj" path="res://assets/flowers/lavender/home_slots/lavender_slot_02.png" id="18_lavender_02"]
+[ext_resource type="Texture2D" uid="uid://bjhoub3d3f6pp" path="res://assets/flowers/lavender/home_slots/lavender_slot_03.png" id="19_lavender_03"]
+[ext_resource type="Texture2D" uid="uid://da26phg1nwc14" path="res://assets/flowers/lavender/home_slots/lavender_slot_04.png" id="20_lavender_04"]
+[ext_resource type="Texture2D" uid="uid://crsove6d4gjmu" path="res://assets/flowers/lavender/home_slots/lavender_slot_05.png" id="21_lavender_05"]
+[ext_resource type="Texture2D" uid="uid://cduca6utrf3ch" path="res://assets/flowers/lavender/home_slots/lavender_slot_06.png" id="22_lavender_06"]
+[ext_resource type="Texture2D" uid="uid://cmjd6v61fdx1g" path="res://assets/flowers/lavender/home_slots/lavender_slot_07.png" id="23_lavender_07"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slot_debug"]
+bg_color = Color(0.95, 0.78, 0.62, 0.28)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.48, 0.34, 0.22, 0.5)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q31nw"]
+bg_color = Color(1, 0.94, 0.68, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.44, 0.28, 0.12, 0.86)
+corner_radius_top_left = 27
+corner_radius_top_right = 27
+corner_radius_bottom_right = 27
+corner_radius_bottom_left = 27
+shadow_color = Color(0.18, 0.11, 0.06, 0.22)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwgxr"]
+bg_color = Color(0.92, 0.78, 0.46, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.36, 0.22, 0.1, 0.96)
+corner_radius_top_left = 27
+corner_radius_top_right = 27
+corner_radius_bottom_right = 27
+corner_radius_bottom_left = 27
+shadow_color = Color(0.18, 0.11, 0.06, 0.22)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ilir1"]
+bg_color = Color(1, 0.98, 0.78, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.32, 0.14, 0.92)
+corner_radius_top_left = 27
+corner_radius_top_right = 27
+corner_radius_bottom_right = 27
+corner_radius_bottom_left = 27
+shadow_color = Color(0.18, 0.11, 0.06, 0.22)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7a6tl"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yf6ex"]
+bg_color = Color(1, 0.94, 0.68, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.44, 0.28, 0.12, 0.86)
+corner_radius_top_left = 27
+corner_radius_top_right = 27
+corner_radius_bottom_right = 27
+corner_radius_bottom_left = 27
+shadow_color = Color(0.18, 0.11, 0.06, 0.22)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vq2co"]
+bg_color = Color(0.92, 0.78, 0.46, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.36, 0.22, 0.1, 0.96)
+corner_radius_top_left = 27
+corner_radius_top_right = 27
+corner_radius_bottom_right = 27
+corner_radius_bottom_left = 27
+shadow_color = Color(0.18, 0.11, 0.06, 0.22)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_psvo6"]
+bg_color = Color(1, 0.98, 0.78, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.32, 0.14, 0.92)
+corner_radius_top_left = 27
+corner_radius_top_right = 27
+corner_radius_bottom_right = 27
+corner_radius_bottom_left = 27
+shadow_color = Color(0.18, 0.11, 0.06, 0.22)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ugrdw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmtys"]
+bg_color = Color(1, 0.94, 0.68, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.44, 0.28, 0.12, 0.86)
+corner_radius_top_left = 27
+corner_radius_top_right = 27
+corner_radius_bottom_right = 27
+corner_radius_bottom_left = 27
+shadow_color = Color(0.18, 0.11, 0.06, 0.22)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1c2nk"]
+bg_color = Color(0.92, 0.78, 0.46, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.36, 0.22, 0.1, 0.96)
+corner_radius_top_left = 27
+corner_radius_top_right = 27
+corner_radius_bottom_right = 27
+corner_radius_bottom_left = 27
+shadow_color = Color(0.18, 0.11, 0.06, 0.22)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jux68"]
+bg_color = Color(1, 0.98, 0.78, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.32, 0.14, 0.92)
+corner_radius_top_left = 27
+corner_radius_top_right = 27
+corner_radius_bottom_right = 27
+corner_radius_bottom_left = 27
+shadow_color = Color(0.18, 0.11, 0.06, 0.22)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4pqia"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6cqr"]
+bg_color = Color(1, 0.94, 0.68, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.44, 0.28, 0.12, 0.86)
+corner_radius_top_left = 27
+corner_radius_top_right = 27
+corner_radius_bottom_right = 27
+corner_radius_bottom_left = 27
+shadow_color = Color(0.18, 0.11, 0.06, 0.22)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wha5j"]
+bg_color = Color(0.92, 0.78, 0.46, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.36, 0.22, 0.1, 0.96)
+corner_radius_top_left = 27
+corner_radius_top_right = 27
+corner_radius_bottom_right = 27
+corner_radius_bottom_left = 27
+shadow_color = Color(0.18, 0.11, 0.06, 0.22)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ymgl"]
+bg_color = Color(1, 0.98, 0.78, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.32, 0.14, 0.92)
+corner_radius_top_left = 27
+corner_radius_top_right = 27
+corner_radius_bottom_right = 27
+corner_radius_bottom_left = 27
+shadow_color = Color(0.18, 0.11, 0.06, 0.22)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5bbgc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qbuax"]
+bg_color = Color(1, 0.94, 0.68, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.44, 0.28, 0.12, 0.86)
+corner_radius_top_left = 27
+corner_radius_top_right = 27
+corner_radius_bottom_right = 27
+corner_radius_bottom_left = 27
+shadow_color = Color(0.18, 0.11, 0.06, 0.22)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ola2q"]
+bg_color = Color(0.92, 0.78, 0.46, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.36, 0.22, 0.1, 0.96)
+corner_radius_top_left = 27
+corner_radius_top_right = 27
+corner_radius_bottom_right = 27
+corner_radius_bottom_left = 27
+shadow_color = Color(0.18, 0.11, 0.06, 0.22)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47sys"]
+bg_color = Color(1, 0.98, 0.78, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.32, 0.14, 0.92)
+corner_radius_top_left = 27
+corner_radius_top_right = 27
+corner_radius_bottom_right = 27
+corner_radius_bottom_left = 27
+shadow_color = Color(0.18, 0.11, 0.06, 0.22)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s7ydq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spei7"]
+bg_color = Color(1, 0.94, 0.68, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.44, 0.28, 0.12, 0.86)
+corner_radius_top_left = 27
+corner_radius_top_right = 27
+corner_radius_bottom_right = 27
+corner_radius_bottom_left = 27
+shadow_color = Color(0.18, 0.11, 0.06, 0.22)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_073l4"]
+bg_color = Color(0.92, 0.78, 0.46, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.36, 0.22, 0.1, 0.96)
+corner_radius_top_left = 27
+corner_radius_top_right = 27
+corner_radius_bottom_right = 27
+corner_radius_bottom_left = 27
+shadow_color = Color(0.18, 0.11, 0.06, 0.22)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4uywk"]
+bg_color = Color(1, 0.98, 0.78, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.32, 0.14, 0.92)
+corner_radius_top_left = 27
+corner_radius_top_right = 27
+corner_radius_bottom_right = 27
+corner_radius_bottom_left = 27
+shadow_color = Color(0.18, 0.11, 0.06, 0.22)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qd0dx"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p44bc"]
+bg_color = Color(1, 0.94, 0.68, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.44, 0.28, 0.12, 0.86)
+corner_radius_top_left = 27
+corner_radius_top_right = 27
+corner_radius_bottom_right = 27
+corner_radius_bottom_left = 27
+shadow_color = Color(0.18, 0.11, 0.06, 0.22)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hcblt"]
+bg_color = Color(0.92, 0.78, 0.46, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.36, 0.22, 0.1, 0.96)
+corner_radius_top_left = 27
+corner_radius_top_right = 27
+corner_radius_bottom_right = 27
+corner_radius_bottom_left = 27
+shadow_color = Color(0.18, 0.11, 0.06, 0.22)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wp0d1"]
+bg_color = Color(1, 0.98, 0.78, 0.96)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.5, 0.32, 0.14, 0.92)
+corner_radius_top_left = 27
+corner_radius_top_right = 27
+corner_radius_bottom_right = 27
+corner_radius_bottom_left = 27
+shadow_color = Color(0.18, 0.11, 0.06, 0.22)
+shadow_size = 5
+shadow_offset = Vector2(0, 2)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i2mbb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_transparent"]
+
+[node name="HomeGarden" type="Control" unique_id=121269187]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_home_view")
+
+[node name="Background" type="TextureRect" parent="." unique_id=1240247310]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("2_home_background")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="FlowerDisplayRoot" type="Control" parent="." unique_id=1149201589]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="FlowerSlotRoot" type="Control" parent="." unique_id=1326061469]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -1.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PinkRoseSlot_01" type="Panel" parent="FlowerSlotRoot" unique_id=861978539]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+anchor_left = -0.015277778
+anchor_top = 0.440625
+anchor_right = 0.24027778
+anchor_bottom = 0.65625
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot_debug")
+metadata/_edit_use_anchors_ = true
+
+[node name="FlowerTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_01" unique_id=590198120]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05978261
+anchor_top = -0.56884056
+anchor_right = 1.2934783
+anchor_bottom = 1.518116
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("3_pink_rose_01")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="YellowRoseTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_01" unique_id=732635422]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05978261
+anchor_top = -0.35507247
+anchor_right = 1.3043479
+anchor_bottom = 1.268116
+offset_right = -1.5258789e-05
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("10_yellow_rose_01")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="LavenderTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_01" unique_id=719270891]
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.054347824
+anchor_top = -0.2789855
+anchor_right = 1.3152174
+anchor_bottom = 1.3442029
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("17_lavender_01")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PlantMarkerButton" type="Button" parent="FlowerSlotRoot/PinkRoseSlot_01" unique_id=717730199]
+visible = false
+z_index = 20
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -27.0
+offset_right = 27.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_q31nw")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rwgxr")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ilir1")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_q31nw")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7a6tl")
+disabled = true
+
+[node name="NumberLabel" type="Label" parent="FlowerSlotRoot/PinkRoseSlot_01/PlantMarkerButton" unique_id=1700488173]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PinkRoseSlot_02" type="Panel" parent="FlowerSlotRoot" unique_id=1818279899]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+anchor_left = 0.2375
+anchor_top = 0.39765626
+anchor_right = 0.33472222
+anchor_bottom = 0.46640626
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot_debug")
+metadata/_edit_use_anchors_ = true
+
+[node name="FlowerTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_02" unique_id=2072163862]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.2285714
+anchor_top = -0.26136363
+anchor_right = 1.8714286
+anchor_bottom = 1.5113636
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_pink_rose_02")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="YellowRoseTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_02" unique_id=470014658]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.74285716
+anchor_top = -0.26136363
+anchor_right = 1.3428571
+anchor_bottom = 1.4431819
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("11_yellow_rose_02")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="LavenderTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_02" unique_id=1971175620]
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.0714285
+anchor_top = -0.6818182
+anchor_right = 1.7428571
+anchor_bottom = 1.4545455
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("18_lavender_02")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PlantMarkerButton" type="Button" parent="FlowerSlotRoot/PinkRoseSlot_02" unique_id=1723216302]
+visible = false
+z_index = 20
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -27.0
+offset_right = 27.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_yf6ex")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_vq2co")
+theme_override_styles/hover = SubResource("StyleBoxFlat_psvo6")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_yf6ex")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ugrdw")
+disabled = true
+
+[node name="NumberLabel" type="Label" parent="FlowerSlotRoot/PinkRoseSlot_02/PlantMarkerButton" unique_id=987627332]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "2"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PinkRoseSlot_03" type="Panel" parent="FlowerSlotRoot" unique_id=2130126212]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+anchor_left = -0.0027777778
+anchor_top = 0.7203125
+anchor_right = 0.5277778
+anchor_bottom = 1.0015625
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot_debug")
+metadata/_edit_use_anchors_ = true
+
+[node name="FlowerTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_03" unique_id=1482940734]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.020942409
+anchor_right = 0.9790576
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_pink_rose_03")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="YellowRoseTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_03" unique_id=1021481062]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.020942409
+anchor_top = -0.0027777778
+anchor_right = 0.9790576
+anchor_bottom = 0.99722224
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("12_yellow_rose_03")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="LavenderTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_03" unique_id=1800624713]
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.14659685
+anchor_right = 0.85340315
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("19_lavender_03")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PlantMarkerButton" type="Button" parent="FlowerSlotRoot/PinkRoseSlot_03" unique_id=1253404594]
+visible = false
+z_index = 20
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -27.0
+offset_right = 27.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_lmtys")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_1c2nk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_jux68")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_lmtys")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4pqia")
+disabled = true
+
+[node name="NumberLabel" type="Label" parent="FlowerSlotRoot/PinkRoseSlot_03/PlantMarkerButton" unique_id=810731214]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PinkRoseSlot_04" type="Panel" parent="FlowerSlotRoot" unique_id=1793602654]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.015277778
+anchor_top = 0.21328124
+anchor_right = 0.32916668
+anchor_bottom = 0.32265624
+offset_right = -1.5258789e-05
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot_debug")
+metadata/_edit_use_anchors_ = true
+
+[node name="FlowerTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_04" unique_id=1698433505]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.053097345
+anchor_top = -0.30714285
+anchor_right = 1.2345133
+anchor_bottom = 1.3428571
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_pink_rose_04")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="YellowRoseTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_04" unique_id=1340160293]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.053097345
+anchor_top = -0.2642857
+anchor_right = 1.2345133
+anchor_bottom = 1.3857143
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("16_yellow_rose_07")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="LavenderTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_04" unique_id=1098628231]
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.053097345
+anchor_top = -0.15
+anchor_right = 1.2345133
+anchor_bottom = 1.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("20_lavender_04")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PlantMarkerButton" type="Button" parent="FlowerSlotRoot/PinkRoseSlot_04" unique_id=254222029]
+visible = false
+z_index = 20
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -27.0
+offset_right = 27.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_n6cqr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wha5j")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4ymgl")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_n6cqr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5bbgc")
+disabled = true
+
+[node name="NumberLabel" type="Label" parent="FlowerSlotRoot/PinkRoseSlot_04/PlantMarkerButton" unique_id=1521450239]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PinkRoseSlot_05" type="Panel" parent="FlowerSlotRoot" unique_id=842572754]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+anchor_left = 0.7972222
+anchor_top = 0.8234375
+anchor_right = 1.0027778
+anchor_bottom = 1.0015625
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot_debug")
+metadata/_edit_use_anchors_ = true
+
+[node name="FlowerTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_05" unique_id=928969590]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.6351353
+anchor_top = -0.63596493
+anchor_right = 1.4189188
+anchor_bottom = 0.99561405
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_pink_rose_05")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="YellowRoseTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_05" unique_id=968489473]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.3851352
+anchor_top = -0.622807
+anchor_right = 0.9864865
+anchor_bottom = 1.0263158
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("14_yellow_rose_05")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="LavenderTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_05" unique_id=2111260251]
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.3581082
+anchor_top = -0.6447368
+anchor_right = 1.0135134
+anchor_bottom = 1.004386
+offset_right = 1.5258789e-05
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("21_lavender_05")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PlantMarkerButton" type="Button" parent="FlowerSlotRoot/PinkRoseSlot_05" unique_id=430353651]
+visible = false
+z_index = 20
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -27.0
+offset_right = 27.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_qbuax")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ola2q")
+theme_override_styles/hover = SubResource("StyleBoxFlat_47sys")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_qbuax")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_s7ydq")
+disabled = true
+
+[node name="NumberLabel" type="Label" parent="FlowerSlotRoot/PinkRoseSlot_05/PlantMarkerButton" unique_id=1530659027]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "5"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PinkRoseSlot_06" type="Panel" parent="FlowerSlotRoot" unique_id=878032324]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.27222222
+anchor_top = 0.5125
+anchor_right = 0.4125
+anchor_bottom = 0.59375
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot_debug")
+metadata/_edit_use_anchors_ = true
+
+[node name="FlowerTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_06" unique_id=1056773203]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.31683168
+anchor_top = -0.22115384
+anchor_right = 1.1386138
+anchor_bottom = 1.6923077
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("8_pink_rose_06")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="YellowRoseTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_06" unique_id=1087389372]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.45544556
+anchor_top = -0.1826923
+anchor_right = 1.4257426
+anchor_bottom = 1.8076923
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("15_yellow_rose_06")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="LavenderTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_06" unique_id=1483055832]
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.22772278
+anchor_top = -0.09615385
+anchor_right = 1.1782178
+anchor_bottom = 1.5865384
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("22_lavender_06")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PlantMarkerButton" type="Button" parent="FlowerSlotRoot/PinkRoseSlot_06" unique_id=1707643165]
+visible = false
+z_index = 20
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -27.0
+offset_right = 27.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_spei7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_073l4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_4uywk")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_spei7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qd0dx")
+disabled = true
+
+[node name="NumberLabel" type="Label" parent="FlowerSlotRoot/PinkRoseSlot_06/PlantMarkerButton" unique_id=974789756]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "6"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PinkRoseSlot_07" type="Panel" parent="FlowerSlotRoot" unique_id=1875098550]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.8680556
+anchor_top = 0.54765624
+anchor_right = 1.0125
+anchor_bottom = 0.7164062
+offset_right = -6.1035156e-05
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_slot_debug")
+metadata/_edit_use_anchors_ = true
+
+[node name="FlowerTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_07" unique_id=153857121]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.8942307
+anchor_top = -0.46296296
+anchor_right = 2.0384614
+anchor_bottom = 0.9351852
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("9_pink_rose_07")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="YellowRoseTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_07" unique_id=2062855706]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.45192307
+anchor_top = -0.24074075
+anchor_right = 1.25
+anchor_bottom = 0.662037
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("13_yellow_rose_04")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="LavenderTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_07" unique_id=1712185373]
+visible = false
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -2.7884614
+anchor_top = -0.17592593
+anchor_right = 0.9230769
+anchor_bottom = 1.1898148
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("23_lavender_07")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PlantMarkerButton" type="Button" parent="FlowerSlotRoot/PinkRoseSlot_07" unique_id=298835391]
+visible = false
+z_index = 20
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -27.0
+offset_top = -27.0
+offset_right = 27.0
+offset_bottom = 27.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_p44bc")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_hcblt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wp0d1")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_p44bc")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_i2mbb")
+disabled = true
+
+[node name="NumberLabel" type="Label" parent="FlowerSlotRoot/PinkRoseSlot_07/PlantMarkerButton" unique_id=489343384]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "7"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonRoot" type="Control" parent="." unique_id=1358840024]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="StartGameButton" type="Button" parent="ButtonRoot" unique_id=2098283976]
+layout_mode = 0
+offset_left = 392.0
+offset_top = 560.0
+offset_right = 708.0
+offset_bottom = 712.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_transparent")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_transparent")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_transparent")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_transparent")
+flat = true
+
+[node name="LevelSelectButton" type="Button" parent="ButtonRoot" unique_id=1416189139]
+layout_mode = 0
+offset_left = 437.0
+offset_top = 785.0
+offset_right = 665.0
+offset_bottom = 861.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_transparent")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_transparent")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_transparent")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_transparent")
+flat = true

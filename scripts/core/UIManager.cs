@@ -17,7 +17,7 @@ public sealed partial class UIManager : Node
 
     public override void _Ready()
     {
-        Node currentScene = GetTree().CurrentScene;
+        Node currentScene = GetNode<Node>("../..");
         _tipLabel = currentScene.GetNode<Label>("CanvasLayer/TipLabel");
         _restartButton = currentScene.GetNode<Button>("CanvasLayer/RestartButton");
         _victoryPopup = currentScene.GetNode<PopupPanel>("CanvasLayer/VictoryPopup");

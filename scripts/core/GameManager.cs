@@ -8,30 +8,48 @@ namespace WaterSortGame.Core;
 public sealed partial class GameManager : Node
 {
     private const int BottleCount = 6;
+    private const float Epsilon = 0.001f;
+
+    [Signal]
+    public delegate void TransferCommittedEventHandler(
+        int sourceBottleId,
+        int targetBottleId,
+        int moved,
+        int color,
+        Vector2 streamStartGlobal,
+        Vector2 streamEndGlobal,
+        bool isGroundPour);
+
+    [Signal]
+    public delegate void PouringStateChangedEventHandler(string state, string reason);
+
+    [Signal]
+    public delegate void LevelCompletedEventHandler();
+
+    [Export]
+    public bool IsManagedByMainFlow { get; set; }
 
     private readonly GameState _state = new();
     private readonly List<BottleView> _bottleViews = new();
     private readonly Dictionary<WaterColor, BagSlotView> _bagSlotViewsByColor = new();
     private PourSystem _pourSystem;
     private BagSystem _bagSystem;
+    private LevelGenerator _levelGenerator;
     private UIManager _uiManager;
-    private Label _redCountLabel;
-    private Label _blueCountLabel;
-    private Label _yellowCountLabel;
-    private Label _greenCountLabel;
     private int? _selectedBottleId;
+    private bool _isResolving;
 
     public override void _Ready()
     {
         _pourSystem = GetNode<PourSystem>("../PourSystem");
         _bagSystem = GetNode<BagSystem>("../BagSystem");
+        _levelGenerator = GetNode<LevelGenerator>("../LevelGenerator");
         _uiManager = GetNode<UIManager>("../UIManager");
         _uiManager.RestartRequested += RestartGame;
 
         CacheBottleViews();
         CacheBagSlotViews();
-        CacheBagCountLabels();
-        CreateTestState();
+        _levelGenerator.CreateInitialState(_state);
         _bagSystem.CollectCompletedBottles(_state);
         RefreshAllViews();
     }
@@ -40,7 +58,7 @@ public sealed partial class GameManager : Node
     {
         _bottleViews.Clear();
 
-        Node currentScene = GetTree().CurrentScene;
+        Node currentScene = GetNode<Node>("../..");
         for (int i = 0; i < BottleCount; i++)
         {
             BottleView view = currentScene.GetNode<BottleView>($"WorldRoot/BottleRoot/Bottle_{i}");
@@ -54,7 +72,7 @@ public sealed partial class GameManager : Node
     {
         _bagSlotViewsByColor.Clear();
 
-        Node currentScene = GetTree().CurrentScene;
+        Node currentScene = GetNode<Node>("../..");
 
         _bagSlotViewsByColor[WaterColor.Red] =
             currentScene.GetNode<BagSlotView>("WorldRoot/BagRoot/BagSlot_0");
@@ -71,60 +89,6 @@ public sealed partial class GameManager : Node
         _bagSlotViewsByColor[WaterColor.Green].Bind(WaterColor.Green);
     }
 
-    private void CacheBagCountLabels()
-    {
-        Node currentScene = GetTree().CurrentScene;
-
-        _redCountLabel =
-            currentScene.GetNode<Label>("WorldRoot/BagRoot/BagSlot_0/CountLabel");
-        _blueCountLabel =
-            currentScene.GetNode<Label>("WorldRoot/BagRoot/BagSlot_1/CountLabel");
-        _yellowCountLabel =
-            currentScene.GetNode<Label>("WorldRoot/BagRoot/BagSlot_2/CountLabel");
-        _greenCountLabel =
-            currentScene.GetNode<Label>("WorldRoot/BagRoot/BagSlot_3/CountLabel");
-    }
-
-    private void CreateTestState()
-    {
-        _state.Bottles.Clear();
-        _state.Bags.Clear();
-
-        _state.Bags[WaterColor.Red] = new BagData(WaterColor.Red);
-        _state.Bags[WaterColor.Blue] = new BagData(WaterColor.Blue);
-        _state.Bags[WaterColor.Yellow] = new BagData(WaterColor.Yellow);
-        _state.Bags[WaterColor.Green] = new BagData(WaterColor.Green);
-
-        _state.Bottles.Add(CreateBottle(0,
-            (WaterColor.Green, false),
-            (WaterColor.Blue, false),
-            (WaterColor.Yellow, false),
-            (WaterColor.Red, true)));
-
-        _state.Bottles.Add(CreateBottle(1,
-            (WaterColor.Red, false),
-            (WaterColor.Green, false),
-            (WaterColor.Yellow, false),
-            (WaterColor.Blue, true)));
-
-        _state.Bottles.Add(CreateBottle(2,
-            (WaterColor.Blue, false),
-            (WaterColor.Red, false),
-            (WaterColor.Green, false),
-            (WaterColor.Yellow, true)));
-
-        _state.Bottles.Add(CreateBottle(3,
-            (WaterColor.Yellow, false),
-            (WaterColor.Blue, false),
-            (WaterColor.Red, false),
-            (WaterColor.Green, true)));
-
-        _state.Bottles.Add(new BottleData { Id = 4 });
-        _state.Bottles.Add(new BottleData { Id = 5 });
-
-        ValidateTestState();
-    }
-
     private void RefreshAllBottleViews()
     {
         for (int i = 0; i < BottleCount; i++)
@@ -135,10 +99,10 @@ public sealed partial class GameManager : Node
 
     private void RefreshAllBagSlotViews()
     {
-        _redCountLabel.Text = _state.Bags[WaterColor.Red].CollectedCount.ToString();
-        _blueCountLabel.Text = _state.Bags[WaterColor.Blue].CollectedCount.ToString();
-        _yellowCountLabel.Text = _state.Bags[WaterColor.Yellow].CollectedCount.ToString();
-        _greenCountLabel.Text = _state.Bags[WaterColor.Green].CollectedCount.ToString();
+        foreach (KeyValuePair<WaterColor, BagSlotView> pair in _bagSlotViewsByColor)
+        {
+            pair.Value.Refresh(_state.Bags[pair.Key]);
+        }
     }
 
     private void RefreshAllViews()
@@ -150,7 +114,7 @@ public sealed partial class GameManager : Node
 
     private void OnBottleClicked(int bottleId)
     {
-        if (_state.IsGameOver)
+        if (_state.IsGameOver || _isResolving)
         {
             return;
         }
@@ -168,6 +132,7 @@ public sealed partial class GameManager : Node
         {
             _selectedBottleId = null;
             RefreshSelectionViews();
+            EmitSignal(SignalName.PouringStateChanged, "Idle", "Cancelled");
             return;
         }
 
@@ -177,17 +142,7 @@ public sealed partial class GameManager : Node
 
         if (result.Success)
         {
-            _pourSystem.ExecutePour(result.Plan!, _state);
-            _bagSystem.CollectCompletedBottles(_state);
-            _selectedBottleId = null;
-            RefreshAllViews();
-
-            if (IsWin())
-            {
-                _state.IsGameOver = true;
-                _uiManager.ShowVictory();
-            }
-
+            _ = ResolveSuccessfulPourAsync(result.Plan!, source, target);
             return;
         }
 
@@ -195,6 +150,7 @@ public sealed partial class GameManager : Node
         _uiManager.ShowTip("不能倒入");
         _selectedBottleId = null;
         RefreshSelectionViews();
+        EmitSignal(SignalName.PouringStateChanged, "Blocked", result.FailReason);
     }
 
     private void RefreshSelectionViews()
@@ -208,38 +164,6 @@ public sealed partial class GameManager : Node
     private static bool CanSelectAsSource(BottleData bottle)
     {
         return !bottle.IsEmpty && !bottle.IsCollected;
-    }
-
-    private void ValidateTestState()
-    {
-        Dictionary<WaterColor, int> layerCounts = new()
-        {
-            [WaterColor.Red] = 0,
-            [WaterColor.Blue] = 0,
-            [WaterColor.Yellow] = 0,
-            [WaterColor.Green] = 0
-        };
-
-        foreach (BottleData bottle in _state.Bottles)
-        {
-            foreach (WaterLayer layer in bottle.Layers)
-            {
-                layerCounts[layer.Color]++;
-            }
-
-            if (!bottle.IsEmpty && !bottle.Layers[^1].IsRevealed)
-            {
-                GD.PushWarning($"Bottle {bottle.Id} top layer should be revealed in the initial test state.");
-            }
-        }
-
-        foreach (KeyValuePair<WaterColor, int> pair in layerCounts)
-        {
-            if (pair.Value != 4)
-            {
-                GD.PushWarning($"Initial test state has {pair.Value} {pair.Key} layers; expected 4.");
-            }
-        }
     }
 
     private bool IsWin()
@@ -256,23 +180,78 @@ public sealed partial class GameManager : Node
 
     private void RestartGame()
     {
+        if (_isResolving)
+        {
+            EmitSignal(SignalName.PouringStateChanged, "Blocked", "Restart ignored while resolving.");
+            return;
+        }
+
         _selectedBottleId = null;
         _state.IsGameOver = false;
+        EmitSignal(SignalName.PouringStateChanged, "Idle", "Restart");
         _uiManager.HideVictory();
 
-        CreateTestState();
+        _levelGenerator.CreateInitialState(_state);
         _bagSystem.CollectCompletedBottles(_state);
         RefreshAllViews();
     }
 
-    private static BottleData CreateBottle(int id, params (WaterColor Color, bool IsRevealed)[] layers)
+    private async System.Threading.Tasks.Task ResolveSuccessfulPourAsync(PourPlan plan, BottleData source, BottleData target)
     {
-        BottleData bottle = new() { Id = id };
-        foreach ((WaterColor color, bool isRevealed) in layers)
-        {
-            bottle.Layers.Add(new WaterLayer(color, isRevealed));
-        }
+        _isResolving = true;
+        _selectedBottleId = null;
+        RefreshSelectionViews();
 
-        return bottle;
+        BottleView sourceView = _bottleViews[source.Id];
+        BottleView targetView = _bottleViews[target.Id];
+
+        try
+        {
+            EmitSignal(SignalName.PouringStateChanged, "PouringToTarget", string.Empty);
+            await sourceView.PlayPourAnimationTo(
+                targetView,
+                plan.Color,
+                plan.Amount,
+                (streamStart, streamEnd) =>
+                {
+                    _pourSystem.ExecutePour(plan, _state);
+                    if (plan.Amount > Epsilon)
+                    {
+                        EmitSignal(
+                            SignalName.TransferCommitted,
+                            plan.SourceBottleId,
+                            plan.TargetBottleId,
+                            plan.Amount,
+                            (int)plan.Color,
+                            streamStart,
+                            streamEnd,
+                            false);
+                    }
+                },
+                () => EmitSignal(SignalName.PouringStateChanged, "StreamComplete", string.Empty));
+
+            _bagSystem.CollectCompletedBottles(_state);
+            RefreshAllViews();
+
+            if (IsWin())
+            {
+                _state.IsGameOver = true;
+                EmitSignal(SignalName.LevelCompleted);
+
+                if (IsManagedByMainFlow)
+                {
+                    _uiManager.HideVictory();
+                }
+                else
+                {
+                    _uiManager.ShowVictory();
+                }
+            }
+        }
+        finally
+        {
+            _isResolving = false;
+            EmitSignal(SignalName.PouringStateChanged, "Idle", string.Empty);
+        }
     }
 }

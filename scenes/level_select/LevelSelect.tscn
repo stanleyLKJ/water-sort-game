@@ -1,0 +1,73 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/view/LevelSelectView.cs" id="1_level_select_view"]
+[ext_resource type="Texture2D" path="res://assets/reward/reward_background.png" id="2_reward_background"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.96, 0.94, 0.86, 0.9)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.42, 0.31, 0.18, 0.42)
+corner_radius_left = 8
+corner_radius_top = 8
+corner_radius_right = 8
+corner_radius_bottom = 8
+
+[node name="LevelSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_level_select_view")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_reward_background")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 116.0
+offset_top = 290.0
+offset_right = 604.0
+offset_bottom = 680.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="TitleLabel" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 44.0
+offset_right = 448.0
+offset_bottom = 96.0
+theme_override_font_sizes/font_size = 30
+text = "选择关卡"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LevelOneButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 142.0
+offset_right = 376.0
+offset_bottom = 210.0
+theme_override_font_sizes/font_size = 24
+text = "第 1 关"
+
+[node name="BackButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 258.0
+offset_right = 376.0
+offset_bottom = 326.0
+theme_override_font_sizes/font_size = 22
+text = "返回"

@@ -1,0 +1,97 @@
+[gd_scene load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/view/FlowerSelectView.cs" id="1_flower_select_view"]
+[ext_resource type="Texture2D" path="res://assets/reward/reward_background.png" id="2_flower_select_background"]
+[ext_resource type="Texture2D" path="res://assets/reward/reward_flower_group.png" id="3_flower_select_decoration"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
+bg_color = Color(0.98, 0.95, 0.86, 0.92)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.42, 0.31, 0.18, 0.42)
+corner_radius_left = 8
+corner_radius_top = 8
+corner_radius_right = 8
+corner_radius_bottom = 8
+
+[node name="FlowerSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_flower_select_view")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_flower_select_background")
+expand_mode = 1
+stretch_mode = 6
+
+[node name="FlowerGroupDecoration" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 884.0
+offset_right = 676.0
+offset_bottom = 1238.0
+mouse_filter = 2
+texture = ExtResource("3_flower_select_decoration")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 62.0
+offset_top = 120.0
+offset_right = 658.0
+offset_bottom = 1038.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+
+[node name="TitleLabel" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 42.0
+offset_right = 554.0
+offset_bottom = 104.0
+theme_override_font_sizes/font_size = 32
+text = "选择目标花"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HintLabel" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 46.0
+offset_top = 114.0
+offset_right = 550.0
+offset_bottom = 164.0
+theme_override_font_sizes/font_size = 21
+text = "选择 1 种花，完成药剂调试后回花园种植"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="OptionRoot" type="GridContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 42.0
+offset_top = 202.0
+offset_right = 554.0
+offset_bottom = 610.0
+theme_override_constants/h_separation = 22
+theme_override_constants/v_separation = 22
+columns = 3
+
+[node name="BackButton" type="Button" parent="Panel"]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 690.0
+offset_right = 396.0
+offset_bottom = 752.0
+theme_override_font_sizes/font_size = 24
+text = "返回花园"

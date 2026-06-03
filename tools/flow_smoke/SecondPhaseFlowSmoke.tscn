@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://tools/flow_smoke/SecondPhaseFlowSmoke.cs" id="1_flow_smoke"]
+
+[node name="SecondPhaseFlowSmoke" type="Node"]
+script = ExtResource("1_flow_smoke")

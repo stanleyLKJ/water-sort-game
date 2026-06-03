@@ -2,3 +2,16 @@
 .godot/
 /android/
 *.zip
+
+# Local Godot/Codex runtime logs and editor user data
+.codex_godot_user/
+*.log
+
+# External asset staging input
+素材/
+
+# Local screenshots / import-only scratch images
+game-screenshot.png
+game-screenshot.png.import
+f56beef7678f32e47c5f3da301ba1c32.jpg
+f56beef7678f32e47c5f3da301ba1c32.jpg.import

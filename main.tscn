@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/MainFlowController.cs" id="1_main_flow"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_main_flow")
+
+[node name="SceneHost" type="Node" parent="."]

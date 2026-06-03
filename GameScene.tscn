@@ -6,11 +6,21 @@
 [ext_resource type="Script" uid="uid://my2il34x5h1f" path="res://scripts/core/UIManager.cs" id="4_ui_manager"]
 [ext_resource type="Script" uid="uid://d2nayphcvakrc" path="res://scripts/core/BagSystem.cs" id="5_bag_system"]
 [ext_resource type="Script" uid="uid://cns4gyng7vjs1" path="res://scripts/view/BagSlotView.cs" id="6_bag_slot_view"]
+[ext_resource type="Texture2D" path="res://assets/ui/restart_button.png" id="7_restart_texture"]
+[ext_resource type="Script" uid="uid://byv7sbq4r42gt" path="res://scripts/core/LevelGenerator.cs" id="8_level_generator"]
+[ext_resource type="Script" uid="uid://hcg6bxh0jvog" path="res://scripts/view/PourFxView.cs" id="9_pour_fx_view"]
+[ext_resource type="Texture2D" path="res://assets/reward/reward_background.png" id="10_empty_background"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f24su"]
 size = Vector2(110, 240)
 
 [node name="GameScene" type="Node2D" unique_id=561872483]
+
+[node name="Background" type="Sprite2D" parent="." unique_id=2008578941]
+z_index = -100
+position = Vector2(360.49997, 640.49994)
+scale = Vector2(0.70214844, 0.8326824)
+texture = ExtResource("10_empty_background")
 
 [node name="Managers" type="Node" parent="." unique_id=26441964]
 
@@ -26,6 +36,9 @@ script = ExtResource("4_ui_manager")
 [node name="BagSystem" type="Node" parent="Managers" unique_id=518991246]
 script = ExtResource("5_bag_system")
 
+[node name="LevelGenerator" type="Node" parent="Managers" unique_id=1927296962]
+script = ExtResource("8_level_generator")
+
 [node name="WorldRoot" type="Node2D" parent="." unique_id=468784355]
 
 [node name="BagRoot" type="Node2D" parent="WorldRoot" unique_id=799973688]
@@ -39,11 +52,12 @@ color = Color(1, 0.08235294, 0, 1)
 polygon = PackedVector2Array(-30, 37, 40, 38, 33, -33, -39, -33)
 
 [node name="CountLabel" type="Label" parent="WorldRoot/BagRoot/BagSlot_0" unique_id=2044123335]
-offset_left = -2.0
-offset_top = 36.0
-offset_right = 38.0
-offset_bottom = 59.0
+offset_left = -20.0
+offset_top = 54.0
+offset_right = 20.0
+offset_bottom = 82.0
 text = "0"
+horizontal_alignment = 1
 
 [node name="BagSlot_1" type="Node2D" parent="WorldRoot/BagRoot" unique_id=1722276937]
 position = Vector2(280, 140)
@@ -54,11 +68,12 @@ color = Color(0, 0, 1, 1)
 polygon = PackedVector2Array(-30, 37, 40, 38, 33, -33, -39, -33)
 
 [node name="CountLabel" type="Label" parent="WorldRoot/BagRoot/BagSlot_1" unique_id=1690506864]
-offset_left = -2.0
-offset_top = 36.0
-offset_right = 38.0
-offset_bottom = 59.0
+offset_left = -20.0
+offset_top = 54.0
+offset_right = 20.0
+offset_bottom = 82.0
 text = "0"
+horizontal_alignment = 1
 
 [node name="BagSlot_2" type="Node2D" parent="WorldRoot/BagRoot" unique_id=125905705]
 position = Vector2(440, 140)
@@ -69,11 +84,12 @@ color = Color(1, 1, 0, 1)
 polygon = PackedVector2Array(-30, 37, 40, 38, 33, -33, -39, -33)
 
 [node name="CountLabel" type="Label" parent="WorldRoot/BagRoot/BagSlot_2" unique_id=235369785]
-offset_left = -2.0
-offset_top = 36.0
-offset_right = 38.0
-offset_bottom = 59.0
+offset_left = -20.0
+offset_top = 54.0
+offset_right = 20.0
+offset_bottom = 82.0
 text = "0"
+horizontal_alignment = 1
 
 [node name="BagSlot_3" type="Node2D" parent="WorldRoot/BagRoot" unique_id=532374235]
 position = Vector2(600, 140)
@@ -84,11 +100,12 @@ color = Color(0, 1, 0, 1)
 polygon = PackedVector2Array(-30, 37, 40, 38, 33, -33, -39, -33)
 
 [node name="CountLabel" type="Label" parent="WorldRoot/BagRoot/BagSlot_3" unique_id=176429241]
-offset_left = -2.0
-offset_top = 36.0
-offset_right = 38.0
-offset_bottom = 59.0
+offset_left = -20.0
+offset_top = 54.0
+offset_right = 20.0
+offset_bottom = 82.0
 text = "0"
+horizontal_alignment = 1
 
 [node name="BottleRoot" type="Node2D" parent="WorldRoot" unique_id=1048659728]
 
@@ -482,14 +499,28 @@ offset_bottom = -63.0
 text = "？"
 horizontal_alignment = 1
 
+[node name="EffectsRoot" type="Node2D" parent="." unique_id=1720881154]
+
+[node name="PourFX" type="Node2D" parent="EffectsRoot" unique_id=269865045]
+script = ExtResource("9_pour_fx_view")
+
+[node name="PourStreamLine" type="Line2D" parent="EffectsRoot/PourFX" unique_id=1198673901]
+visible = false
+z_index = 20
+points = PackedVector2Array(0, 0, 0, 0)
+width = 5.5
+antialiased = true
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1275699926]
 
 [node name="RestartButton" type="Button" parent="CanvasLayer" unique_id=937279451]
-offset_left = 280.0
-offset_top = 1050.0
-offset_right = 440.0
-offset_bottom = 1110.0
-text = "重开"
+offset_left = 268.0
+offset_top = 1080.0
+offset_right = 452.0
+offset_bottom = 1180.0
+icon = ExtResource("7_restart_texture")
+flat = true
+expand_icon = true
 
 [node name="TipLabel" type="Label" parent="CanvasLayer" unique_id=2040191524]
 visible = false
@@ -506,16 +537,16 @@ position = Vector2i(160, 460)
 size = Vector2i(400, 260)
 
 [node name="VictoryLabel" type="Label" parent="CanvasLayer/VictoryPopup" unique_id=1480952617]
-offset_left = 80.0
-offset_top = 52.0
-offset_right = 320.0
-offset_bottom = 108.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 396.0
+offset_bottom = 256.0
 text = "通关成功"
 horizontal_alignment = 1
 
 [node name="PopupRestartButton" type="Button" parent="CanvasLayer/VictoryPopup" unique_id=2001887451]
-offset_left = 120.0
-offset_top = 150.0
-offset_right = 280.0
-offset_bottom = 210.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 396.0
+offset_bottom = 256.0
 text = "重开"
