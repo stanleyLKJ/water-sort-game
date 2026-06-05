@@ -1,6 +1,7 @@
 #nullable enable
 
 using System;
+using System.Collections.Generic;
 using Godot;
 using WaterSortGame.Model;
 
@@ -44,11 +45,13 @@ public sealed partial class HomeGardenView : Control
     private const int FlowerSlotCount = RunSessionState.MaxFlowerCount;
     private const string GardenBackgroundPath = "res://assets/home/backgrounds/home_garden_bg_v1.png";
     private const string HomeSlotPathFormat = "res://assets/flowers/{0}/home_slots/{0}_slot_{1:00}.png";
+    private const string ComboHomeSlotPathFormat = "res://assets/flowers/combinations/{0}/home_slots/{0}_slot_{1:00}.png";
     private const string LegacyPinkRoseSlotPathFormat = "res://assets/flowers/pink_rose/slots/pink_rose_slot_{0:00}.png";
     private const string DefaultFlowerTextureNodeName = "FlowerTexture";
     private const string YellowRoseTextureNodeName = "YellowRoseTexture";
     private const string LavenderTextureNodeName = "LavenderTexture";
     private const string PlantMarkerButtonNodeName = "PlantMarkerButton";
+    private const string ComboPlaceholderNodeName = "ComboAssetPlaceholder";
     private const float PlantMarkerDiameter = 54f;
 
     private TextureRect _background = null!;
@@ -75,7 +78,10 @@ public sealed partial class HomeGardenView : Control
             _statusLabel = CreateStatusLabel();
             AddChild(_statusLabel);
             GetNode<Button>("ButtonRoot/StartGameButton").Pressed += OnStartGamePressed;
-            GetNode<Button>("ButtonRoot/LevelSelectButton").Pressed += OnLevelSelectPressed;
+            Button levelSelectButton = GetNode<Button>("ButtonRoot/LevelSelectButton");
+            levelSelectButton.Visible = false;
+            levelSelectButton.Disabled = true;
+            levelSelectButton.Pressed += OnLevelSelectPressed;
         }
 
         if (_pendingState != null)
@@ -108,14 +114,39 @@ public sealed partial class HomeGardenView : Control
         HideAllFlowerSlotTextures();
         RefreshPlantingMarkers(state);
 
-        for (int i = 0; i < Mathf.Min(state.PlantedFlowerIds.Count, _flowerSlots.Length); i++)
+        for (int i = 0; i < Mathf.Min(state.FlowerSlotBatches.Count, _flowerSlots.Length); i++)
         {
-            string? flowerId = state.PlantedFlowerIds[i];
-            if (!string.IsNullOrEmpty(flowerId))
+            IReadOnlyList<string> flowerIds = state.FlowerSlotBatches[i];
+            if (flowerIds.Count > 0)
             {
-                LoadHomeSlotTexture(i, flowerId);
+                LoadHomeSlotBatch(i, flowerIds);
             }
         }
+    }
+
+    private void LoadHomeSlotBatch(int zeroBasedSlotIndex, IReadOnlyList<string> flowerIds)
+    {
+        if (flowerIds.Count == 1)
+        {
+            LoadHomeSlotTexture(zeroBasedSlotIndex, flowerIds[0]);
+            return;
+        }
+
+        string comboKey = RunSessionState.BuildComboKey(flowerIds);
+        int slotIndex = zeroBasedSlotIndex + 1;
+        string texturePath = ResolveComboHomeSlotTexturePath(comboKey, slotIndex);
+        Texture2D? texture = LoadTexture(texturePath);
+
+        if (texture == null)
+        {
+            GD.PushWarning($"Home garden combo texture not found: {texturePath}. Showing placeholder for combo {comboKey}.");
+            ShowMissingComboPlaceholder(zeroBasedSlotIndex, comboKey);
+            return;
+        }
+
+        TextureRect textureRect = GetFlowerSlotTexture(zeroBasedSlotIndex, comboKey, out _);
+        textureRect.Texture = texture;
+        textureRect.Visible = true;
     }
 
     private void LoadHomeSlotTexture(int zeroBasedSlotIndex, string flowerId)
@@ -167,6 +198,11 @@ public sealed partial class HomeGardenView : Control
         }
 
         return texturePath;
+    }
+
+    public static string ResolveComboHomeSlotTexturePath(string comboKey, int slotIndex)
+    {
+        return string.Format(ComboHomeSlotPathFormat, comboKey, slotIndex);
     }
 
     private static Texture2D? LoadTexture(string texturePath)
@@ -253,6 +289,7 @@ public sealed partial class HomeGardenView : Control
         foreach (Control slot in _flowerSlots)
         {
             HideFlowerSlotTextures(slot);
+            ClearComboPlaceholder(slot);
         }
     }
 
@@ -261,8 +298,7 @@ public sealed partial class HomeGardenView : Control
         for (int i = 0; i < _plantMarkerButtons.Length; i++)
         {
             Button marker = _plantMarkerButtons[i];
-            bool slotIsEmpty = i < state.PlantedFlowerIds.Count && string.IsNullOrEmpty(state.PlantedFlowerIds[i]);
-            bool shouldShow = state.PendingPlanting && slotIsEmpty;
+            bool shouldShow = state.CanPlantPendingRewardAt(i);
             marker.Visible = shouldShow;
             marker.Disabled = !shouldShow;
         }
@@ -445,6 +481,68 @@ public sealed partial class HomeGardenView : Control
             _flowerDisplayRoot.RemoveChild(child);
             child.QueueFree();
         }
+
+        foreach (Control slot in _flowerSlots)
+        {
+            ClearComboPlaceholder(slot);
+        }
+    }
+
+    private static void ClearComboPlaceholder(Control slot)
+    {
+        Node? placeholder = slot.GetNodeOrNull(ComboPlaceholderNodeName);
+        if (placeholder != null)
+        {
+            slot.RemoveChild(placeholder);
+            placeholder.QueueFree();
+        }
+    }
+
+    private void ShowMissingComboPlaceholder(int zeroBasedSlotIndex, string comboKey)
+    {
+        Control slot = _flowerSlots[zeroBasedSlotIndex];
+        ClearComboPlaceholder(slot);
+
+        Control placeholder = new()
+        {
+            Name = ComboPlaceholderNodeName,
+            MouseFilter = MouseFilterEnum.Ignore,
+            ZIndex = 12
+        };
+        placeholder.SetAnchorsPreset(LayoutPreset.Center);
+        placeholder.OffsetLeft = -74f;
+        placeholder.OffsetTop = -46f;
+        placeholder.OffsetRight = 74f;
+        placeholder.OffsetBottom = 46f;
+
+        ColorRect background = new()
+        {
+            Name = "PlaceholderBackground",
+            Color = new Color(0.52f, 0.42f, 0.28f, 0.76f),
+            MouseFilter = MouseFilterEnum.Ignore
+        };
+        background.SetAnchorsPreset(LayoutPreset.FullRect);
+        placeholder.AddChild(background);
+
+        Label label = new()
+        {
+            Name = "PlaceholderLabel",
+            Text = $"{comboKey}\n组合素材待补",
+            MouseFilter = MouseFilterEnum.Ignore,
+            HorizontalAlignment = HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
+            AutowrapMode = TextServer.AutowrapMode.WordSmart
+        };
+        label.SetAnchorsPreset(LayoutPreset.FullRect);
+        label.OffsetLeft = 8f;
+        label.OffsetTop = 8f;
+        label.OffsetRight = -8f;
+        label.OffsetBottom = -8f;
+        label.AddThemeFontSizeOverride("font_size", 14);
+        label.AddThemeColorOverride("font_color", new Color(1f, 0.96f, 0.82f));
+        placeholder.AddChild(label);
+
+        slot.AddChild(placeholder);
     }
 
     public void PlayPlantingFeedback(int slotIndex)
@@ -488,19 +586,28 @@ public sealed partial class HomeGardenView : Control
 
     private void RefreshStatus(RunSessionState state)
     {
-        if (state.IsGardenFull)
-        {
-            ShowMessage(string.Empty);
-            return;
-        }
-
         if (state.PendingPlanting)
         {
-            ShowMessage("点击空花位种植");
+            ShowMessage(HasPlantablePendingRewardSlot(state)
+                ? "请选择可操作花位种植或追加"
+                : "没有可追加的位置，请选择其他花");
             return;
         }
 
         ShowMessage(string.Empty);
+    }
+
+    private static bool HasPlantablePendingRewardSlot(RunSessionState state)
+    {
+        for (int i = 0; i < state.FlowerSlotBatches.Count; i++)
+        {
+            if (state.CanPlantPendingRewardAt(i))
+            {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     private void OnPlantMarkerGuiInput(int slotIndex, Button marker, InputEvent inputEvent)

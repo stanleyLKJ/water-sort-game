@@ -31,8 +31,8 @@ public sealed partial class MainFlowController : Node
 
 		if (scene is HomeGardenView homeGarden)
 		{
-			homeGarden.StartGameRequested += ShowFlowerSelect;
-			homeGarden.LevelSelectRequested += ShowLevelSelect;
+			homeGarden.StartGameRequested += () => OnStartGameRequested(homeGarden);
+			homeGarden.LevelSelectRequested += () => homeGarden.ShowMessage("请点击开始游戏");
 			homeGarden.FlowerSlotPlantRequested += slotIndex => OnFlowerSlotPlantRequested(homeGarden, slotIndex);
 			homeGarden.RefreshFlowers(_runSessionState);
 		}
@@ -40,14 +40,38 @@ public sealed partial class MainFlowController : Node
 		SetActiveScene(scene);
 	}
 
-	private void ShowLevelSelect()
+	private void OnStartGameRequested(HomeGardenView homeGarden)
 	{
+		if (_runSessionState.PendingPlanting)
+		{
+			homeGarden.ShowMessage("请先完成本次种植或追加");
+			return;
+		}
+
+		ShowFlowerSelect();
+	}
+
+	private void ShowLevelSelect(string? message = null)
+	{
+		if (!_runSessionState.HasSelectedFlower)
+		{
+			ShowFlowerSelect();
+			return;
+		}
+
+		string flowerId = _runSessionState.SelectedFlowerId!;
 		Node scene = LoadScene(LevelSelectScenePath);
 
 		if (scene is LevelSelectView levelSelect)
 		{
-			levelSelect.LevelOneRequested += ShowFlowerSelect;
-			levelSelect.BackRequested += ShowHomeGarden;
+			string displayName = _flowerSelectSystem.GetDisplayName(flowerId);
+			levelSelect.SetLevelOptions($"{displayName} 关卡", BuildLevelOptions(flowerId, displayName));
+			levelSelect.LevelSelected += OnLevelSelected;
+			levelSelect.BackRequested += ShowFlowerSelect;
+			if (!string.IsNullOrWhiteSpace(message))
+			{
+				levelSelect.ShowMessage(message);
+			}
 		}
 
 		SetActiveScene(scene);
@@ -59,7 +83,7 @@ public sealed partial class MainFlowController : Node
 
 		if (scene is FlowerSelectView flowerSelect)
 		{
-			flowerSelect.SetFlowerOptions(_flowerSelectSystem.CreateBaseFlowerOptions());
+			flowerSelect.SetFlowerOptions(_flowerSelectSystem.CreateBaseFlowerOptions(_runSessionState));
 			flowerSelect.TargetFlowerSelected += OnTargetFlowerSelected;
 			flowerSelect.BackRequested += ShowHomeGarden;
 		}
@@ -87,16 +111,45 @@ public sealed partial class MainFlowController : Node
 
 	private void OnTargetFlowerSelected(string flowerId)
 	{
+		if (!RunSessionState.IsOpenFlowerId(flowerId))
+		{
+			return;
+		}
+
+		if (_runSessionState.IsFlowerFull(flowerId))
+		{
+			ShowFlowerSelect();
+			return;
+		}
+
 		_runSessionState.SelectTargetFlower(flowerId);
+		ShowLevelSelect();
+	}
+
+	private void OnLevelSelected(int levelNumber)
+	{
+		if (!_runSessionState.HasSelectedFlower)
+		{
+			ShowFlowerSelect();
+			return;
+		}
+
+		string flowerId = _runSessionState.SelectedFlowerId!;
+		if (!_runSessionState.TrySelectPlayableLevel(flowerId, levelNumber))
+		{
+			ShowLevelSelect("该关卡暂不可进入");
+			return;
+		}
+
 		ShowGameScene();
 	}
 
 	private void OnLevelCompleted()
 	{
-		bool rewardCreated = _runSessionState.CreatePendingPlantingReward();
+		bool rewardCreated = _runSessionState.CompleteSelectedLevelAndCreatePendingPlantingReward();
 		if (!rewardCreated)
 		{
-			GD.Print("Pending planting reward was not created. The garden may be full or no target flower was selected.");
+			GD.Print("Pending planting reward was not created. The flower may be full, the selected level may be invalid, or no target flower was selected.");
 		}
 
 		ShowHomeGarden();
@@ -111,13 +164,31 @@ public sealed partial class MainFlowController : Node
 				homeGarden.RefreshFlowers(_runSessionState);
 				homeGarden.PlayPlantingFeedback(slotIndex);
 				break;
-			case PlantingResult.SlotOccupied:
-				homeGarden.ShowMessage("该花位已有花");
+			case PlantingResult.FlowerAlreadyInSlot:
+				homeGarden.ShowMessage("该花位已有本次奖励花");
+				break;
+			case PlantingResult.FlowerAlreadyFull:
+				homeGarden.ShowMessage("该花已种满，请选择其他花");
 				break;
 			case PlantingResult.NoPendingReward:
-				homeGarden.ShowMessage(_runSessionState.IsGardenFull ? string.Empty : "先完成药剂调试");
+				homeGarden.ShowMessage("先完成药剂调试");
 				break;
 		}
+	}
+
+	private LevelSelectOption[] BuildLevelOptions(string flowerId, string displayName)
+	{
+		LevelSelectOption[] options = new LevelSelectOption[RunSessionState.LevelsPerFlower];
+		for (int i = 0; i < options.Length; i++)
+		{
+			int levelNumber = i + 1;
+			options[i] = new LevelSelectOption(
+				levelNumber,
+				$"{displayName} 第 {levelNumber} 关",
+				_runSessionState.GetLevelState(flowerId, levelNumber));
+		}
+
+		return options;
 	}
 
 	private static Node LoadScene(string scenePath)

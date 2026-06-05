@@ -1,6 +1,7 @@
 #nullable enable
 
 using System;
+using System.Collections.Generic;
 using System.Reflection;
 using Godot;
 using WaterSortGame.Core;
@@ -9,16 +10,6 @@ using WaterSortGame.View;
 
 public sealed partial class SecondPhaseFlowSmoke : Node
 {
-    private static readonly string[] ExpectedFlowerIds =
-    {
-        "pink_rose",
-        "yellow_rose",
-        "lavender",
-        "flower_04",
-        "flower_05",
-        "flower_06"
-    };
-
     private MainFlowController _main = null!;
 
     public override async void _Ready()
@@ -43,116 +34,151 @@ public sealed partial class SecondPhaseFlowSmoke : Node
         AddChild(_main);
         await NextFrame();
 
-        AssertPlantMarkersHidden(AssertActiveScene<HomeGardenView>("main.tscn should start in HomeGarden."), "Initial HomeGarden");
+        HomeGardenView homeGarden = AssertActiveScene<HomeGardenView>("main.tscn should start in HomeGarden.");
+        AssertLevelSelectButtonHidden(homeGarden);
+        AssertPlantMarkers(homeGarden, GetState(), "Initial HomeGarden");
 
+        FlowerSelectView flowerSelect = await OpenFlowerSelectFromHomeAsync();
+        AssertFlowerSelectOptions(flowerSelect);
+
+        PressFlowerOption(flowerSelect, 3);
+        await NextFrame();
+        flowerSelect = AssertActiveScene<FlowerSelectView>("Pending flower slots must not enter LevelSelect.");
+        AssertHint(flowerSelect, "该花将在后续版本开放");
+
+        LevelSelectView yellowLevelSelect = await SelectFlowerAsync(flowerSelect, 1, "yellow_rose");
+        AssertLevelButtons(yellowLevelSelect, FlowerLevelState.Playable, FlowerLevelState.Locked, FlowerLevelState.Locked, FlowerLevelState.Locked, FlowerLevelState.Locked, FlowerLevelState.Locked, FlowerLevelState.Locked);
+
+        PressLevelButton(yellowLevelSelect, 2);
+        await NextFrame();
+        yellowLevelSelect = AssertActiveScene<LevelSelectView>("Locked level should not enter GameScene.");
+        AssertLevelMessage(yellowLevelSelect, "该关卡尚未解锁");
+
+        PressLevelButton(yellowLevelSelect, 1);
+        await NextFrame();
+        AssertActiveScene<Node2D>("Playable yellow_rose level 1 should enter GameScene.");
+        Assert(GetState().SelectedLevelNumber == 1, "SelectedLevelNumber should be 1 after entering yellow_rose level 1.");
+
+        homeGarden = await CompleteGameAndReturnHomeAsync("yellow_rose", expectedCompletedCount: 1);
         PressActiveButton("ButtonRoot/StartGameButton");
         await NextFrame();
-        FlowerSelectView flowerSelect = AssertActiveScene<FlowerSelectView>("StartGame should open FlowerSelect.");
-        AssertOptionCount(flowerSelect, 6, "FlowerSelect should show 6 base flowers.");
-        AssertFlowerSelectLabelsAndPlaceholders(flowerSelect);
-
-        PressFlowerOption(flowerSelect, 1);
-        await NextFrame();
-        AssertActiveScene<Node2D>("Selecting a flower should enter GameScene.");
-        RunSessionState state = GetState();
-        Assert(state.SelectedFlowerId == "yellow_rose", "SelectedFlowerId should be written as yellow_rose.");
-
-        CompleteGameScene();
-        await NextFrame();
-        HomeGardenView homeGarden = AssertActiveScene<HomeGardenView>("LevelCompleted should return to HomeGarden.");
-        AssertNoRewardFlower();
-        Assert(state.PendingPlanting && state.HasSeed && state.HasPotion, "LevelCompleted should create pending planting reward.");
-        AssertPlantMarkers(homeGarden, state, "Pending planting HomeGarden");
+        AssertActiveScene<HomeGardenView>("PendingPlanting should block StartGame.");
+        AssertStatus(homeGarden, "请先完成本次种植或追加");
 
         ClickSlotPanelArea(homeGarden, 0);
         await NextFrame();
-        Assert(state.PlantedFlowerIds[0] == null, "Clicking the slot panel outside the marker should not plant.");
-        Assert(state.PendingPlanting && state.HasSeed && state.HasPotion, "Clicking outside marker should not clear pending planting.");
-        AssertPlantMarkers(homeGarden, state, "Pending planting after non-marker click");
+        AssertSlotEmpty(GetState(), 0, "Clicking the slot panel outside the marker should not plant.");
+        Assert(GetState().PendingPlanting, "Clicking outside marker should not clear PendingPlanting.");
 
         ClickPlantMarkerOutsideCircle(homeGarden, 0);
         await NextFrame();
-        Assert(state.PlantedFlowerIds[0] == null, "Clicking inside marker bounding box but outside the circle should not plant.");
-        Assert(state.PendingPlanting && state.HasSeed && state.HasPotion, "Clicking outside marker circle should not clear pending planting.");
+        AssertSlotEmpty(GetState(), 0, "Clicking inside marker bounds but outside the circle should not plant.");
+        Assert(GetState().PendingPlanting, "Clicking outside marker circle should not clear PendingPlanting.");
 
-        PlantSlot(homeGarden, 0);
-        await NextFrame();
-        Assert(state.PlantedFlowerIds[0] == "yellow_rose", "Pending yellow_rose reward should be planted in clicked empty slot.");
-        AssertHomeSlotTexture(homeGarden, 0, "yellow_rose");
-        AssertExclusiveSlotTextures(homeGarden, 0, "yellow_rose");
-        Assert(!state.PendingPlanting && !state.HasSeed && !state.HasPotion, "Planting should clear pendingPlanting, seed, and potion.");
-        AssertPlantMarkersHidden(homeGarden, "HomeGarden after planting");
+        await PlantSlotAsync(0);
+        AssertSlotContainsExactly(GetState(), 0, "yellow_rose");
+        homeGarden = AssertActiveScene<HomeGardenView>("Planting should keep HomeGarden active.");
+        AssertSingleFlowerTexture(homeGarden, 0, "yellow_rose");
 
-        string? plantedBeforeOccupiedClick = state.PlantedFlowerIds[0];
-        PlantSlot(homeGarden, 0);
-        await NextFrame();
-        Assert(state.PlantedFlowerIds[0] == plantedBeforeOccupiedClick, "Occupied flower slot should not be overwritten.");
+        homeGarden = await CompleteRunAndReturnHomeAsync(1, 2, "yellow_rose", expectedCompletedCount: 2);
+        Assert(!GetPlantMarker(homeGarden, 0).Visible, "Slot containing yellow_rose should not show marker for yellow_rose reward.");
+        Assert(GetPlantMarker(homeGarden, 1).Visible, "Empty slot should show marker for yellow_rose reward.");
+        await PlantSlotAsync(1);
+        AssertSlotContainsExactly(GetState(), 1, "yellow_rose");
 
-        StartNewRunAndPlant(2, 1);
-        await NextFrame();
-        Assert(state.SelectedFlowerId == "lavender", "Selecting option 2 should write lavender to RunSessionState.");
-        Assert(state.PlantedFlowerIds[1] == "lavender", "Pending lavender reward should be planted in clicked empty slot.");
-        HomeGardenView lavenderGarden = AssertActiveScene<HomeGardenView>("HomeGarden should stay active after lavender planting.");
-        AssertHomeSlotTexture(lavenderGarden, 1, "lavender");
-        AssertExclusiveSlotTextures(lavenderGarden, 1, "lavender");
+        homeGarden = await CompleteRunAndReturnHomeAsync(0, 1, "pink_rose", expectedCompletedCount: 1);
+        Assert(GetPlantMarker(homeGarden, 0).Visible, "Slot with yellow_rose should allow appending pink_rose.");
+        await PlantSlotAsync(0);
+        AssertSlotContainsExactly(GetState(), 0, "pink_rose", "yellow_rose");
+        homeGarden = AssertActiveScene<HomeGardenView>("Appending should keep HomeGarden active.");
+        AssertComboPlaceholder(homeGarden, 0, "pink_rose+yellow_rose");
 
-        StartNewRunAndPlant(0, 2);
-        await NextFrame();
-        Assert(state.SelectedFlowerId == "pink_rose", "Selecting option 0 should write pink_rose to RunSessionState.");
-        Assert(state.PlantedFlowerIds[2] == "pink_rose", "Slot 2 should store pink_rose after planting.");
-        HomeGardenView pinkGarden = AssertActiveScene<HomeGardenView>("HomeGarden should stay active after pink_rose planting.");
-        AssertHomeSlotTexture(pinkGarden, 2, "pink_rose");
-        AssertExclusiveSlotTextures(pinkGarden, 2, "pink_rose");
+        homeGarden = await CompleteRunAndReturnHomeAsync(0, 2, "pink_rose", expectedCompletedCount: 2);
+        Assert(!GetPlantMarker(homeGarden, 0).Visible, "Slot already containing pink_rose should not show marker for another pink_rose reward.");
+        Assert(GetPlantMarker(homeGarden, 2).Visible, "Slot without pink_rose should allow pink_rose append/plant.");
+        await PlantSlotAsync(2);
+        AssertSlotContainsExactly(GetState(), 2, "pink_rose");
 
-        for (int optionIndex = 3; optionIndex < ExpectedFlowerIds.Length; optionIndex++)
+        int[] remainingPinkSlots = { 1, 3, 4, 5, 6 };
+        for (int i = 0; i < remainingPinkSlots.Length; i++)
         {
-            StartNewRunAndPlant(optionIndex, optionIndex);
-            await NextFrame();
-            Assert(state.SelectedFlowerId == ExpectedFlowerIds[optionIndex], $"Selecting option {optionIndex} should write {ExpectedFlowerIds[optionIndex]} to RunSessionState.");
-            Assert(state.PlantedFlowerIds[optionIndex] == ExpectedFlowerIds[optionIndex], $"Slot {optionIndex} should store {ExpectedFlowerIds[optionIndex]} after planting.");
+            int levelNumber = i + 3;
+            await CompleteRunAndReturnHomeAsync(0, levelNumber, "pink_rose", expectedCompletedCount: levelNumber);
+            await PlantSlotAsync(remainingPinkSlots[i]);
         }
 
-        StartNewRunAndPlant(1, 6);
-        await NextFrame();
-        HomeGardenView repeatYellowGarden = AssertActiveScene<HomeGardenView>("HomeGarden should stay active after repeat yellow_rose planting.");
-        Assert(state.PlantedFlowerIds[0] == "yellow_rose" && state.PlantedFlowerIds[6] == "yellow_rose", "yellow_rose should remain repeatable in another empty slot.");
-        AssertHomeSlotTexture(repeatYellowGarden, 6, "yellow_rose");
-        AssertExclusiveSlotTextures(repeatYellowGarden, 6, "yellow_rose");
+        RunSessionState state = GetState();
+        Assert(state.IsFlowerFull("pink_rose"), "pink_rose should be full after appearing in all 7 slots.");
+        Assert(state.GetCompletedLevelCount("pink_rose") == 7, "pink_rose should have all 7 shell levels completed.");
 
-        StartRunAndComplete(flowerId: 3);
+        flowerSelect = await OpenFlowerSelectFromHomeAsync();
+        AssertFlowerOptionStatus(flowerSelect, 0, "已种满");
+        PressFlowerOption(flowerSelect, 0);
         await NextFrame();
-        HomeGardenView fullGarden = AssertActiveScene<HomeGardenView>("Full garden reward attempt should still return HomeGarden.");
-        Assert(state.IsGardenFull, "Garden should be full after filling 7 slots.");
-        Assert(!state.PendingPlanting, "Full garden should block creation of a new pending planting reward.");
-        Label fullGardenStatus = fullGarden.GetNode<Label>("PlantingStatusLabel");
-        Assert(!fullGardenStatus.Visible && string.IsNullOrEmpty(fullGardenStatus.Text), "Full garden should not show a full-garden message.");
+        flowerSelect = AssertActiveScene<FlowerSelectView>("Full pink_rose option should stay in FlowerSelect.");
+        AssertHint(flowerSelect, "该花已种满，请选择其他花");
 
-        PressActiveButton("ButtonRoot/LevelSelectButton");
-        await NextFrame();
-        AssertActiveScene<LevelSelectView>("LevelSelect button should open LevelSelect.");
-        PressActiveButton("Panel/LevelOneButton");
-        await NextFrame();
-        AssertActiveScene<FlowerSelectView>("Level 1 entry should open FlowerSelect before GameScene.");
+        LevelSelectView lavenderLevelSelect = await SelectFlowerAsync(flowerSelect, 2, "lavender");
+        AssertLevelButtons(lavenderLevelSelect, FlowerLevelState.Playable, FlowerLevelState.Locked, FlowerLevelState.Locked, FlowerLevelState.Locked, FlowerLevelState.Locked, FlowerLevelState.Locked, FlowerLevelState.Locked);
+        Assert(GetState().GetCompletedLevelCount("yellow_rose") == 2, "yellow_rose progress should remain independent.");
+        Assert(GetState().GetCompletedLevelCount("lavender") == 0, "lavender progress should start independently at level 1.");
 
+        AssertNoRewardFlower();
         AssertMainFlowDoesNotReferenceRewardFlower();
-        await AssertHomeGardenPreviewCanLoadFormalFlowerNodesAsync();
-        await AssertAllFlowerOptionsRemainSelectableAsync();
     }
 
-    private void StartNewRunAndPlant(int flowerId, int slotIndex)
+    private async System.Threading.Tasks.Task<FlowerSelectView> OpenFlowerSelectFromHomeAsync()
     {
-        StartRunAndComplete(flowerId);
-        HomeGardenView homeGarden = AssertActiveScene<HomeGardenView>("Completed run should return HomeGarden for planting.");
-        PlantSlot(homeGarden, slotIndex);
-    }
-
-    private void StartRunAndComplete(int flowerId)
-    {
+        AssertActiveScene<HomeGardenView>("Expected HomeGarden before opening FlowerSelect.");
         PressActiveButton("ButtonRoot/StartGameButton");
-        AssertActiveScene<FlowerSelectView>("StartGame should open FlowerSelect.");
-        PressFlowerOption(AssertActiveScene<FlowerSelectView>("FlowerSelect should stay active before flower pick."), flowerId);
-        AssertActiveScene<Node2D>("Flower pick should enter GameScene.");
+        await NextFrame();
+        return AssertActiveScene<FlowerSelectView>("StartGame should open FlowerSelect when no pending planting exists.");
+    }
+
+    private async System.Threading.Tasks.Task<LevelSelectView> SelectFlowerAsync(FlowerSelectView flowerSelect, int optionIndex, string expectedFlowerId)
+    {
+        PressFlowerOption(flowerSelect, optionIndex);
+        await NextFrame();
+        Assert(GetState().SelectedFlowerId == expectedFlowerId, $"SelectedFlowerId should be {expectedFlowerId}.");
+        return AssertActiveScene<LevelSelectView>("Selectable flower should open LevelSelect.");
+    }
+
+    private async System.Threading.Tasks.Task<HomeGardenView> CompleteRunAndReturnHomeAsync(
+        int flowerOptionIndex,
+        int levelNumber,
+        string expectedFlowerId,
+        int expectedCompletedCount)
+    {
+        FlowerSelectView flowerSelect = await OpenFlowerSelectFromHomeAsync();
+        LevelSelectView levelSelect = await SelectFlowerAsync(flowerSelect, flowerOptionIndex, expectedFlowerId);
+        Assert(GetState().GetLevelState(expectedFlowerId, levelNumber) == FlowerLevelState.Playable, $"{expectedFlowerId} level {levelNumber} should be playable.");
+        PressLevelButton(levelSelect, levelNumber);
+        await NextFrame();
+        AssertActiveScene<Node2D>($"{expectedFlowerId} level {levelNumber} should enter GameScene.");
+        return await CompleteGameAndReturnHomeAsync(expectedFlowerId, expectedCompletedCount);
+    }
+
+    private async System.Threading.Tasks.Task<HomeGardenView> CompleteGameAndReturnHomeAsync(string expectedFlowerId, int expectedCompletedCount)
+    {
         CompleteGameScene();
+        await NextFrame();
+        HomeGardenView homeGarden = AssertActiveScene<HomeGardenView>("LevelCompleted should return to HomeGarden.");
+        RunSessionState state = GetState();
+        AssertNoRewardFlower();
+        Assert(state.GetCompletedLevelCount(expectedFlowerId) == expectedCompletedCount, $"{expectedFlowerId} completed level count should be {expectedCompletedCount}.");
+        Assert(state.PendingPlanting && state.HasSeed && state.HasPotion, "LevelCompleted should create pending planting reward.");
+        Assert(state.PendingPlantingFlowerId == expectedFlowerId, $"Pending reward should be for {expectedFlowerId}.");
+        AssertPlantMarkers(homeGarden, state, $"Pending planting for {expectedFlowerId}");
+        return homeGarden;
+    }
+
+    private async System.Threading.Tasks.Task PlantSlotAsync(int slotIndex)
+    {
+        HomeGardenView homeGarden = AssertActiveScene<HomeGardenView>("Expected HomeGarden before planting.");
+        PlantSlot(homeGarden, slotIndex);
+        await NextFrame();
+        Assert(!GetState().PendingPlanting && !GetState().HasSeed && !GetState().HasPotion, "Planting should clear pending reward flags.");
+        AssertPlantMarkers(AssertActiveScene<HomeGardenView>("HomeGarden should stay active after planting."), GetState(), "After planting");
     }
 
     private void CompleteGameScene()
@@ -197,46 +223,31 @@ public sealed partial class SecondPhaseFlowSmoke : Node
         marker.EmitSignal(Control.SignalName.GuiInput, click);
     }
 
-    private static void AssertHomeSlotTexture(HomeGardenView homeGarden, int slotIndex, string flowerId)
-    {
-        TextureRect texture = GetSlotTexture(homeGarden, slotIndex, flowerId);
-        Assert(texture.Visible, $"PinkRoseSlot_{slotIndex + 1:00} texture should be visible after planting.");
-        string expectedPath = ResolveExpectedVisibleHomeSlotTexturePath(flowerId, slotIndex);
-        AssertTextureLoadedFromExpectedPath(texture, expectedPath, $"PinkRoseSlot_{slotIndex + 1:00}");
-    }
-
-    private static void AssertExclusiveSlotTextures(HomeGardenView homeGarden, int slotIndex, string visibleFlowerId)
-    {
-        string[] flowerIds = { "pink_rose", "yellow_rose", "lavender" };
-        foreach (string flowerId in flowerIds)
-        {
-            TextureRect texture = GetSlotTexture(homeGarden, slotIndex, flowerId);
-            bool shouldBeVisible = flowerId == visibleFlowerId;
-            Assert(texture.Visible == shouldBeVisible, $"PinkRoseSlot_{slotIndex + 1:00} {flowerId} visibility should be {shouldBeVisible}. Actual: {texture.Visible}.");
-        }
-    }
-
     private void PressActiveButton(string relativePath)
     {
         Button button = GetActiveScene().GetNode<Button>(relativePath);
         button.EmitSignal(BaseButton.SignalName.Pressed);
     }
 
-    private void PressFlowerOption(FlowerSelectView flowerSelect, int optionIndex)
+    private static void PressFlowerOption(FlowerSelectView flowerSelect, int optionIndex)
     {
         GridContainer options = flowerSelect.GetNode<GridContainer>("Panel/OptionRoot");
         Button button = options.GetChild<Button>(optionIndex);
         button.EmitSignal(BaseButton.SignalName.Pressed);
     }
 
-    private void AssertOptionCount(FlowerSelectView flowerSelect, int expected, string message)
+    private static void PressLevelButton(LevelSelectView levelSelect, int levelNumber)
     {
-        GridContainer options = flowerSelect.GetNode<GridContainer>("Panel/OptionRoot");
-        Assert(options.GetChildCount() == expected, $"{message} Actual: {options.GetChildCount()}.");
+        GridContainer options = levelSelect.GetNode<GridContainer>("Panel/LevelButtonRoot");
+        Button button = options.GetChild<Button>(levelNumber - 1);
+        button.EmitSignal(BaseButton.SignalName.Pressed);
     }
 
-    private static void AssertFlowerSelectLabelsAndPlaceholders(FlowerSelectView flowerSelect)
+    private static void AssertFlowerSelectOptions(FlowerSelectView flowerSelect)
     {
+        GridContainer options = flowerSelect.GetNode<GridContainer>("Panel/OptionRoot");
+        Assert(options.GetChildCount() == 6, $"FlowerSelect should show 6 slots. Actual: {options.GetChildCount()}.");
+
         string[] expectedNames =
         {
             "粉玫瑰",
@@ -247,88 +258,129 @@ public sealed partial class SecondPhaseFlowSmoke : Node
             "待定花 06"
         };
 
-        GridContainer options = flowerSelect.GetNode<GridContainer>("Panel/OptionRoot");
         for (int i = 0; i < expectedNames.Length; i++)
         {
             Button button = options.GetChild<Button>(i);
-            Label label = button.GetNode<Label>("FlowerName");
-            Assert(label.Text == expectedNames[i], $"Flower option {i} should show {expectedNames[i]}. Actual: {label.Text}.");
-
+            Assert(button.GetNode<Label>("FlowerName").Text == expectedNames[i], $"Flower option {i} should show {expectedNames[i]}.");
             bool hasSelectTexture = button.GetNodeOrNull<TextureRect>("FlowerIcon") != null;
-            bool hasMissingPlaceholder = button.GetNodeOrNull<Control>("MissingSelectPlaceholder") != null;
-            Assert(hasSelectTexture || hasMissingPlaceholder, $"Flower option {i} should show select art or a missing-art placeholder.");
+            bool hasPlaceholder = button.GetNodeOrNull<Control>("MissingSelectPlaceholder") != null;
+            Assert(hasSelectTexture || hasPlaceholder, $"Flower option {i} should show select art or a placeholder.");
         }
+
+        AssertFlowerOptionStatus(flowerSelect, 0, string.Empty);
+        AssertFlowerOptionStatus(flowerSelect, 1, string.Empty);
+        AssertFlowerOptionStatus(flowerSelect, 2, string.Empty);
+        AssertFlowerOptionStatus(flowerSelect, 3, "待开放");
+        AssertFlowerOptionStatus(flowerSelect, 4, "待开放");
+        AssertFlowerOptionStatus(flowerSelect, 5, "待开放");
     }
 
-    private async System.Threading.Tasks.Task AssertAllFlowerOptionsRemainSelectableAsync()
+    private static void AssertFlowerOptionStatus(FlowerSelectView flowerSelect, int optionIndex, string expectedStatus)
     {
-        PackedScene packedFlowerSelect = GD.Load<PackedScene>("res://scenes/flower_select/FlowerSelect.tscn");
-        FlowerSelectView flowerSelect = packedFlowerSelect.Instantiate<FlowerSelectView>();
-        flowerSelect.SetFlowerOptions(new FlowerSelectSystem().CreateBaseFlowerOptions());
-
-        string? selectedFlowerId = null;
-        flowerSelect.TargetFlowerSelected += id => selectedFlowerId = id;
-
-        AddChild(flowerSelect);
-        await NextFrame();
-
         GridContainer options = flowerSelect.GetNode<GridContainer>("Panel/OptionRoot");
-        Assert(options.GetChildCount() == 6, "Standalone FlowerSelect should show 6 options.");
+        Button button = options.GetChild<Button>(optionIndex);
+        Label? statusLabel = button.GetNodeOrNull<Label>("StatusLabel");
 
-        for (int i = 0; i < 6; i++)
+        if (string.IsNullOrEmpty(expectedStatus))
         {
-            selectedFlowerId = null;
-            Button button = options.GetChild<Button>(i);
-            button.EmitSignal(BaseButton.SignalName.Pressed);
-            Assert(selectedFlowerId == ExpectedFlowerIds[i], $"Flower option {i} should emit TargetFlowerSelected({ExpectedFlowerIds[i]}). Actual: {selectedFlowerId}.");
+            Assert(statusLabel == null, $"Flower option {optionIndex} should not show a status label.");
+            return;
         }
 
-        flowerSelect.QueueFree();
-        await NextFrame();
+        Assert(statusLabel != null, $"Flower option {optionIndex} should show status {expectedStatus}.");
+        Assert(statusLabel!.Text == expectedStatus, $"Flower option {optionIndex} status should be {expectedStatus}. Actual: {statusLabel.Text}.");
     }
 
-    private async System.Threading.Tasks.Task AssertHomeGardenPreviewCanLoadFormalFlowerNodesAsync()
+    private static void AssertLevelButtons(LevelSelectView levelSelect, params FlowerLevelState[] expectedStates)
     {
-        PackedScene packedHomeGarden = GD.Load<PackedScene>("res://scenes/home/HomeGarden.tscn");
-        HomeGardenView homeGarden = packedHomeGarden.Instantiate<HomeGardenView>();
-        homeGarden.PreviewFlowerId = "lavender";
-        homeGarden.ShowEditorFlowerPreview = true;
+        GridContainer options = levelSelect.GetNode<GridContainer>("Panel/LevelButtonRoot");
+        Assert(options.GetChildCount() == 7, $"LevelSelect should show 7 levels. Actual: {options.GetChildCount()}.");
 
-        AddChild(homeGarden);
-        await NextFrame();
-
-        for (int i = 0; i < 7; i++)
+        for (int i = 0; i < expectedStates.Length; i++)
         {
-            TextureRect texture = GetSlotTexture(homeGarden, i, "lavender");
-            string expectedPath = ResolveExpectedVisibleHomeSlotTexturePath("lavender", i);
-            Assert(texture.Visible, $"Preview PinkRoseSlot_{i + 1:00} texture should be visible for lavender.");
-            AssertTextureLoadedFromExpectedPath(texture, expectedPath, $"Preview PinkRoseSlot_{i + 1:00}");
-            AssertExclusiveSlotTextures(homeGarden, i, "lavender");
+            Button button = options.GetChild<Button>(i);
+            string expectedLabel = expectedStates[i] switch
+            {
+                FlowerLevelState.Completed => "已完成",
+                FlowerLevelState.Playable => "可进入",
+                _ => "未解锁"
+            };
+            Assert(button.Text.Contains(expectedLabel, StringComparison.Ordinal), $"Level {i + 1} should show {expectedLabel}. Actual: {button.Text}.");
+        }
+    }
+
+    private static void AssertLevelSelectButtonHidden(HomeGardenView homeGarden)
+    {
+        Button levelSelectButton = homeGarden.GetNode<Button>("ButtonRoot/LevelSelectButton");
+        Assert(!levelSelectButton.Visible, "HomeGarden LevelSelectButton should be hidden.");
+        Assert(levelSelectButton.Disabled, "HomeGarden LevelSelectButton should be disabled.");
+    }
+
+    private static void AssertPlantMarkers(HomeGardenView homeGarden, RunSessionState state, string label)
+    {
+        for (int i = 0; i < RunSessionState.MaxFlowerCount; i++)
+        {
+            Button marker = GetPlantMarker(homeGarden, i);
+            bool shouldShow = state.CanPlantPendingRewardAt(i);
+            Assert(marker.Visible == shouldShow, $"{label}: marker {i + 1} visible should be {shouldShow}. Actual: {marker.Visible}.");
+            Assert(marker.Disabled != shouldShow, $"{label}: marker {i + 1} disabled should be {!shouldShow}. Actual: {marker.Disabled}.");
+            Assert(marker.GetNode<Label>("NumberLabel").Text == (i + 1).ToString(), $"{label}: marker {i + 1} should show its slot number.");
+        }
+    }
+
+    private static void AssertSingleFlowerTexture(HomeGardenView homeGarden, int slotIndex, string flowerId)
+    {
+        TextureRect texture = GetSlotTexture(homeGarden, slotIndex, flowerId);
+        Assert(texture.Visible, $"Slot {slotIndex + 1} {flowerId} texture should be visible.");
+        Assert(texture.Texture != null, $"Slot {slotIndex + 1} {flowerId} texture should be loaded.");
+    }
+
+    private static void AssertComboPlaceholder(HomeGardenView homeGarden, int slotIndex, string comboKey)
+    {
+        Control? placeholder = homeGarden.GetNodeOrNull<Control>($"FlowerSlotRoot/PinkRoseSlot_{slotIndex + 1:00}/ComboAssetPlaceholder");
+        Assert(placeholder != null, $"Slot {slotIndex + 1} should show missing combo placeholder for {comboKey}.");
+        Label label = placeholder!.GetNode<Label>("PlaceholderLabel");
+        Assert(label.Text.Contains(comboKey, StringComparison.Ordinal), $"Combo placeholder should name {comboKey}. Actual: {label.Text}.");
+        Assert(!GetSlotTexture(homeGarden, slotIndex, "pink_rose").Visible, "Combo placeholder should not stack pink_rose single texture.");
+        Assert(!GetSlotTexture(homeGarden, slotIndex, "yellow_rose").Visible, "Combo placeholder should not stack yellow_rose single texture.");
+        Assert(!GetSlotTexture(homeGarden, slotIndex, "lavender").Visible, "Combo placeholder should not stack lavender single texture.");
+    }
+
+    private static void AssertSlotEmpty(RunSessionState state, int slotIndex, string message)
+    {
+        Assert(state.FlowerSlotBatches[slotIndex].Count == 0, message);
+    }
+
+    private static void AssertSlotContainsExactly(RunSessionState state, int slotIndex, params string[] expectedFlowerIds)
+    {
+        IReadOnlyList<string> actual = state.FlowerSlotBatches[slotIndex];
+        Assert(actual.Count == expectedFlowerIds.Length, $"Slot {slotIndex + 1} should contain {expectedFlowerIds.Length} flowers. Actual: {actual.Count}.");
+
+        for (int i = 0; i < expectedFlowerIds.Length; i++)
+        {
+            Assert(actual[i] == expectedFlowerIds[i], $"Slot {slotIndex + 1} flower {i} should be {expectedFlowerIds[i]}. Actual: {actual[i]}.");
         }
 
-        homeGarden.PreviewFlowerId = "yellow_rose";
-        for (int i = 0; i < 7; i++)
-        {
-            TextureRect texture = GetSlotTexture(homeGarden, i, "yellow_rose");
-            string expectedPath = ResolveExpectedVisibleHomeSlotTexturePath("yellow_rose", i);
-            Assert(texture.Visible, $"Preview PinkRoseSlot_{i + 1:00} texture should be visible for yellow_rose.");
-            AssertTextureLoadedFromExpectedPath(texture, expectedPath, $"Preview PinkRoseSlot_{i + 1:00}");
-            AssertExclusiveSlotTextures(homeGarden, i, "yellow_rose");
-        }
+        string expectedComboKey = string.Join("+", expectedFlowerIds);
+        Assert(state.GetSlotComboKey(slotIndex) == expectedComboKey, $"Slot {slotIndex + 1} combo key should be {expectedComboKey}. Actual: {state.GetSlotComboKey(slotIndex)}.");
+    }
 
-        homeGarden.ShowEditorFlowerPreview = false;
-        for (int i = 0; i < 7; i++)
-        {
-            TextureRect pinkTexture = GetSlotTexture(homeGarden, i, "pink_rose");
-            TextureRect yellowTexture = GetSlotTexture(homeGarden, i, "yellow_rose");
-            TextureRect lavenderTexture = GetSlotTexture(homeGarden, i, "lavender");
-            Assert(!pinkTexture.Visible, $"Preview PinkRoseSlot_{i + 1:00} pink texture should be hidden after disabling preview.");
-            Assert(!yellowTexture.Visible, $"Preview PinkRoseSlot_{i + 1:00} yellow texture should be hidden after disabling preview.");
-            Assert(!lavenderTexture.Visible, $"Preview PinkRoseSlot_{i + 1:00} lavender texture should be hidden after disabling preview.");
-        }
+    private static void AssertHint(FlowerSelectView flowerSelect, string expected)
+    {
+        Label hint = flowerSelect.GetNode<Label>("Panel/HintLabel");
+        Assert(hint.Text == expected, $"FlowerSelect hint should be {expected}. Actual: {hint.Text}.");
+    }
 
-        homeGarden.QueueFree();
-        await NextFrame();
+    private static void AssertLevelMessage(LevelSelectView levelSelect, string expected)
+    {
+        Label message = levelSelect.GetNode<Label>("Panel/MessageLabel");
+        Assert(message.Text == expected, $"LevelSelect message should be {expected}. Actual: {message.Text}.");
+    }
+
+    private static void AssertStatus(HomeGardenView homeGarden, string expected)
+    {
+        Label status = homeGarden.GetNode<Label>("PlantingStatusLabel");
+        Assert(status.Text == expected, $"HomeGarden status should be {expected}. Actual: {status.Text}.");
     }
 
     private static TextureRect GetSlotTexture(HomeGardenView homeGarden, int slotIndex, string flowerId)
@@ -345,57 +397,6 @@ public sealed partial class SecondPhaseFlowSmoke : Node
     private static Button GetPlantMarker(HomeGardenView homeGarden, int slotIndex)
     {
         return homeGarden.GetNode<Button>($"FlowerSlotRoot/PinkRoseSlot_{slotIndex + 1:00}/PlantMarkerButton");
-    }
-
-    private static void AssertPlantMarkers(HomeGardenView homeGarden, RunSessionState state, string label)
-    {
-        for (int i = 0; i < RunSessionState.MaxFlowerCount; i++)
-        {
-            Button marker = GetPlantMarker(homeGarden, i);
-            bool slotIsEmpty = string.IsNullOrEmpty(state.PlantedFlowerIds[i]);
-            bool shouldShow = state.PendingPlanting && slotIsEmpty;
-            Assert(marker.Visible == shouldShow, $"{label}: marker {i + 1} visible should be {shouldShow}. Actual: {marker.Visible}.");
-            Assert(marker.Disabled != shouldShow, $"{label}: marker {i + 1} disabled should be {!shouldShow}. Actual: {marker.Disabled}.");
-            Assert(marker.GetNode<Label>("NumberLabel").Text == (i + 1).ToString(), $"{label}: marker {i + 1} should show its slot number.");
-        }
-    }
-
-    private static void AssertPlantMarkersHidden(HomeGardenView homeGarden, string label)
-    {
-        for (int i = 0; i < RunSessionState.MaxFlowerCount; i++)
-        {
-            Button marker = GetPlantMarker(homeGarden, i);
-            Assert(!marker.Visible, $"{label}: marker {i + 1} should be hidden.");
-            Assert(marker.Disabled, $"{label}: marker {i + 1} should be disabled.");
-        }
-    }
-
-    private static string ResolveExpectedVisibleHomeSlotTexturePath(string flowerId, int zeroBasedSlotIndex)
-    {
-        if (flowerId == "yellow_rose")
-        {
-            int visibleSlotIndex = zeroBasedSlotIndex switch
-            {
-                3 => 7,
-                6 => 4,
-                _ => zeroBasedSlotIndex + 1
-            };
-            return HomeGardenView.ResolveHomeSlotTexturePath(flowerId, visibleSlotIndex);
-        }
-
-        return HomeGardenView.ResolveHomeSlotTexturePath(flowerId, zeroBasedSlotIndex + 1);
-    }
-
-    private static void AssertTextureLoadedFromExpectedPath(TextureRect texture, string expectedPath, string label)
-    {
-        Assert(texture.Texture != null, $"{label} texture should be loaded.");
-        Assert(FileAccess.FileExists(expectedPath) || ResourceLoader.Exists(expectedPath), $"{label} expected texture path should exist: {expectedPath}.");
-
-        string actualPath = texture.Texture!.ResourcePath;
-        if (!string.IsNullOrEmpty(actualPath))
-        {
-            Assert(actualPath == expectedPath, $"{label} should use {expectedPath}. Actual: {actualPath}.");
-        }
     }
 
     private T AssertActiveScene<T>(string message) where T : Node

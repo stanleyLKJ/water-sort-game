@@ -22,7 +22,9 @@ public sealed partial class FlowerSelectView : Control
     };
 
     private GridContainer _optionRoot = null!;
+    private Label _hintLabel = null!;
     private IReadOnlyList<FlowerOption>? _pendingOptions;
+    private string _defaultHintText = string.Empty;
     private bool _isReady;
 
     public event Action<string>? TargetFlowerSelected;
@@ -31,6 +33,8 @@ public sealed partial class FlowerSelectView : Control
     public override void _Ready()
     {
         _optionRoot = GetNode<GridContainer>("Panel/OptionRoot");
+        _hintLabel = GetNode<Label>("Panel/HintLabel");
+        _defaultHintText = _hintLabel.Text;
         GetNode<Button>("Panel/BackButton").Pressed += OnBackPressed;
         _isReady = true;
 
@@ -52,6 +56,8 @@ public sealed partial class FlowerSelectView : Control
 
     private void RefreshOptions(IReadOnlyList<FlowerOption> options)
     {
+        ShowMessage(_defaultHintText);
+
         foreach (Node child in _optionRoot.GetChildren())
         {
             child.QueueFree();
@@ -65,9 +71,11 @@ public sealed partial class FlowerSelectView : Control
 
     private Button CreateFlowerOptionButton(FlowerOption option)
     {
-        Color flowerColor = GetFlowerColor(option.Index);
-        StyleBoxFlat normalStyle = CreateOptionStyle(new Color(1f, 0.98f, 0.91f, 0.92f), flowerColor);
-        StyleBoxFlat hoverStyle = CreateOptionStyle(new Color(1f, 0.96f, 0.84f, 0.98f), flowerColor.Lightened(0.12f));
+        Color flowerColor = option.IsSelectable ? GetFlowerColor(option.Index) : new Color(0.56f, 0.56f, 0.52f);
+        Color background = option.IsSelectable ? new Color(1f, 0.98f, 0.91f, 0.92f) : new Color(0.74f, 0.74f, 0.68f, 0.82f);
+        Color hoverBackground = option.IsSelectable ? new Color(1f, 0.96f, 0.84f, 0.98f) : new Color(0.78f, 0.78f, 0.72f, 0.86f);
+        StyleBoxFlat normalStyle = CreateOptionStyle(background, flowerColor);
+        StyleBoxFlat hoverStyle = CreateOptionStyle(hoverBackground, flowerColor.Lightened(0.08f));
 
         Button button = new()
         {
@@ -92,11 +100,52 @@ public sealed partial class FlowerSelectView : Control
         label.OffsetTop = 138f;
         label.OffsetBottom = -8f;
         label.AddThemeFontSizeOverride("font_size", 18);
-        label.AddThemeColorOverride("font_color", new Color(0.2f, 0.15f, 0.1f));
+        label.AddThemeColorOverride("font_color", option.IsSelectable ? new Color(0.2f, 0.15f, 0.1f) : new Color(0.32f, 0.31f, 0.28f));
         button.AddChild(label);
 
-        button.Pressed += () => TargetFlowerSelected?.Invoke(option.FlowerId);
+        string statusText = option.IsOpen ? option.IsFull ? "已种满" : string.Empty : "待开放";
+        if (!string.IsNullOrEmpty(statusText))
+        {
+            Label statusLabel = new()
+            {
+                Name = "StatusLabel",
+                Text = statusText,
+                MouseFilter = MouseFilterEnum.Ignore,
+                HorizontalAlignment = HorizontalAlignment.Center,
+                VerticalAlignment = VerticalAlignment.Center
+            };
+            statusLabel.SetAnchorsPreset(LayoutPreset.TopWide);
+            statusLabel.OffsetLeft = 18f;
+            statusLabel.OffsetTop = 14f;
+            statusLabel.OffsetRight = -18f;
+            statusLabel.OffsetBottom = 44f;
+            statusLabel.AddThemeFontSizeOverride("font_size", 16);
+            statusLabel.AddThemeColorOverride("font_color", new Color(0.32f, 0.3f, 0.27f));
+            button.AddChild(statusLabel);
+        }
+
+        button.Pressed += () =>
+        {
+            if (option.IsSelectable)
+            {
+                TargetFlowerSelected?.Invoke(option.FlowerId);
+                return;
+            }
+
+            ShowMessage(option.UnavailableMessage);
+        };
+
         return button;
+    }
+
+    public void ShowMessage(string message)
+    {
+        if (!_isReady)
+        {
+            return;
+        }
+
+        _hintLabel.Text = message;
     }
 
     private static Node CreateFlowerVisual(FlowerOption option, Color flowerColor)
