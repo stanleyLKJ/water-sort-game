@@ -6,10 +6,28 @@
 [ext_resource type="Script" uid="uid://my2il34x5h1f" path="res://scripts/core/UIManager.cs" id="4_ui_manager"]
 [ext_resource type="Script" uid="uid://d2nayphcvakrc" path="res://scripts/core/BagSystem.cs" id="5_bag_system"]
 [ext_resource type="Script" uid="uid://cns4gyng7vjs1" path="res://scripts/view/BagSlotView.cs" id="6_bag_slot_view"]
-[ext_resource type="Texture2D" path="res://assets/ui/restart_button.png" id="7_restart_texture"]
+[ext_resource type="Texture2D" path="res://assets/ui/buttons/restart_button.png" id="7_restart_texture"]
 [ext_resource type="Script" uid="uid://byv7sbq4r42gt" path="res://scripts/core/LevelGenerator.cs" id="8_level_generator"]
 [ext_resource type="Script" uid="uid://hcg6bxh0jvog" path="res://scripts/view/PourFxView.cs" id="9_pour_fx_view"]
-[ext_resource type="Texture2D" path="res://assets/reward/reward_background.png" id="10_empty_background"]
+[ext_resource type="Texture2D" uid="uid://d1f6hp51j84re" path="res://assets/reward/reward_background.png" id="10_empty_background"]
+[ext_resource type="Script" uid="uid://m865ovxl6vvh" path="res://scripts/view/CauldronView.cs" id="11_cauldron_view"]
+[ext_resource type="Texture2D" uid="uid://dwgx2y7sw5i6j" path="res://assets/cauldron/cauldron_reward.png" id="12_cauldron_reward"]
+[ext_resource type="Texture2D" path="res://assets/ui/buttons/back_button.png" id="13_return_texture"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_game_ui_readable"]
+font_color = Color(1, 0.98, 0.9, 1)
+outline_size = 4
+outline_color = Color(0.18, 0.1, 0.16, 0.78)
+
+[sub_resource type="LabelSettings" id="LabelSettings_reward_readable"]
+font_color = Color(0.22, 0.13, 0.2, 1)
+outline_size = 3
+outline_color = Color(1, 0.96, 0.82, 0.72)
+
+[sub_resource type="LabelSettings" id="LabelSettings_reward_secondary"]
+font_color = Color(0.29, 0.2, 0.28, 1)
+outline_size = 3
+outline_color = Color(1, 0.96, 0.82, 0.66)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f24su"]
 size = Vector2(110, 240)
@@ -41,7 +59,151 @@ script = ExtResource("8_level_generator")
 
 [node name="WorldRoot" type="Node2D" parent="." unique_id=468784355]
 
+[node name="CauldronRoot" type="Node2D" parent="WorldRoot" unique_id=1041966562]
+
+[node name="CauldronView" type="Node2D" parent="WorldRoot/CauldronRoot" unique_id=729358833]
+position = Vector2(360, 150)
+script = ExtResource("11_cauldron_view")
+
+[node name="CauldronSprite" type="Sprite2D" parent="WorldRoot/CauldronRoot/CauldronView" unique_id=1543143600]
+z_index = 2
+scale = Vector2(0.27, 0.27)
+texture = ExtResource("12_cauldron_reward")
+
+[node name="CollectTargetPoint" type="Marker2D" parent="WorldRoot/CauldronRoot/CauldronView" unique_id=1128916693]
+position = Vector2(0, -34)
+
+[node name="CauldronProgressRoot" type="Node2D" parent="WorldRoot/CauldronRoot/CauldronView" unique_id=1221631905]
+position = Vector2(0, 98)
+
+[node name="ProgressLabel" type="Label" parent="WorldRoot/CauldronRoot/CauldronView/CauldronProgressRoot" unique_id=608230633]
+offset_left = -52.0
+offset_top = -26.0
+offset_right = 52.0
+offset_bottom = 4.0
+text = "0/4"
+label_settings = SubResource("LabelSettings_game_ui_readable")
+horizontal_alignment = 1
+
+[node name="Bubble_0" type="ColorRect" parent="WorldRoot/CauldronRoot/CauldronView/CauldronProgressRoot" unique_id=1266701070]
+offset_left = -54.0
+offset_top = 12.0
+offset_right = -32.0
+offset_bottom = 34.0
+color = Color(0.58, 0.58, 0.58, 0.34)
+
+[node name="Bubble_1" type="ColorRect" parent="WorldRoot/CauldronRoot/CauldronView/CauldronProgressRoot" unique_id=172322105]
+offset_left = -18.0
+offset_top = 12.0
+offset_right = 4.0
+offset_bottom = 34.0
+color = Color(0.58, 0.58, 0.58, 0.34)
+
+[node name="Bubble_2" type="ColorRect" parent="WorldRoot/CauldronRoot/CauldronView/CauldronProgressRoot" unique_id=538063664]
+offset_left = 18.0
+offset_top = 12.0
+offset_right = 40.0
+offset_bottom = 34.0
+color = Color(0.58, 0.58, 0.58, 0.34)
+
+[node name="Bubble_3" type="ColorRect" parent="WorldRoot/CauldronRoot/CauldronView/CauldronProgressRoot" unique_id=1440380573]
+offset_left = 54.0
+offset_top = 12.0
+offset_right = 76.0
+offset_bottom = 34.0
+color = Color(0.58, 0.58, 0.58, 0.34)
+
+[node name="RewardPanel" type="Panel" parent="WorldRoot/CauldronRoot/CauldronView" unique_id=495516839]
+visible = false
+z_index = 50
+offset_left = -190.0
+offset_top = 132.0
+offset_right = 190.0
+offset_bottom = 358.0
+
+[node name="RewardTitleLabel" type="Label" parent="WorldRoot/CauldronRoot/CauldronView/RewardPanel" unique_id=273095956]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 14.0
+offset_right = 362.0
+offset_bottom = 44.0
+text = "获得奖励"
+label_settings = SubResource("LabelSettings_reward_readable")
+horizontal_alignment = 1
+
+[node name="FlowerIdLabel" type="Label" parent="WorldRoot/CauldronRoot/CauldronView/RewardPanel" unique_id=1601958669]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 44.0
+offset_right = 362.0
+offset_bottom = 72.0
+text = "pink_rose"
+label_settings = SubResource("LabelSettings_reward_secondary")
+horizontal_alignment = 1
+
+[node name="SeedTexture" type="TextureRect" parent="WorldRoot/CauldronRoot/CauldronView/RewardPanel" unique_id=1398230100]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 78.0
+offset_right = 138.0
+offset_bottom = 158.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PotionTexture" type="TextureRect" parent="WorldRoot/CauldronRoot/CauldronView/RewardPanel" unique_id=1936599181]
+layout_mode = 0
+offset_left = 222.0
+offset_top = 78.0
+offset_right = 302.0
+offset_bottom = 158.0
+expand_mode = 1
+stretch_mode = 5
+
+[node name="SeedLabel" type="Label" parent="WorldRoot/CauldronRoot/CauldronView/RewardPanel" unique_id=681934279]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 162.0
+offset_right = 160.0
+offset_bottom = 190.0
+text = "种子 x1"
+label_settings = SubResource("LabelSettings_reward_secondary")
+horizontal_alignment = 1
+
+[node name="PotionLabel" type="Label" parent="WorldRoot/CauldronRoot/CauldronView/RewardPanel" unique_id=1875384099]
+layout_mode = 0
+offset_left = 200.0
+offset_top = 162.0
+offset_right = 324.0
+offset_bottom = 190.0
+text = "药剂 x1"
+label_settings = SubResource("LabelSettings_reward_secondary")
+horizontal_alignment = 1
+
+[node name="GoPlantButton" type="Button" parent="WorldRoot/CauldronRoot/CauldronView/RewardPanel" unique_id=294890984]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 194.0
+offset_right = 248.0
+offset_bottom = 222.0
+theme_override_colors/font_color = Color(0.22, 0.13, 0.2, 1)
+theme_override_colors/font_pressed_color = Color(0.14, 0.08, 0.15, 1)
+theme_override_colors/font_hover_color = Color(0.14, 0.08, 0.15, 1)
+theme_override_colors/font_outline_color = Color(1, 0.96, 0.82, 0.65)
+theme_override_constants/outline_size = 3
+text = "种植"
+
+[node name="RewardContinueLabel" type="Label" parent="WorldRoot/CauldronRoot/CauldronView/RewardPanel" unique_id=1856741068]
+layout_mode = 0
+offset_left = 38.0
+offset_top = 226.0
+offset_right = 342.0
+offset_bottom = 256.0
+text = "3 秒后自动继续"
+label_settings = SubResource("LabelSettings_reward_secondary")
+horizontal_alignment = 1
+
 [node name="BagRoot" type="Node2D" parent="WorldRoot" unique_id=799973688]
+visible = false
 
 [node name="BagSlot_0" type="Node2D" parent="WorldRoot/BagRoot" unique_id=1388593214]
 position = Vector2(120, 140)
@@ -514,11 +676,23 @@ antialiased = true
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1275699926]
 
 [node name="RestartButton" type="Button" parent="CanvasLayer" unique_id=937279451]
-offset_left = 268.0
+offset_left = 390.0
 offset_top = 1080.0
-offset_right = 452.0
-offset_bottom = 1180.0
+offset_right = 630.0
+offset_bottom = 1160.0
 icon = ExtResource("7_restart_texture")
+flat = true
+expand_icon = true
+
+[node name="ExitButton" type="Button" parent="CanvasLayer" unique_id=821860342]
+offset_left = 90.0
+offset_top = 1080.0
+offset_right = 330.0
+offset_bottom = 1160.0
+theme_override_colors/icon_normal_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_pressed_color = Color(0.86, 0.86, 0.86, 1)
+theme_override_colors/icon_hover_color = Color(0.93, 0.93, 0.93, 1)
+icon = ExtResource("13_return_texture")
 flat = true
 expand_icon = true
 
@@ -529,6 +703,7 @@ offset_top = 1030.0
 offset_right = 460.0
 offset_bottom = 1080.0
 text = "不能倒入"
+label_settings = SubResource("LabelSettings_game_ui_readable")
 horizontal_alignment = 1
 
 [node name="VictoryPopup" type="PopupPanel" parent="CanvasLayer" unique_id=175763897]
@@ -542,11 +717,19 @@ offset_top = 4.0
 offset_right = 396.0
 offset_bottom = 256.0
 text = "通关成功"
+label_settings = SubResource("LabelSettings_game_ui_readable")
 horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="PopupRestartButton" type="Button" parent="CanvasLayer/VictoryPopup" unique_id=2001887451]
 offset_left = 4.0
 offset_top = 4.0
 offset_right = 396.0
 offset_bottom = 256.0
+theme_override_colors/font_color = Color(0.24, 0.13, 0.18, 1)
+theme_override_colors/font_pressed_color = Color(0.14, 0.08, 0.15, 1)
+theme_override_colors/font_hover_color = Color(0.14, 0.08, 0.15, 1)
+theme_override_colors/font_outline_color = Color(1, 0.96, 0.82, 0.72)
+theme_override_constants/outline_size = 3
+theme_override_font_sizes/font_size = 24
 text = "重开"

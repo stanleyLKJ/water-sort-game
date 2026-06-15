@@ -1,0 +1,98 @@
+{
+  "source_psd_name": "选择花面板.psd",
+  "formal_layer": "选择花面板-正式素材",
+  "demo_layer": "选择花面板-演示素材",
+  "formal_bbox": [
+    70,
+    55,
+    870,
+    1450
+  ],
+  "size": [
+    800,
+    1395
+  ],
+  "assets": [
+    {
+      "slot": 1,
+      "flower_id": "pink_rose",
+      "box": [
+        44,
+        498,
+        276,
+        832
+      ],
+      "open": "assets/ui/flower_select/slot_01_open.png",
+      "disabled": "assets/ui/flower_select/slot_01_disabled.png"
+    },
+    {
+      "slot": 2,
+      "flower_id": "yellow_rose",
+      "box": [
+        284,
+        498,
+        516,
+        832
+      ],
+      "open": "assets/ui/flower_select/slot_02_open.png",
+      "disabled": "assets/ui/flower_select/slot_02_disabled.png"
+    },
+    {
+      "slot": 3,
+      "flower_id": "lavender",
+      "box": [
+        526,
+        498,
+        758,
+        832
+      ],
+      "open": "assets/ui/flower_select/slot_03_open.png",
+      "disabled": "assets/ui/flower_select/slot_03_disabled.png"
+    },
+    {
+      "slot": 4,
+      "flower_id": "flower_04",
+      "box": [
+        44,
+        868,
+        276,
+        1202
+      ],
+      "open": "assets/ui/flower_select/slot_04_open.png",
+      "disabled": "assets/ui/flower_select/slot_04_disabled.png"
+    },
+    {
+      "slot": 5,
+      "flower_id": "flower_05",
+      "box": [
+        284,
+        868,
+        516,
+        1202
+      ],
+      "open": "assets/ui/flower_select/slot_05_open.png",
+      "disabled": "assets/ui/flower_select/slot_05_disabled.png"
+    },
+    {
+      "slot": 6,
+      "flower_id": "flower_06",
+      "box": [
+        526,
+        868,
+        758,
+        1202
+      ],
+      "open": "assets/ui/flower_select/slot_06_open.png",
+      "disabled": "assets/ui/flower_select/slot_06_disabled.png"
+    }
+  ],
+  "back_button": {
+    "box": [
+      230,
+      1234,
+      570,
+      1348
+    ],
+    "file": "assets/ui/flower_select/back_button.png"
+  }
+}

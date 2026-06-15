@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3]
+
+[ext_resource type="FontFile" path="res://assets/fonts/source_han_sans/SourceHanSansSC-Regular.otf" id="1_source_han_sans_regular"]
+
+[resource]
+default_font = ExtResource("1_source_han_sans_regular")

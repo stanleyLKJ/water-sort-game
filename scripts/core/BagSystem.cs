@@ -7,6 +7,8 @@ namespace WaterSortGame.Core;
 
 public sealed partial class BagSystem : Node
 {
+    // Historical name retained for compatibility: this now feeds the cauldron
+    // debug progress collection flow rather than a visible bag/pot UI.
     public List<int> CollectCompletedBottles(GameState state)
     {
         List<int> collectedIds = new();
@@ -25,6 +27,7 @@ public sealed partial class BagSystem : Node
             }
 
             state.Bags[color].CollectedCount++;
+            state.CollectedColorOrder.Add(color);
             bottle.IsCollected = true;
             collectedIds.Add(bottle.Id);
         }
@@ -45,6 +48,6 @@ public sealed partial class BagSystem : Node
         }
 
         WaterColor color = bottle.Layers[0].Color;
-        return bottle.Layers.All(layer => layer.Color == color);
+        return bottle.Layers.All(layer => layer.Color == color && layer.IsRevealed);
     }
 }

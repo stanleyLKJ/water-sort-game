@@ -53,6 +53,8 @@ public sealed class RunSessionState
 
     public string? PendingPlantingFlowerId { get; private set; }
 
+    public bool IsWarehousePlantingMode { get; private set; }
+
     public bool IsGardenFull
     {
         get
@@ -97,25 +99,19 @@ public sealed class RunSessionState
         return true;
     }
 
+    public bool CompleteSelectedLevel()
+    {
+        return TryCompleteSelectedLevel(clearPendingReward: true, out _, out _);
+    }
+
     public bool CompleteSelectedLevelAndCreatePendingPlantingReward()
     {
-        if (!HasSelectedFlower || SelectedLevelNumber == null)
+        if (!TryCompleteSelectedLevel(clearPendingReward: false, out string? flowerId, out _))
         {
             return false;
         }
 
-        string flowerId = SelectedFlowerId!;
-        int levelNumber = SelectedLevelNumber.Value;
-
-        if (GetLevelState(flowerId, levelNumber) != FlowerLevelState.Playable)
-        {
-            return false;
-        }
-
-        _completedLevelCounts[flowerId] = Math.Max(GetCompletedLevelCount(flowerId), levelNumber);
-        SelectedLevelNumber = null;
-
-        if (IsFlowerFull(flowerId))
+        if (IsFlowerFull(flowerId!))
         {
             return false;
         }
@@ -125,6 +121,134 @@ public sealed class RunSessionState
         PendingPlanting = true;
         PendingPlantingFlowerId = flowerId;
         return true;
+    }
+
+    public void BeginWarehousePlanting(string flowerId)
+    {
+        if (string.IsNullOrWhiteSpace(flowerId))
+        {
+            throw new ArgumentException("Flower id cannot be empty.", nameof(flowerId));
+        }
+
+        if (!IsOpenFlowerId(flowerId))
+        {
+            throw new ArgumentException($"Flower id is not open for planting: {flowerId}", nameof(flowerId));
+        }
+
+        HasSeed = true;
+        HasPotion = true;
+        PendingPlanting = true;
+        PendingPlantingFlowerId = flowerId;
+        IsWarehousePlantingMode = true;
+    }
+
+    public void BeginWarehousePlantingMode()
+    {
+        HasSeed = false;
+        HasPotion = false;
+        PendingPlanting = false;
+        PendingPlantingFlowerId = null;
+        IsWarehousePlantingMode = true;
+    }
+
+    public void CancelWarehousePlanting()
+    {
+        ClearPendingPlantingReward();
+        IsWarehousePlantingMode = false;
+    }
+
+    public void ApplyLevelProgress(SaveData saveData)
+    {
+        ArgumentNullException.ThrowIfNull(saveData);
+        saveData.Normalize();
+
+        foreach (string flowerId in OpenFlowerIdOrder)
+        {
+            _completedLevelCounts[flowerId] = Math.Clamp(
+                saveData.LevelProgressByFlower.GetValueOrDefault(flowerId),
+                0,
+                LevelsPerFlower);
+        }
+    }
+
+    public void ApplyHomeSlots(SaveData saveData)
+    {
+        ArgumentNullException.ThrowIfNull(saveData);
+        saveData.Normalize();
+
+        for (int i = 0; i < MaxFlowerCount; i++)
+        {
+            List<string> slotFlowers = _flowerSlotBatches[i];
+            slotFlowers.Clear();
+
+            string slotKey = SaveData.BuildSlotKey(i);
+            if (!saveData.HomeSlotsBySlot.TryGetValue(slotKey, out HomeSlotSaveData? slot) || slot == null)
+            {
+                continue;
+            }
+
+            HashSet<string> seenFlowerIds = new(StringComparer.Ordinal);
+            foreach (string flowerId in slot.FlowerIds)
+            {
+                if (!IsOpenFlowerId(flowerId) || !seenFlowerIds.Add(flowerId))
+                {
+                    continue;
+                }
+
+                slotFlowers.Add(flowerId);
+            }
+
+            SortFlowerIds(slotFlowers);
+        }
+    }
+
+    public void ApplySaveData(SaveData saveData)
+    {
+        ArgumentNullException.ThrowIfNull(saveData);
+
+        SelectedFlowerId = null;
+        SelectedLevelNumber = null;
+        ClearPendingPlantingReward();
+        IsWarehousePlantingMode = false;
+        ApplyLevelProgress(saveData);
+        ApplyHomeSlots(saveData);
+    }
+
+    private bool TryCompleteSelectedLevel(bool clearPendingReward, out string? flowerId, out int levelNumber)
+    {
+        flowerId = null;
+        levelNumber = 0;
+
+        if (!HasSelectedFlower || SelectedLevelNumber == null)
+        {
+            return false;
+        }
+
+        flowerId = SelectedFlowerId!;
+        levelNumber = SelectedLevelNumber.Value;
+
+        if (GetLevelState(flowerId, levelNumber) != FlowerLevelState.Playable)
+        {
+            return false;
+        }
+
+        _completedLevelCounts[flowerId] = Math.Max(GetCompletedLevelCount(flowerId), levelNumber);
+        SelectedLevelNumber = null;
+
+        if (clearPendingReward)
+        {
+            ClearPendingPlantingReward();
+        }
+
+        return true;
+    }
+
+    private void ClearPendingPlantingReward()
+    {
+        HasSeed = false;
+        HasPotion = false;
+        PendingPlanting = false;
+        PendingPlantingFlowerId = null;
     }
 
     public PlantingResult TryPlantPendingRewardAt(int slotIndex)
@@ -150,6 +274,7 @@ public sealed class RunSessionState
         HasPotion = false;
         PendingPlanting = false;
         PendingPlantingFlowerId = null;
+        IsWarehousePlantingMode = false;
         return PlantingResult.Planted;
     }
 
@@ -202,6 +327,47 @@ public sealed class RunSessionState
         slotFlowers.Add(flowerId);
         SortFlowerIds(slotFlowers);
         return PlantingResult.Planted;
+    }
+
+    public bool TryRemoveAllFlowersFromSlot(int slotIndex, out string[] removedFlowerIds)
+    {
+        if (slotIndex < 0 || slotIndex >= MaxFlowerCount)
+        {
+            throw new ArgumentOutOfRangeException(nameof(slotIndex), slotIndex, "Flower slot index is out of range.");
+        }
+
+        List<string> slotFlowers = _flowerSlotBatches[slotIndex];
+        if (slotFlowers.Count == 0)
+        {
+            removedFlowerIds = Array.Empty<string>();
+            return false;
+        }
+
+        removedFlowerIds = slotFlowers.ToArray();
+        slotFlowers.Clear();
+        return true;
+    }
+
+    public bool TryRemoveFlowerFromSlot(int slotIndex, string flowerId)
+    {
+        if (string.IsNullOrWhiteSpace(flowerId))
+        {
+            throw new ArgumentException("Flower id cannot be empty.", nameof(flowerId));
+        }
+
+        if (slotIndex < 0 || slotIndex >= MaxFlowerCount)
+        {
+            throw new ArgumentOutOfRangeException(nameof(slotIndex), slotIndex, "Flower slot index is out of range.");
+        }
+
+        List<string> slotFlowers = _flowerSlotBatches[slotIndex];
+        bool removed = slotFlowers.Remove(flowerId);
+        if (removed)
+        {
+            SortFlowerIds(slotFlowers);
+        }
+
+        return removed;
     }
 
     public bool CanPlantPendingRewardAt(int slotIndex)

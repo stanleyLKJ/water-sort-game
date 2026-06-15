@@ -1,0 +1,233 @@
+{
+  "source_canvas_size": [
+    941,
+    1672
+  ],
+  "panel": "panel.png",
+  "levels": [
+    {
+      "level": 1,
+      "states": {
+        "available": {
+          "texture": "level_01_available.png",
+          "rect": [
+            73,
+            559,
+            392,
+            250
+          ]
+        },
+        "completed": {
+          "texture": "level_01_completed.png",
+          "rect": [
+            72,
+            562,
+            392,
+            241
+          ]
+        },
+        "locked": {
+          "texture": "level_01_locked.png",
+          "rect": [
+            73,
+            560,
+            392,
+            239
+          ]
+        }
+      }
+    },
+    {
+      "level": 2,
+      "states": {
+        "available": {
+          "texture": "level_02_available.png",
+          "rect": [
+            463,
+            557,
+            393,
+            252
+          ]
+        },
+        "completed": {
+          "texture": "level_02_completed.png",
+          "rect": [
+            462,
+            560,
+            394,
+            242
+          ]
+        },
+        "locked": {
+          "texture": "level_02_locked.png",
+          "rect": [
+            464,
+            560,
+            392,
+            239
+          ]
+        }
+      }
+    },
+    {
+      "level": 3,
+      "states": {
+        "available": {
+          "texture": "level_03_available.png",
+          "rect": [
+            72,
+            817,
+            392,
+            246
+          ]
+        },
+        "completed": {
+          "texture": "level_03_completed.png",
+          "rect": [
+            73,
+            818,
+            392,
+            239
+          ]
+        },
+        "locked": {
+          "texture": "level_03_locked.png",
+          "rect": [
+            72,
+            817,
+            392,
+            235
+          ]
+        }
+      }
+    },
+    {
+      "level": 4,
+      "states": {
+        "available": {
+          "texture": "level_04_available.png",
+          "rect": [
+            463,
+            817,
+            393,
+            246
+          ]
+        },
+        "completed": {
+          "texture": "level_04_completed.png",
+          "rect": [
+            463,
+            818,
+            391,
+            239
+          ]
+        },
+        "locked": {
+          "texture": "level_04_locked.png",
+          "rect": [
+            466,
+            817,
+            392,
+            233
+          ]
+        }
+      }
+    },
+    {
+      "level": 5,
+      "states": {
+        "available": {
+          "texture": "level_05_available.png",
+          "rect": [
+            73,
+            1067,
+            390,
+            240
+          ]
+        },
+        "completed": {
+          "texture": "level_05_completed.png",
+          "rect": [
+            71,
+            1069,
+            392,
+            238
+          ]
+        },
+        "locked": {
+          "texture": "level_05_locked.png",
+          "rect": [
+            75,
+            1067,
+            388,
+            240
+          ]
+        }
+      }
+    },
+    {
+      "level": 6,
+      "states": {
+        "available": {
+          "texture": "level_06_available.png",
+          "rect": [
+            462,
+            1067,
+            394,
+            240
+          ]
+        },
+        "completed": {
+          "texture": "level_06_completed.png",
+          "rect": [
+            463,
+            1068,
+            391,
+            239
+          ]
+        },
+        "locked": {
+          "texture": "level_06_locked.png",
+          "rect": [
+            464,
+            1067,
+            392,
+            231
+          ]
+        }
+      }
+    },
+    {
+      "level": 7,
+      "states": {
+        "available": {
+          "texture": "level_07_available.png",
+          "rect": [
+            219,
+            1308,
+            493,
+            184
+          ]
+        },
+        "completed": {
+          "texture": "level_07_completed.png",
+          "rect": [
+            221,
+            1308,
+            489,
+            181
+          ]
+        },
+        "locked": {
+          "texture": "level_07_locked.png",
+          "rect": [
+            222,
+            1308,
+            488,
+            178
+          ]
+        }
+      }
+    }
+  ]
+}

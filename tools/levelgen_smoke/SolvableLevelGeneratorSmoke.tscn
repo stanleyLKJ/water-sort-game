@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://tools/levelgen_smoke/SolvableLevelGeneratorSmoke.cs" id="1_levelgen_smoke"]
+
+[node name="SolvableLevelGeneratorSmoke" type="Node"]
+script = ExtResource("1_levelgen_smoke")

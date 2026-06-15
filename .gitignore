@@ -2,13 +2,25 @@
 .godot/
 /android/
 *.zip
+*.apk
+*.aab
+*.idsig
 
 # Local Godot/Codex runtime logs and editor user data
 .codex_godot_user/
 *.log
 
+# Local signing and release artifacts
+*.keystore
+docs/deployment_cert.der
+version/
+
+# Local/generated art extraction workspace
+art/layer_extraction/
+
 # External asset staging input
 素材/
+绱犳潗/
 
 # Local screenshots / import-only scratch images
 game-screenshot.png

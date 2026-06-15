@@ -13,12 +13,12 @@ public sealed partial class BottleView : Area2D
     private const int Capacity = 4;
     private const float BottleTargetHeight = 250f;
     private const float WaterBottomY = 101f;
-    private const float WaterTopY = -50f;
+    private const float WaterTopY = -66f;
     private const float LiquidRectHalfWidth = 56f;
     private const float WaterBottomHalfWidth = 30f;
     private const float WaterBodyHalfWidth = 36f;
     private const float WaterTopHalfWidth = 22f;
-    private const float WaterSurfaceWave = 1.4f;
+    private const float WaterSurfaceWave = 0.8f;
     private const float LayerGap = 0.08f;
     private const float LayerBorderWidth = 1.25f;
     private const float WaterLevelAnimationSeconds = 0.36f;
@@ -26,8 +26,8 @@ public sealed partial class BottleView : Area2D
     private const string LiquidMaskTexturePath = "res://assets/bottles/bottle_liquid_mask.png";
     private const int LiquidTextureWidth = 288;
     private const int LiquidTextureHeight = 512;
-    private const int LiquidTopPixel = 142;
-    private const int LiquidBottomPixel = 470;
+    private const int LiquidTopPixel = 118;
+    private const int LiquidBottomPixel = 500;
 
     private static readonly Color HiddenLayerColor = new(0.05f, 0.07f, 0.09f, 0.64f);
 
@@ -85,6 +85,37 @@ public sealed partial class BottleView : Area2D
     {
         CacheBasePosition();
         BottleId = bottleId;
+    }
+
+    public void ApplyLayoutPosition(Vector2 layoutPosition)
+    {
+        _invalidFeedbackTween?.Kill();
+        _invalidFeedbackTween = null;
+        _isSelected = false;
+        _basePosition = layoutPosition;
+        _hasBasePosition = true;
+
+        if (!_isPourAnimating)
+        {
+            Rotation = 0f;
+            Position = layoutPosition;
+        }
+    }
+
+    public void DeactivateForLayout()
+    {
+        CacheNodes();
+        _invalidFeedbackTween?.Kill();
+        _invalidFeedbackTween = null;
+        _isSelected = false;
+        _currentData = null;
+        _previewLayers.Clear();
+        _animationLayers = null;
+        _visualFillLevel = 0f;
+        Position = _basePosition;
+        Visible = false;
+        _collisionShape.Disabled = true;
+        HideAllWaterLayers();
     }
 
     public void Refresh(BottleData data)
@@ -372,10 +403,14 @@ public sealed partial class BottleView : Area2D
             return;
         }
 
-        string absolutePath = ProjectSettings.GlobalizePath(LiquidMaskTexturePath);
-        Image? image = FileAccess.FileExists(absolutePath)
-            ? Image.LoadFromFile(absolutePath)
-            : null;
+        Image? image = LoadLiquidMaskFromResource();
+        if (image == null || image.IsEmpty())
+        {
+            string absolutePath = ProjectSettings.GlobalizePath(LiquidMaskTexturePath);
+            image = System.IO.File.Exists(absolutePath)
+                ? Image.LoadFromFile(absolutePath)
+                : null;
+        }
 
         if (image == null || image.IsEmpty())
         {
@@ -388,19 +423,43 @@ public sealed partial class BottleView : Area2D
         _liquidMaskImage = image;
     }
 
+    private static Image? LoadLiquidMaskFromResource()
+    {
+        Texture2D texture = GD.Load<Texture2D>(LiquidMaskTexturePath);
+        if (texture == null)
+        {
+            return null;
+        }
+
+        Image image = texture.GetImage();
+        return image == null || image.IsEmpty() ? null : image;
+    }
+
     private static Image CreateFallbackLiquidMaskImage()
     {
         Image image = Image.CreateEmpty(LiquidTextureWidth, LiquidTextureHeight, false, Image.Format.Rgba8);
         image.Fill(Colors.Transparent);
 
         int centerX = LiquidTextureWidth / 2;
-        int halfWidth = 33;
         for (int y = LiquidTopPixel; y <= LiquidBottomPixel; y++)
         {
             float t = Mathf.InverseLerp(LiquidTopPixel, LiquidBottomPixel, y);
-            int rowHalfWidth = Mathf.RoundToInt(Mathf.Lerp(22f, halfWidth, Mathf.Sin(t * Mathf.Pi)));
+            float bodyShape = Mathf.Sin(t * Mathf.Pi);
+            float shoulderShape = Mathf.Clamp((t - 0.08f) / 0.20f, 0f, 1f);
+            float bottomShape = Mathf.Clamp((1f - t) / 0.10f, 0f, 1f);
+            int rowHalfWidth = Mathf.RoundToInt(Mathf.Lerp(54f, 88f, bodyShape) * shoulderShape * bottomShape);
+            if (rowHalfWidth <= 0)
+            {
+                continue;
+            }
+
             for (int x = centerX - rowHalfWidth; x <= centerX + rowHalfWidth; x++)
             {
+                if (x < 0 || x >= LiquidTextureWidth)
+                {
+                    continue;
+                }
+
                 image.SetPixel(x, y, Colors.White);
             }
         }
@@ -637,6 +696,7 @@ public sealed partial class BottleView : Area2D
         liquidImage.Fill(Colors.Transparent);
 
         float layerHeight = (LiquidBottomPixel - LiquidTopPixel) / (float)Capacity;
+        int topVisibleIndex = Mathf.Clamp(Mathf.CeilToInt(fillLevel) - 1, 0, Capacity - 1);
         for (int i = 0; i < Capacity; i++)
         {
             float visiblePart = Mathf.Clamp(fillLevel - i, 0f, 1f);
@@ -655,6 +715,7 @@ public sealed partial class BottleView : Area2D
             yTop = Mathf.Clamp(yTop, 0, LiquidTextureHeight - 1);
             yBottom = Mathf.Clamp(yBottom, 0, LiquidTextureHeight - 1);
             FillLiquidBand(liquidImage, yTop, yBottom, color);
+            DrawLiquidSurface(liquidImage, yTop, color, layer.IsRevealed && i == topVisibleIndex);
         }
 
         ApplyLiquidMask(liquidImage, _liquidMaskImage);
@@ -678,14 +739,14 @@ public sealed partial class BottleView : Area2D
         }
     }
 
-    private static void DrawLiquidSurface(Image image, int y, Color color, bool revealed)
+    private static void DrawLiquidSurface(Image image, int y, Color color, bool shouldDraw)
     {
         if (y < 2 || y >= LiquidTextureHeight - 2)
         {
             return;
         }
 
-        if (!revealed)
+        if (!shouldDraw)
         {
             return;
         }
@@ -694,7 +755,7 @@ public sealed partial class BottleView : Area2D
             Mathf.Lerp(color.R, 1f, 0.36f),
             Mathf.Lerp(color.G, 1f, 0.36f),
             Mathf.Lerp(color.B, 1f, 0.36f),
-            0.1f);
+            0.08f);
         int centerX = LiquidTextureWidth / 2;
         int halfWidth = 54;
         for (int dx = -halfWidth; dx <= halfWidth; dx++)
@@ -707,7 +768,7 @@ public sealed partial class BottleView : Area2D
 
             float edgeFade = 1f - Mathf.Pow(Mathf.Abs(dx) / (float)halfWidth, 2.2f);
             Color highlight = new(highlightBase.R, highlightBase.G, highlightBase.B, highlightBase.A * edgeFade);
-            int waveY = y + Mathf.RoundToInt(Mathf.Sin(dx * 0.062f) * 0.55f);
+            int waveY = y + Mathf.RoundToInt(Mathf.Sin(dx * 0.062f) * 0.4f);
             if (waveY >= 0 && waveY < LiquidTextureHeight)
             {
                 image.SetPixel(x, waveY, highlight);
@@ -780,10 +841,10 @@ public sealed partial class BottleView : Area2D
         {
             new Vector2(-LiquidRectHalfWidth, bottomY),
             new Vector2(LiquidRectHalfWidth, bottomY),
-            new Vector2(LiquidRectHalfWidth, topY + 0.5f),
-            new Vector2(LiquidRectHalfWidth * 0.35f, topY - wave * 0.45f),
-            new Vector2(-LiquidRectHalfWidth * 0.35f, topY + wave * 0.45f),
-            new Vector2(-LiquidRectHalfWidth, topY + 0.5f)
+            new Vector2(LiquidRectHalfWidth, topY + 0.25f),
+            new Vector2(LiquidRectHalfWidth * 0.35f, topY - wave * 0.18f),
+            new Vector2(-LiquidRectHalfWidth * 0.35f, topY + wave * 0.18f),
+            new Vector2(-LiquidRectHalfWidth, topY + 0.25f)
         };
     }
 
@@ -802,8 +863,8 @@ public sealed partial class BottleView : Area2D
             new Vector2(-width, bottomY),
             new Vector2(width, bottomY - 1f),
             new Vector2(width * 0.88f, topY + 2.4f),
-            new Vector2(width * 0.25f, topY - wave * 0.35f),
-            new Vector2(-width * 0.35f, topY + wave * 0.25f),
+            new Vector2(width * 0.25f, topY - wave * 0.12f),
+            new Vector2(-width * 0.35f, topY + wave * 0.1f),
             new Vector2(-width * 0.88f, topY + 2.4f)
         };
     }
@@ -870,15 +931,15 @@ public sealed partial class BottleView : Area2D
         float topWidth = HalfWidthAtFillLevel(upperFill);
         float topY = FillLevelToY(upperFill);
 
-        _layerBorders[index].Visible = true;
+        _layerBorders[index].Visible = isTopSurface && layer.IsRevealed;
         _layerBorders[index].DefaultColor = layer.IsRevealed
-            ? new Color(1f, 1f, 1f, isTopSurface ? 0.48f : 0.22f)
-            : new Color(0.75f, 0.84f, 0.88f, 0.24f);
+            ? new Color(1f, 1f, 1f, 0.08f)
+            : new Color(0.75f, 0.84f, 0.88f, 0f);
         _layerBorders[index].ClearPoints();
-        _layerBorders[index].AddPoint(new Vector2(-topWidth, topY + 0.6f));
-        _layerBorders[index].AddPoint(new Vector2(-topWidth * 0.35f, topY + (isTopSurface ? WaterSurfaceWave * 0.25f : 0.2f)));
-        _layerBorders[index].AddPoint(new Vector2(topWidth * 0.35f, topY - (isTopSurface ? WaterSurfaceWave * 0.2f : 0.2f)));
-        _layerBorders[index].AddPoint(new Vector2(topWidth, topY + 0.6f));
+        _layerBorders[index].AddPoint(new Vector2(-topWidth, topY + 0.25f));
+        _layerBorders[index].AddPoint(new Vector2(-topWidth * 0.35f, topY + WaterSurfaceWave * 0.08f));
+        _layerBorders[index].AddPoint(new Vector2(topWidth * 0.35f, topY - WaterSurfaceWave * 0.08f));
+        _layerBorders[index].AddPoint(new Vector2(topWidth, topY + 0.25f));
 
         _layerSheens[index].Visible = layer.IsRevealed && visiblePart > 0.45f && isTopSurface;
         if (_layerSheens[index].Visible)
@@ -928,10 +989,12 @@ public sealed partial class BottleView : Area2D
     {
         return color switch
         {
-            WaterColor.Red => new Color(0.9f, 0.24f, 0.32f),
-            WaterColor.Blue => new Color(0.2f, 0.52f, 0.95f),
-            WaterColor.Yellow => new Color(1.0f, 0.76f, 0.22f),
-            WaterColor.Green => new Color(0.38f, 0.75f, 0.32f),
+            WaterColor.Red => new Color(0.82f, 0.38f, 0.45f),
+            WaterColor.Blue => new Color(0.38f, 0.62f, 0.86f),
+            WaterColor.Yellow => new Color(0.96f, 0.8f, 0.42f),
+            WaterColor.Green => new Color(0.70f, 0.86f, 0.62f),
+            WaterColor.Purple => new Color(0.67f, 0.48f, 0.84f),
+            WaterColor.Orange => new Color(0.95f, 0.58f, 0.28f),
             _ => new Color(1f, 1f, 1f)
         };
     }

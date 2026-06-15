@@ -1,3 +1,5 @@
+#nullable enable
+
 using Godot;
 using System.Collections.Generic;
 using WaterSortGame.Model;
@@ -7,7 +9,6 @@ namespace WaterSortGame.Core;
 
 public sealed partial class GameManager : Node
 {
-    private const int BottleCount = 6;
     private const float Epsilon = 0.001f;
 
     [Signal]
@@ -26,89 +27,154 @@ public sealed partial class GameManager : Node
     [Signal]
     public delegate void LevelCompletedEventHandler();
 
+    [Signal]
+    public delegate void ExitRequestedEventHandler();
+
     [Export]
     public bool IsManagedByMainFlow { get; set; }
 
+    [Export]
+    public string SelectedFlowerId { get; set; } = string.Empty;
+
+    [Export(PropertyHint.Range, "1,7,1")]
+    public int SelectedLevelNumber { get; set; } = 1;
+
     private readonly GameState _state = new();
     private readonly List<BottleView> _bottleViews = new();
-    private readonly Dictionary<WaterColor, BagSlotView> _bagSlotViewsByColor = new();
-    private PourSystem _pourSystem;
-    private BagSystem _bagSystem;
-    private LevelGenerator _levelGenerator;
-    private UIManager _uiManager;
+    private PourSystem _pourSystem = null!;
+    private BagSystem _bagSystem = null!;
+    private LevelGenerator _levelGenerator = null!;
+    private UIManager _uiManager = null!;
+    private CauldronView _cauldronView = null!;
     private int? _selectedBottleId;
     private bool _isResolving;
+    private int _targetColorCount = 4;
 
     public override void _Ready()
     {
+        GD.Print(
+            $"CAULDRON_DIAG GameManager._Ready received " +
+            $"flowerId={SelectedFlowerId} levelNumber={SelectedLevelNumber} managed={IsManagedByMainFlow}");
         _pourSystem = GetNode<PourSystem>("../PourSystem");
         _bagSystem = GetNode<BagSystem>("../BagSystem");
         _levelGenerator = GetNode<LevelGenerator>("../LevelGenerator");
         _uiManager = GetNode<UIManager>("../UIManager");
         _uiManager.RestartRequested += RestartGame;
+        _uiManager.ExitRequested += RequestExit;
+        _uiManager.SetExitAvailable(IsManagedByMainFlow);
 
-        CacheBottleViews();
-        CacheBagSlotViews();
-        _levelGenerator.CreateInitialState(_state);
+        CreateLevelState();
+        PrintLevelEntryDiagnostics();
+        CacheBottleViews(_state.Bottles.Count);
+        CacheCauldronView();
+        _targetColorCount = GetRequiredColorCount();
+        GD.Print(
+            $"CAULDRON_DIAG GameManager.SetTargetColorCount initial " +
+            $"RequiredColorCount={_state.RequiredColorCount} targetColorCount={_targetColorCount} " +
+            $"CollectedColorOrderCount={_state.CollectedColorOrder.Count}");
+        _cauldronView.SetTargetColorCount(_targetColorCount);
         _bagSystem.CollectCompletedBottles(_state);
         RefreshAllViews();
     }
 
-    private void CacheBottleViews()
+    private void CreateLevelState()
+    {
+        if (IsManagedByMainFlow && !string.IsNullOrWhiteSpace(SelectedFlowerId))
+        {
+            _levelGenerator.GenerateSolvableLevel(_state, SelectedFlowerId, SelectedLevelNumber);
+            return;
+        }
+
+        _levelGenerator.CreateInitialState(_state);
+    }
+
+    private void PrintLevelEntryDiagnostics()
+    {
+        string flowerId = string.IsNullOrWhiteSpace(SelectedFlowerId) ? "(debug_fixed)" : SelectedFlowerId;
+        int seed = IsManagedByMainFlow && !string.IsNullOrWhiteSpace(SelectedFlowerId)
+            ? _levelGenerator.LastGenerationStats.Seed
+            : 0;
+        GD.Print(
+            $"GAME_SCENE_LEVEL_DIAG flower_id={flowerId} level_number={SelectedLevelNumber} " +
+            $"bottle_count={_state.Bottles.Count} color_count={GetRequiredColorCount()} seed={seed} " +
+            $"managed={IsManagedByMainFlow.ToString().ToLowerInvariant()}");
+    }
+
+    private void RequestExit()
+    {
+        if (!IsManagedByMainFlow)
+        {
+            GD.PushWarning("GameScene exit was requested without MainFlowController management.");
+            return;
+        }
+
+        if (_isResolving)
+        {
+            EmitSignal(SignalName.PouringStateChanged, "Blocked", "Exit ignored while resolving.");
+            return;
+        }
+
+        _selectedBottleId = null;
+        RefreshSelectionViews();
+        EmitSignal(SignalName.PouringStateChanged, "Idle", "Exit");
+        EmitSignal(SignalName.ExitRequested);
+    }
+
+    private void CacheBottleViews(int bottleCount)
     {
         _bottleViews.Clear();
 
         Node currentScene = GetNode<Node>("../..");
-        for (int i = 0; i < BottleCount; i++)
+        Node bottleRoot = currentScene.GetNode<Node>("WorldRoot/BottleRoot");
+        BottleView template = bottleRoot.GetNode<BottleView>("Bottle_5");
+        IReadOnlyList<Vector2> positions = BottleLayoutHelper.GetPositions(bottleCount);
+        HashSet<BottleView> activeViews = new();
+        for (int i = 0; i < bottleCount; i++)
         {
-            BottleView view = currentScene.GetNode<BottleView>($"WorldRoot/BottleRoot/Bottle_{i}");
+            BottleView? view = bottleRoot.GetNodeOrNull<BottleView>($"Bottle_{i}");
+            if (view == null)
+            {
+                view = (BottleView)template.Duplicate();
+                view.Name = $"Bottle_{i}";
+                bottleRoot.AddChild(view);
+            }
+
+            view.Clicked -= OnBottleClicked;
+            view.ApplyLayoutPosition(positions[i]);
             view.Bind(i);
             view.Clicked += OnBottleClicked;
             _bottleViews.Add(view);
+            activeViews.Add(view);
+        }
+
+        foreach (Node child in bottleRoot.GetChildren())
+        {
+            if (child is BottleView view && !activeViews.Contains(view))
+            {
+                view.Clicked -= OnBottleClicked;
+                view.DeactivateForLayout();
+            }
         }
     }
 
-    private void CacheBagSlotViews()
+    private void CacheCauldronView()
     {
-        _bagSlotViewsByColor.Clear();
-
         Node currentScene = GetNode<Node>("../..");
-
-        _bagSlotViewsByColor[WaterColor.Red] =
-            currentScene.GetNode<BagSlotView>("WorldRoot/BagRoot/BagSlot_0");
-        _bagSlotViewsByColor[WaterColor.Blue] =
-            currentScene.GetNode<BagSlotView>("WorldRoot/BagRoot/BagSlot_1");
-        _bagSlotViewsByColor[WaterColor.Yellow] =
-            currentScene.GetNode<BagSlotView>("WorldRoot/BagRoot/BagSlot_2");
-        _bagSlotViewsByColor[WaterColor.Green] =
-            currentScene.GetNode<BagSlotView>("WorldRoot/BagRoot/BagSlot_3");
-
-        _bagSlotViewsByColor[WaterColor.Red].Bind(WaterColor.Red);
-        _bagSlotViewsByColor[WaterColor.Blue].Bind(WaterColor.Blue);
-        _bagSlotViewsByColor[WaterColor.Yellow].Bind(WaterColor.Yellow);
-        _bagSlotViewsByColor[WaterColor.Green].Bind(WaterColor.Green);
+        _cauldronView = currentScene.GetNode<CauldronView>("WorldRoot/CauldronRoot/CauldronView");
     }
 
     private void RefreshAllBottleViews()
     {
-        for (int i = 0; i < BottleCount; i++)
+        for (int i = 0; i < _bottleViews.Count; i++)
         {
             _bottleViews[i].Refresh(_state.Bottles[i]);
-        }
-    }
-
-    private void RefreshAllBagSlotViews()
-    {
-        foreach (KeyValuePair<WaterColor, BagSlotView> pair in _bagSlotViewsByColor)
-        {
-            pair.Value.Refresh(_state.Bags[pair.Key]);
         }
     }
 
     private void RefreshAllViews()
     {
         RefreshAllBottleViews();
-        RefreshAllBagSlotViews();
+        _cauldronView.RefreshProgress(_state.CollectedColorOrder);
         RefreshSelectionViews();
     }
 
@@ -146,8 +212,9 @@ public sealed partial class GameManager : Node
             return;
         }
 
+        AudioManager.PlayGlobalBlocked();
         _bottleViews[bottleId].PlayInvalidFeedback();
-        _uiManager.ShowTip("不能倒入");
+        _uiManager.ShowLocalizedTip("game.cannot_pour");
         _selectedBottleId = null;
         RefreshSelectionViews();
         EmitSignal(SignalName.PouringStateChanged, "Blocked", result.FailReason);
@@ -155,7 +222,7 @@ public sealed partial class GameManager : Node
 
     private void RefreshSelectionViews()
     {
-        for (int i = 0; i < BottleCount; i++)
+        for (int i = 0; i < _bottleViews.Count; i++)
         {
             _bottleViews[i].SetSelected(_selectedBottleId == i);
         }
@@ -168,14 +235,17 @@ public sealed partial class GameManager : Node
 
     private bool IsWin()
     {
-        int totalCollected = 0;
+        return GetCollectedCount() >= GetRequiredColorCount();
+    }
 
-        foreach (BagData bag in _state.Bags.Values)
-        {
-            totalCollected += bag.CollectedCount;
-        }
+    private int GetCollectedCount()
+    {
+        return _state.CollectedColorOrder.Count;
+    }
 
-        return totalCollected >= 4;
+    private int GetRequiredColorCount()
+    {
+        return _state.RequiredColorCount > 0 ? _state.RequiredColorCount : _state.Bags.Count;
     }
 
     private void RestartGame()
@@ -190,8 +260,16 @@ public sealed partial class GameManager : Node
         _state.IsGameOver = false;
         EmitSignal(SignalName.PouringStateChanged, "Idle", "Restart");
         _uiManager.HideVictory();
+        _cauldronView.HideRewards();
 
-        _levelGenerator.CreateInitialState(_state);
+        CreateLevelState();
+        CacheBottleViews(_state.Bottles.Count);
+        _targetColorCount = GetRequiredColorCount();
+        GD.Print(
+            $"CAULDRON_DIAG GameManager.SetTargetColorCount restart " +
+            $"RequiredColorCount={_state.RequiredColorCount} targetColorCount={_targetColorCount} " +
+            $"CollectedColorOrderCount={_state.CollectedColorOrder.Count}");
+        _cauldronView.SetTargetColorCount(_targetColorCount);
         _bagSystem.CollectCompletedBottles(_state);
         RefreshAllViews();
     }
@@ -201,6 +279,7 @@ public sealed partial class GameManager : Node
         _isResolving = true;
         _selectedBottleId = null;
         RefreshSelectionViews();
+        AudioManager.PlayGlobalPour();
 
         BottleView sourceView = _bottleViews[source.Id];
         BottleView targetView = _bottleViews[target.Id];
@@ -230,12 +309,30 @@ public sealed partial class GameManager : Node
                 },
                 () => EmitSignal(SignalName.PouringStateChanged, "StreamComplete", string.Empty));
 
-            _bagSystem.CollectCompletedBottles(_state);
+            int previousCollectedCount = _state.CollectedColorOrder.Count;
+            List<int> collectedBottleIds = _bagSystem.CollectCompletedBottles(_state);
+            for (int i = 0; i < collectedBottleIds.Count; i++)
+            {
+                int collectedBottleId = collectedBottleIds[i];
+                BottleData collectedBottle = _state.Bottles[collectedBottleId];
+                WaterColor collectedColor = collectedBottle.Layers.Count > 0
+                    ? collectedBottle.Layers[0].Color
+                    : WaterColor.Red;
+                int visibleCollectedCount = Mathf.Min(_state.CollectedColorOrder.Count, previousCollectedCount + i + 1);
+                IReadOnlyList<WaterColor> visibleCollectedOrder = _state.CollectedColorOrder.GetRange(0, visibleCollectedCount);
+                await _cauldronView.PlayBottleCollectAsync(
+                    _bottleViews[collectedBottleId],
+                    collectedColor,
+                    visibleCollectedOrder);
+            }
+
             RefreshAllViews();
 
             if (IsWin())
             {
                 _state.IsGameOver = true;
+                AudioManager.PlayGlobalSuccess();
+                await _cauldronView.ShowRewardsAsync(SelectedFlowerId);
                 EmitSignal(SignalName.LevelCompleted);
 
                 if (IsManagedByMainFlow)

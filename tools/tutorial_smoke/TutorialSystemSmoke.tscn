@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://tools/tutorial_smoke/TutorialSystemSmoke.cs" id="1_tutorial_smoke"]
+
+[node name="TutorialSystemSmoke" type="Node"]
+script = ExtResource("1_tutorial_smoke")

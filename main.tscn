@@ -1,8 +1,34 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=6 format=3]
 
 [ext_resource type="Script" path="res://scripts/core/MainFlowController.cs" id="1_main_flow"]
+[ext_resource type="Script" path="res://scripts/core/AudioManager.cs" id="2_audio_manager"]
+[ext_resource type="Script" path="res://scripts/core/LocalizationManager.cs" id="3_localization_manager"]
+[ext_resource type="Script" path="res://scripts/core/TutorialSystem.cs" id="4_tutorial_system"]
+[ext_resource type="Script" path="res://scripts/view/TutorialBubbleView.cs" id="5_tutorial_bubble"]
 
 [node name="Main" type="Node"]
 script = ExtResource("1_main_flow")
 
+[node name="AudioManager" type="Node" parent="."]
+script = ExtResource("2_audio_manager")
+
+[node name="LocalizationManager" type="Node" parent="."]
+script = ExtResource("3_localization_manager")
+
+[node name="TutorialSystem" type="Node" parent="."]
+script = ExtResource("4_tutorial_system")
+
 [node name="SceneHost" type="Node" parent="."]
+
+[node name="TutorialLayer" type="CanvasLayer" parent="."]
+layer = 100
+
+[node name="TutorialBubbleView" type="Control" parent="TutorialLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_tutorial_bubble")

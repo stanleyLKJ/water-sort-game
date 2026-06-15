@@ -3,6 +3,7 @@
 using System;
 using System.Collections.Generic;
 using Godot;
+using WaterSortGame.Core;
 using WaterSortGame.Model;
 
 namespace WaterSortGame.View;
@@ -23,32 +24,6 @@ public readonly struct LevelSelectOption
     public FlowerLevelState State { get; }
 
     public bool IsPlayable => State == FlowerLevelState.Playable;
-
-    public string StateLabel
-    {
-        get
-        {
-            return State switch
-            {
-                FlowerLevelState.Completed => "已完成",
-                FlowerLevelState.Playable => "可进入",
-                _ => "未解锁"
-            };
-        }
-    }
-
-    public string UnavailableMessage
-    {
-        get
-        {
-            return State switch
-            {
-                FlowerLevelState.Completed => "该关卡已完成",
-                FlowerLevelState.Locked => "该关卡尚未解锁",
-                _ => string.Empty
-            };
-        }
-    }
 }
 
 public sealed partial class LevelSelectView : Control
@@ -56,37 +31,63 @@ public sealed partial class LevelSelectView : Control
     public event Action<int>? LevelSelected;
     public event Action? BackRequested;
 
-    private const string DefaultMessage = "选择当前可玩关卡";
+    private static readonly IReadOnlyDictionary<string, string> FlowerRootNames = new Dictionary<string, string>
+    {
+        ["pink_rose"] = "PinkRosePanelRoot",
+        ["yellow_rose"] = "YellowRosePanelRoot",
+        ["lavender"] = "LavenderPanelRoot"
+    };
 
-    private Panel _panel = null!;
     private Label _titleLabel = null!;
     private Label _messageLabel = null!;
-    private GridContainer _levelButtonRoot = null!;
-    private Button _backButton = null!;
+    private Label _temporaryTipLabel = null!;
+    private Control _flowerPanelsRoot = null!;
+    private readonly Dictionary<string, FlowerPanelSlot> _flowerPanels = new();
     private IReadOnlyList<LevelSelectOption>? _pendingOptions;
+    private string? _pendingFlowerId;
     private string _pendingTitle = "关卡选择";
     private string? _pendingMessage;
+    private readonly TemporaryTipHandle _temporaryTip = new();
     private bool _isReady;
+    private LocalizationManager? _localizationManager;
+    private FlowerPanelSlot? _activePanel;
+
+    public void SetLocalizationManager(LocalizationManager localizationManager)
+    {
+        _localizationManager = localizationManager ?? throw new ArgumentNullException(nameof(localizationManager));
+        if (!_isReady)
+        {
+            return;
+        }
+
+        ApplyLocalizedText();
+        if (_pendingOptions != null)
+        {
+            RefreshLevels(_pendingTitle, _pendingOptions);
+        }
+    }
 
     public override void _Ready()
     {
-        _panel = GetNode<Panel>("Panel");
-        _titleLabel = GetNode<Label>("Panel/TitleLabel");
-        _backButton = GetNode<Button>("Panel/BackButton");
-        _backButton.Pressed += OnBackPressed;
+        _titleLabel = GetNode<Label>("CommonTextRoot/TitleLabel");
+        _messageLabel = GetNode<Label>("CommonTextRoot/MessageLabel");
+        _temporaryTipLabel = GetNode<Label>("CommonTextRoot/TemporaryTipLabel");
+        _flowerPanelsRoot = GetNode<Control>("FlowerPanelsRoot");
 
-        Button legacyLevelButton = GetNode<Button>("Panel/LevelOneButton");
-        legacyLevelButton.Visible = false;
-        legacyLevelButton.Disabled = true;
+        RegisterFlowerPanel("pink_rose", "PinkRosePanelRoot");
+        RegisterFlowerPanel("yellow_rose", "YellowRosePanelRoot");
+        RegisterFlowerPanel("lavender", "LavenderPanelRoot");
 
-        PreparePanelLayout();
-        _messageLabel = EnsureMessageLabel();
-        _levelButtonRoot = EnsureLevelButtonRoot();
         _isReady = true;
+        ApplyLocalizedText();
 
         if (_pendingOptions != null)
         {
             RefreshLevels(_pendingTitle, _pendingOptions);
+        }
+        else
+        {
+            ShowFlowerPanel(_pendingFlowerId);
         }
 
         if (!string.IsNullOrWhiteSpace(_pendingMessage))
@@ -97,6 +98,12 @@ public sealed partial class LevelSelectView : Control
 
     public void SetLevelOptions(string title, IReadOnlyList<LevelSelectOption> options)
     {
+        SetLevelOptions(null, title, options);
+    }
+
+    public void SetLevelOptions(string? flowerId, string title, IReadOnlyList<LevelSelectOption> options)
+    {
+        _pendingFlowerId = flowerId;
         _pendingTitle = title;
         _pendingOptions = options;
 
@@ -114,153 +121,207 @@ public sealed partial class LevelSelectView : Control
             return;
         }
 
-        _messageLabel.Text = string.IsNullOrWhiteSpace(message) ? DefaultMessage : message;
-        _messageLabel.Visible = true;
+        _temporaryTip.Show(_temporaryTipLabel, string.IsNullOrWhiteSpace(message) ? Tr("level_select.hint") : message);
+    }
+
+    private void RegisterFlowerPanel(string flowerId, string nodeName)
+    {
+        Control panelRoot = _flowerPanelsRoot.GetNode<Control>(nodeName);
+        Control levelSlotsRoot = panelRoot.GetNode<Control>("LevelSlots");
+        Button backButton = panelRoot.GetNode<Button>("BackButton");
+        backButton.Pressed += OnBackPressed;
+
+        LevelVisualSlot[] levelSlots = new LevelVisualSlot[RunSessionState.LevelsPerFlower];
+        for (int i = 0; i < levelSlots.Length; i++)
+        {
+            int levelNumber = i + 1;
+            Control slotRoot = levelSlotsRoot.GetNode<Control>($"LevelSlot_{levelNumber:00}");
+            Button hotAreaButton = slotRoot.GetNode<Button>("HotAreaButton");
+            hotAreaButton.Pressed += () => OnLevelPressed(levelNumber);
+            levelSlots[i] = new LevelVisualSlot(
+                slotRoot,
+                slotRoot.GetNode<TextureRect>("AvailableTexture"),
+                slotRoot.GetNode<TextureRect>("CompletedTexture"),
+                slotRoot.GetNode<TextureRect>("LockedTexture"),
+                hotAreaButton,
+                slotRoot.GetNode<Label>("TextRoot/LevelNameNumberLabel"),
+                slotRoot.GetNode<Label>("TextRoot/StatusLabel"));
+        }
+
+        _flowerPanels[flowerId] = new FlowerPanelSlot(panelRoot, levelSlots, backButton);
     }
 
     private void RefreshLevels(string title, IReadOnlyList<LevelSelectOption> options)
     {
         _titleLabel.Text = title;
-        ShowMessage(DefaultMessage);
-
-        foreach (Node child in _levelButtonRoot.GetChildren())
+        ShowFixedMessage(Tr("level_select.hint"));
+        FlowerPanelSlot? maybePanel = ShowFlowerPanel(_pendingFlowerId);
+        if (!maybePanel.HasValue)
         {
-            child.QueueFree();
+            return;
         }
 
-        foreach (LevelSelectOption option in options)
+        FlowerPanelSlot panel = maybePanel.Value;
+        string flowerName = ResolveFlowerName(_pendingFlowerId, title);
+        for (int i = 0; i < panel.LevelSlots.Length; i++)
         {
-            _levelButtonRoot.AddChild(CreateLevelButton(option));
-        }
-    }
-
-    private Button CreateLevelButton(LevelSelectOption option)
-    {
-        Button button = new()
-        {
-            CustomMinimumSize = new Vector2(238f, 64f),
-            Text = $"{option.Title}\n{option.StateLabel}",
-            ThemeTypeVariation = "LevelSelectButton"
-        };
-
-        if (option.IsPlayable)
-        {
-            StyleBoxFlat normal = CreateLevelStyle(new Color(0.97f, 0.91f, 0.72f, 0.96f), new Color(0.48f, 0.31f, 0.14f, 0.72f));
-            StyleBoxFlat hover = CreateLevelStyle(new Color(1f, 0.96f, 0.8f, 0.98f), new Color(0.56f, 0.36f, 0.16f, 0.84f));
-            button.AddThemeStyleboxOverride("normal", normal);
-            button.AddThemeStyleboxOverride("hover", hover);
-            button.AddThemeStyleboxOverride("pressed", hover);
-            button.AddThemeColorOverride("font_color", new Color(0.2f, 0.12f, 0.05f));
-        }
-        else
-        {
-            StyleBoxFlat locked = CreateLevelStyle(new Color(0.72f, 0.72f, 0.68f, 0.76f), new Color(0.34f, 0.34f, 0.32f, 0.42f));
-            button.AddThemeStyleboxOverride("normal", locked);
-            button.AddThemeStyleboxOverride("hover", locked);
-            button.AddThemeStyleboxOverride("pressed", locked);
-            button.AddThemeColorOverride("font_color", new Color(0.3f, 0.29f, 0.26f));
-        }
-
-        button.AddThemeFontSizeOverride("font_size", 20);
-        button.Pressed += () =>
-        {
-            if (option.IsPlayable)
+            LevelVisualSlot slot = panel.LevelSlots[i];
+            if (i >= options.Count)
             {
-                LevelSelected?.Invoke(option.LevelNumber);
-                return;
+                HideUnusedSlot(slot);
+                continue;
             }
 
-            ShowMessage(option.UnavailableMessage);
-        };
-
-        return button;
+            ApplyLevelOption(slot, options[i], flowerName);
+        }
     }
 
-    private void PreparePanelLayout()
+    private FlowerPanelSlot? ShowFlowerPanel(string? flowerId)
     {
-        _panel.OffsetLeft = 62f;
-        _panel.OffsetTop = 120f;
-        _panel.OffsetRight = 658f;
-        _panel.OffsetBottom = 970f;
+        string normalizedFlowerId = !string.IsNullOrWhiteSpace(flowerId) && FlowerRootNames.ContainsKey(flowerId)
+            ? flowerId
+            : "pink_rose";
 
-        _titleLabel.OffsetLeft = 42f;
-        _titleLabel.OffsetTop = 40f;
-        _titleLabel.OffsetRight = 554f;
-        _titleLabel.OffsetBottom = 96f;
-
-        _backButton.OffsetLeft = 200f;
-        _backButton.OffsetTop = 716f;
-        _backButton.OffsetRight = 396f;
-        _backButton.OffsetBottom = 778f;
-    }
-
-    private Label EnsureMessageLabel()
-    {
-        Label? label = _panel.GetNodeOrNull<Label>("MessageLabel");
-        if (label == null)
+        FlowerPanelSlot? selected = null;
+        foreach ((string id, FlowerPanelSlot panel) in _flowerPanels)
         {
-            label = new Label
+            bool isSelected = id == normalizedFlowerId;
+            panel.PanelRoot.Visible = isSelected;
+            if (isSelected)
             {
-                Name = "MessageLabel",
-                Text = DefaultMessage,
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center
-            };
-            _panel.AddChild(label);
+                selected = panel;
+            }
         }
 
-        label.SetAnchorsPreset(LayoutPreset.TopWide);
-        label.OffsetLeft = 48f;
-        label.OffsetTop = 100f;
-        label.OffsetRight = -48f;
-        label.OffsetBottom = 146f;
-        label.AddThemeFontSizeOverride("font_size", 22);
-        label.AddThemeColorOverride("font_color", new Color(0.22f, 0.15f, 0.08f));
-        return label;
+        _activePanel = selected;
+        return selected;
     }
 
-    private GridContainer EnsureLevelButtonRoot()
+    private void ApplyLevelOption(LevelVisualSlot slot, LevelSelectOption option, string flowerName)
     {
-        GridContainer? root = _panel.GetNodeOrNull<GridContainer>("LevelButtonRoot");
-        if (root == null)
+        slot.SlotRoot.Visible = true;
+        slot.HotAreaButton.Visible = true;
+        slot.HotAreaButton.Disabled = false;
+        slot.HotAreaButton.MouseFilter = Control.MouseFilterEnum.Stop;
+        string stateText = GetStateLabel(option.State);
+        string levelText = Tr("level_select.level_number").Replace("{0}", option.LevelNumber.ToString());
+
+        slot.HotAreaButton.Text = string.Empty;
+        slot.HotAreaButton.TooltipText = $"{flowerName} {levelText} {stateText}";
+        slot.AvailableTexture.Visible = option.State == FlowerLevelState.Playable;
+        slot.CompletedTexture.Visible = option.State == FlowerLevelState.Completed;
+        slot.LockedTexture.Visible = option.State == FlowerLevelState.Locked;
+        slot.LevelNameNumberLabel.Text = $"{flowerName} {levelText}";
+        slot.StatusLabel.Text = stateText;
+        slot.LevelNameNumberLabel.Visible = true;
+        slot.StatusLabel.Visible = true;
+    }
+
+    private static void HideUnusedSlot(LevelVisualSlot slot)
+    {
+        slot.SlotRoot.Visible = false;
+        slot.HotAreaButton.Disabled = true;
+        slot.HotAreaButton.MouseFilter = Control.MouseFilterEnum.Ignore;
+        slot.HotAreaButton.Text = string.Empty;
+        slot.HotAreaButton.TooltipText = string.Empty;
+        slot.AvailableTexture.Visible = false;
+        slot.CompletedTexture.Visible = false;
+        slot.LockedTexture.Visible = false;
+        slot.LevelNameNumberLabel.Text = string.Empty;
+        slot.StatusLabel.Text = string.Empty;
+    }
+
+    private void OnLevelPressed(int levelNumber)
+    {
+        if (_pendingOptions == null || levelNumber < 1 || levelNumber > _pendingOptions.Count)
         {
-            root = new GridContainer
-            {
-                Name = "LevelButtonRoot",
-                Columns = 2
-            };
-            _panel.AddChild(root);
+            return;
         }
 
-        root.SetAnchorsPreset(LayoutPreset.TopWide);
-        root.OffsetLeft = 42f;
-        root.OffsetTop = 170f;
-        root.OffsetRight = -42f;
-        root.OffsetBottom = 680f;
-        root.AddThemeConstantOverride("h_separation", 18);
-        root.AddThemeConstantOverride("v_separation", 18);
-        return root;
+        LevelSelectOption option = _pendingOptions[levelNumber - 1];
+        if (option.IsPlayable)
+        {
+            LevelSelected?.Invoke(option.LevelNumber);
+            return;
+        }
+
+        AudioManager.PlayGlobalClick();
+        ShowMessage(option.State == FlowerLevelState.Completed
+            ? Tr("level_select.completed_tip")
+            : Tr("level_select.locked_tip"));
     }
 
-    private static StyleBoxFlat CreateLevelStyle(Color background, Color border)
+    private void ShowFixedMessage(string message)
     {
-        return new StyleBoxFlat
-        {
-            BgColor = background,
-            BorderColor = border,
-            BorderWidthLeft = 2,
-            BorderWidthTop = 2,
-            BorderWidthRight = 2,
-            BorderWidthBottom = 2,
-            CornerRadiusTopLeft = 8,
-            CornerRadiusTopRight = 8,
-            CornerRadiusBottomRight = 8,
-            CornerRadiusBottomLeft = 8
-        };
+        _messageLabel.Text = string.IsNullOrWhiteSpace(message) ? Tr("level_select.hint") : message;
+        _messageLabel.Visible = true;
     }
 
     private void OnBackPressed()
     {
         BackRequested?.Invoke();
     }
+
+    private void ApplyLocalizedText()
+    {
+        _titleLabel.Text = _pendingOptions == null ? Tr("level_select.title") : _pendingTitle;
+        ShowFixedMessage(Tr("level_select.hint"));
+        foreach (FlowerPanelSlot panel in _flowerPanels.Values)
+        {
+            panel.BackButton.TooltipText = Tr("common.back");
+        }
+    }
+
+    private string GetStateLabel(FlowerLevelState state)
+    {
+        return state switch
+        {
+            FlowerLevelState.Completed => Tr("level_select.completed"),
+            FlowerLevelState.Playable => Tr("level_select.playable"),
+            _ => Tr("level_select.locked")
+        };
+    }
+
+    private string ResolveFlowerName(string? flowerId, string title)
+    {
+        if (!string.IsNullOrWhiteSpace(flowerId))
+        {
+            string key = $"flower.{flowerId}.name";
+            string translated = Tr(key);
+            if (translated != key)
+            {
+                return translated;
+            }
+        }
+
+        const string zhSuffix = " 关卡";
+        const string enSuffix = " Levels";
+        if (title.EndsWith(zhSuffix, StringComparison.Ordinal))
+        {
+            return title[..^zhSuffix.Length];
+        }
+
+        if (title.EndsWith(enSuffix, StringComparison.Ordinal))
+        {
+            return title[..^enSuffix.Length];
+        }
+
+        return title;
+    }
+
+    private string Tr(string key)
+    {
+        return _localizationManager?.Tr(key) ?? LocalizationManager.GetText(key);
+    }
+
+    private readonly record struct FlowerPanelSlot(Control PanelRoot, LevelVisualSlot[] LevelSlots, Button BackButton);
+
+    private readonly record struct LevelVisualSlot(
+        Control SlotRoot,
+        TextureRect AvailableTexture,
+        TextureRect CompletedTexture,
+        TextureRect LockedTexture,
+        Button HotAreaButton,
+        Label LevelNameNumberLabel,
+        Label StatusLabel);
 }

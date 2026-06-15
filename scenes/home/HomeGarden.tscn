@@ -2,8 +2,9 @@
 
 [ext_resource type="Script" uid="uid://cgtinpkxxoo1p" path="res://scripts/view/HomeGardenView.cs" id="1_home_view"]
 [ext_resource type="Texture2D" uid="uid://c7jgd4jnja1pw" path="res://assets/home/backgrounds/home_garden_bg_v1.png" id="2_home_background"]
+[ext_resource type="FontFile" uid="uid://cs5eul236jp6h" path="res://assets/fonts/source_han_sans/SourceHanSansSC-Regular.otf" id="2_source_han_sans_regular"]
 [ext_resource type="Texture2D" uid="uid://b6i40farby104" path="res://assets/flowers/pink_rose/home_slots/pink_rose_slot_01.png" id="3_pink_rose_01"]
-[ext_resource type="Texture2D" uid="uid://c53t04pfcoekg" path="res://assets/flowers/pink_rose/home_slots/pink_rose_slot_02.png" id="4_pink_rose_02"]
+[ext_resource type="Texture2D" uid="uid://c2lquht7nlvby" path="res://assets/flowers/pink_rose/home_slots/pink_rose_slot_02.png" id="4_pink_rose_02"]
 [ext_resource type="Texture2D" uid="uid://k2qtlo1gh042" path="res://assets/flowers/pink_rose/home_slots/pink_rose_slot_03.png" id="5_pink_rose_03"]
 [ext_resource type="Texture2D" uid="uid://cnyvy8dcomuk6" path="res://assets/flowers/pink_rose/home_slots/pink_rose_slot_04.png" id="6_pink_rose_04"]
 [ext_resource type="Texture2D" uid="uid://dd7023phfmdm0" path="res://assets/flowers/pink_rose/home_slots/pink_rose_slot_05.png" id="7_pink_rose_05"]
@@ -12,10 +13,10 @@
 [ext_resource type="Texture2D" uid="uid://bv10gcih3kr4a" path="res://assets/flowers/yellow_rose/home_slots/yellow_rose_slot_01.png" id="10_yellow_rose_01"]
 [ext_resource type="Texture2D" uid="uid://dyv0cor8ui3d1" path="res://assets/flowers/yellow_rose/home_slots/yellow_rose_slot_02.png" id="11_yellow_rose_02"]
 [ext_resource type="Texture2D" uid="uid://cvykjn7yt88q6" path="res://assets/flowers/yellow_rose/home_slots/yellow_rose_slot_03.png" id="12_yellow_rose_03"]
-[ext_resource type="Texture2D" uid="uid://c8qydl52jddja" path="res://assets/flowers/yellow_rose/home_slots/yellow_rose_slot_04.png" id="13_yellow_rose_04"]
+[ext_resource type="Texture2D" uid="uid://bfchspkq4axsv" path="res://assets/flowers/yellow_rose/home_slots/yellow_rose_slot_04.png" id="13_yellow_rose_04"]
 [ext_resource type="Texture2D" uid="uid://b5t5yuh14ohkf" path="res://assets/flowers/yellow_rose/home_slots/yellow_rose_slot_05.png" id="14_yellow_rose_05"]
 [ext_resource type="Texture2D" uid="uid://bpkode8me31rc" path="res://assets/flowers/yellow_rose/home_slots/yellow_rose_slot_06.png" id="15_yellow_rose_06"]
-[ext_resource type="Texture2D" uid="uid://bo6bcjllkh8yn" path="res://assets/flowers/yellow_rose/home_slots/yellow_rose_slot_07.png" id="16_yellow_rose_07"]
+[ext_resource type="Texture2D" uid="uid://bru3fatuqv3tk" path="res://assets/flowers/yellow_rose/home_slots/yellow_rose_slot_07.png" id="16_yellow_rose_07"]
 [ext_resource type="Texture2D" uid="uid://mwrdjyfxx4t3" path="res://assets/flowers/lavender/home_slots/lavender_slot_01.png" id="17_lavender_01"]
 [ext_resource type="Texture2D" uid="uid://c2550ceauv2rj" path="res://assets/flowers/lavender/home_slots/lavender_slot_02.png" id="18_lavender_02"]
 [ext_resource type="Texture2D" uid="uid://bjhoub3d3f6pp" path="res://assets/flowers/lavender/home_slots/lavender_slot_03.png" id="19_lavender_03"]
@@ -23,6 +24,34 @@
 [ext_resource type="Texture2D" uid="uid://crsove6d4gjmu" path="res://assets/flowers/lavender/home_slots/lavender_slot_05.png" id="21_lavender_05"]
 [ext_resource type="Texture2D" uid="uid://cduca6utrf3ch" path="res://assets/flowers/lavender/home_slots/lavender_slot_06.png" id="22_lavender_06"]
 [ext_resource type="Texture2D" uid="uid://cmjd6v61fdx1g" path="res://assets/flowers/lavender/home_slots/lavender_slot_07.png" id="23_lavender_07"]
+[ext_resource type="Texture2D" uid="uid://cuu3ms6ki88ns" path="res://assets/flowers/combinations/pink_rose+lavender/home_slots/pink_rose+lavender_slot_01.png" id="combo_pink_lavender_01"]
+[ext_resource type="Texture2D" uid="uid://b6rcrycq40gdy" path="res://assets/flowers/combinations/pink_rose+lavender/home_slots/pink_rose+lavender_slot_02.png" id="combo_pink_lavender_02"]
+[ext_resource type="Texture2D" uid="uid://bhpvq2cuk1ot8" path="res://assets/flowers/combinations/pink_rose+lavender/home_slots/pink_rose+lavender_slot_03.png" id="combo_pink_lavender_03"]
+[ext_resource type="Texture2D" uid="uid://ccshlnen4cw87" path="res://assets/flowers/combinations/pink_rose+lavender/home_slots/pink_rose+lavender_slot_04.png" id="combo_pink_lavender_04"]
+[ext_resource type="Texture2D" uid="uid://i226cvcdmluo" path="res://assets/flowers/combinations/pink_rose+lavender/home_slots/pink_rose+lavender_slot_05.png" id="combo_pink_lavender_05"]
+[ext_resource type="Texture2D" uid="uid://c35tye0mxflen" path="res://assets/flowers/combinations/pink_rose+lavender/home_slots/pink_rose+lavender_slot_06.png" id="combo_pink_lavender_06"]
+[ext_resource type="Texture2D" uid="uid://xma3xo0qxj5u" path="res://assets/flowers/combinations/pink_rose+lavender/home_slots/pink_rose+lavender_slot_07.png" id="combo_pink_lavender_07"]
+[ext_resource type="Texture2D" uid="uid://jddyqkwdt4ul" path="res://assets/flowers/combinations/pink_rose+yellow_rose/home_slots/pink_rose+yellow_rose_slot_01.png" id="combo_pink_yellow_01"]
+[ext_resource type="Texture2D" uid="uid://cjk2g1c8aypgv" path="res://assets/flowers/combinations/pink_rose+yellow_rose/home_slots/pink_rose+yellow_rose_slot_02.png" id="combo_pink_yellow_02"]
+[ext_resource type="Texture2D" uid="uid://b6xsj5slyb3gx" path="res://assets/flowers/combinations/pink_rose+yellow_rose/home_slots/pink_rose+yellow_rose_slot_03.png" id="combo_pink_yellow_03"]
+[ext_resource type="Texture2D" uid="uid://pr6kb5bbqusr" path="res://assets/flowers/combinations/pink_rose+yellow_rose/home_slots/pink_rose+yellow_rose_slot_04.png" id="combo_pink_yellow_04"]
+[ext_resource type="Texture2D" uid="uid://bensdoyjbo7wj" path="res://assets/flowers/combinations/pink_rose+yellow_rose/home_slots/pink_rose+yellow_rose_slot_05.png" id="combo_pink_yellow_05"]
+[ext_resource type="Texture2D" uid="uid://cgtm3voumvbpt" path="res://assets/flowers/combinations/pink_rose+yellow_rose/home_slots/pink_rose+yellow_rose_slot_06.png" id="combo_pink_yellow_06"]
+[ext_resource type="Texture2D" uid="uid://dgsxobjvidt6b" path="res://assets/flowers/combinations/pink_rose+yellow_rose/home_slots/pink_rose+yellow_rose_slot_07.png" id="combo_pink_yellow_07"]
+[ext_resource type="Texture2D" uid="uid://ck6j1r2q8bpxi" path="res://assets/flowers/combinations/pink_rose+yellow_rose+lavender/home_slots/pink_rose+yellow_rose+lavender_slot_01.png" id="combo_pink_yellow_lavender_01"]
+[ext_resource type="Texture2D" uid="uid://xekxfnt53toc" path="res://assets/flowers/combinations/pink_rose+yellow_rose+lavender/home_slots/pink_rose+yellow_rose+lavender_slot_02.png" id="combo_pink_yellow_lavender_02"]
+[ext_resource type="Texture2D" uid="uid://cn0l3wnk5kfv2" path="res://assets/flowers/combinations/pink_rose+yellow_rose+lavender/home_slots/pink_rose+yellow_rose+lavender_slot_03.png" id="combo_pink_yellow_lavender_03"]
+[ext_resource type="Texture2D" uid="uid://bolttxkxo0mka" path="res://assets/flowers/combinations/pink_rose+yellow_rose+lavender/home_slots/pink_rose+yellow_rose+lavender_slot_04.png" id="combo_pink_yellow_lavender_04"]
+[ext_resource type="Texture2D" uid="uid://c3ln77r2yhw2q" path="res://assets/flowers/combinations/pink_rose+yellow_rose+lavender/home_slots/pink_rose+yellow_rose+lavender_slot_05.png" id="combo_pink_yellow_lavender_05"]
+[ext_resource type="Texture2D" uid="uid://db4ocillvtelt" path="res://assets/flowers/combinations/pink_rose+yellow_rose+lavender/home_slots/pink_rose+yellow_rose+lavender_slot_06.png" id="combo_pink_yellow_lavender_06"]
+[ext_resource type="Texture2D" uid="uid://cnqq5rlm02hc7" path="res://assets/flowers/combinations/pink_rose+yellow_rose+lavender/home_slots/pink_rose+yellow_rose+lavender_slot_07.png" id="combo_pink_yellow_lavender_07"]
+[ext_resource type="Texture2D" uid="uid://b3q6gy27m0xa3" path="res://assets/flowers/combinations/yellow_rose+lavender/home_slots/yellow_rose+lavender_slot_01.png" id="combo_yellow_lavender_01"]
+[ext_resource type="Texture2D" uid="uid://ocwnnfiplkfq" path="res://assets/flowers/combinations/yellow_rose+lavender/home_slots/yellow_rose+lavender_slot_02.png" id="combo_yellow_lavender_02"]
+[ext_resource type="Texture2D" uid="uid://cymwyjokioqf5" path="res://assets/flowers/combinations/yellow_rose+lavender/home_slots/yellow_rose+lavender_slot_03.png" id="combo_yellow_lavender_03"]
+[ext_resource type="Texture2D" uid="uid://dhd56sa3c4qyi" path="res://assets/flowers/combinations/yellow_rose+lavender/home_slots/yellow_rose+lavender_slot_04.png" id="combo_yellow_lavender_04"]
+[ext_resource type="Texture2D" uid="uid://bjapyp8vs6gk0" path="res://assets/flowers/combinations/yellow_rose+lavender/home_slots/yellow_rose+lavender_slot_05.png" id="combo_yellow_lavender_05"]
+[ext_resource type="Texture2D" uid="uid://bgu540awlelgd" path="res://assets/flowers/combinations/yellow_rose+lavender/home_slots/yellow_rose+lavender_slot_06.png" id="combo_yellow_lavender_06"]
+[ext_resource type="Texture2D" uid="uid://dvdcq1jnht5ue" path="res://assets/flowers/combinations/yellow_rose+lavender/home_slots/yellow_rose+lavender_slot_07.png" id="combo_yellow_lavender_07"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_slot_debug"]
 bg_color = Color(0.95, 0.78, 0.62, 0.28)
@@ -32,7 +61,7 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.48, 0.34, 0.22, 0.5)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q31nw"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_whmto"]
 bg_color = Color(1, 0.94, 0.68, 0.9)
 border_width_left = 2
 border_width_top = 2
@@ -47,7 +76,7 @@ shadow_color = Color(0.18, 0.11, 0.06, 0.22)
 shadow_size = 5
 shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwgxr"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rrxmg"]
 bg_color = Color(0.92, 0.78, 0.46, 0.96)
 border_width_left = 2
 border_width_top = 2
@@ -62,7 +91,7 @@ shadow_color = Color(0.18, 0.11, 0.06, 0.22)
 shadow_size = 5
 shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ilir1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5r1ps"]
 bg_color = Color(1, 0.98, 0.78, 0.96)
 border_width_left = 2
 border_width_top = 2
@@ -77,9 +106,9 @@ shadow_color = Color(0.18, 0.11, 0.06, 0.22)
 shadow_size = 5
 shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7a6tl"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6hbe1"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yf6ex"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_akyio"]
 bg_color = Color(1, 0.94, 0.68, 0.9)
 border_width_left = 2
 border_width_top = 2
@@ -94,7 +123,7 @@ shadow_color = Color(0.18, 0.11, 0.06, 0.22)
 shadow_size = 5
 shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vq2co"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fpkyn"]
 bg_color = Color(0.92, 0.78, 0.46, 0.96)
 border_width_left = 2
 border_width_top = 2
@@ -109,7 +138,7 @@ shadow_color = Color(0.18, 0.11, 0.06, 0.22)
 shadow_size = 5
 shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_psvo6"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y8cwk"]
 bg_color = Color(1, 0.98, 0.78, 0.96)
 border_width_left = 2
 border_width_top = 2
@@ -124,9 +153,9 @@ shadow_color = Color(0.18, 0.11, 0.06, 0.22)
 shadow_size = 5
 shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ugrdw"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ha03s"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmtys"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dvw5k"]
 bg_color = Color(1, 0.94, 0.68, 0.9)
 border_width_left = 2
 border_width_top = 2
@@ -141,7 +170,7 @@ shadow_color = Color(0.18, 0.11, 0.06, 0.22)
 shadow_size = 5
 shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1c2nk"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a57l4"]
 bg_color = Color(0.92, 0.78, 0.46, 0.96)
 border_width_left = 2
 border_width_top = 2
@@ -156,7 +185,7 @@ shadow_color = Color(0.18, 0.11, 0.06, 0.22)
 shadow_size = 5
 shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jux68"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6ok7d"]
 bg_color = Color(1, 0.98, 0.78, 0.96)
 border_width_left = 2
 border_width_top = 2
@@ -171,9 +200,9 @@ shadow_color = Color(0.18, 0.11, 0.06, 0.22)
 shadow_size = 5
 shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4pqia"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qocqr"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n6cqr"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_aqpwy"]
 bg_color = Color(1, 0.94, 0.68, 0.9)
 border_width_left = 2
 border_width_top = 2
@@ -188,7 +217,7 @@ shadow_color = Color(0.18, 0.11, 0.06, 0.22)
 shadow_size = 5
 shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wha5j"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6h1xt"]
 bg_color = Color(0.92, 0.78, 0.46, 0.96)
 border_width_left = 2
 border_width_top = 2
@@ -203,7 +232,7 @@ shadow_color = Color(0.18, 0.11, 0.06, 0.22)
 shadow_size = 5
 shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4ymgl"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_one7w"]
 bg_color = Color(1, 0.98, 0.78, 0.96)
 border_width_left = 2
 border_width_top = 2
@@ -218,9 +247,9 @@ shadow_color = Color(0.18, 0.11, 0.06, 0.22)
 shadow_size = 5
 shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5bbgc"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n840l"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qbuax"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g8qr7"]
 bg_color = Color(1, 0.94, 0.68, 0.9)
 border_width_left = 2
 border_width_top = 2
@@ -235,7 +264,7 @@ shadow_color = Color(0.18, 0.11, 0.06, 0.22)
 shadow_size = 5
 shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ola2q"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ewie7"]
 bg_color = Color(0.92, 0.78, 0.46, 0.96)
 border_width_left = 2
 border_width_top = 2
@@ -250,7 +279,7 @@ shadow_color = Color(0.18, 0.11, 0.06, 0.22)
 shadow_size = 5
 shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_47sys"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k1tyc"]
 bg_color = Color(1, 0.98, 0.78, 0.96)
 border_width_left = 2
 border_width_top = 2
@@ -265,9 +294,9 @@ shadow_color = Color(0.18, 0.11, 0.06, 0.22)
 shadow_size = 5
 shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s7ydq"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_257jm"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_spei7"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_o836l"]
 bg_color = Color(1, 0.94, 0.68, 0.9)
 border_width_left = 2
 border_width_top = 2
@@ -282,7 +311,7 @@ shadow_color = Color(0.18, 0.11, 0.06, 0.22)
 shadow_size = 5
 shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_073l4"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wbg4b"]
 bg_color = Color(0.92, 0.78, 0.46, 0.96)
 border_width_left = 2
 border_width_top = 2
@@ -297,7 +326,7 @@ shadow_color = Color(0.18, 0.11, 0.06, 0.22)
 shadow_size = 5
 shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4uywk"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uglvq"]
 bg_color = Color(1, 0.98, 0.78, 0.96)
 border_width_left = 2
 border_width_top = 2
@@ -312,9 +341,9 @@ shadow_color = Color(0.18, 0.11, 0.06, 0.22)
 shadow_size = 5
 shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qd0dx"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6iglj"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p44bc"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c5elq"]
 bg_color = Color(1, 0.94, 0.68, 0.9)
 border_width_left = 2
 border_width_top = 2
@@ -329,7 +358,7 @@ shadow_color = Color(0.18, 0.11, 0.06, 0.22)
 shadow_size = 5
 shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hcblt"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_img4n"]
 bg_color = Color(0.92, 0.78, 0.46, 0.96)
 border_width_left = 2
 border_width_top = 2
@@ -344,7 +373,7 @@ shadow_color = Color(0.18, 0.11, 0.06, 0.22)
 shadow_size = 5
 shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wp0d1"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kojb8"]
 bg_color = Color(1, 0.98, 0.78, 0.96)
 border_width_left = 2
 border_width_top = 2
@@ -359,7 +388,7 @@ shadow_color = Color(0.18, 0.11, 0.06, 0.22)
 shadow_size = 5
 shadow_offset = Vector2(0, 2)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i2mbb"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_i3irc"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_transparent"]
 
@@ -384,6 +413,104 @@ texture = ExtResource("2_home_background")
 expand_mode = 1
 stretch_mode = 6
 
+[node name="PendingRewardPreview" type="Control" parent="." unique_id=1934206104]
+visible = false
+z_index = 30
+layout_mode = 1
+anchor_left = 0.035
+anchor_top = 0.09
+anchor_right = 0.405
+anchor_bottom = 0.25
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="PreviewBackground" type="ColorRect" parent="PendingRewardPreview" unique_id=1940419014]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(1, 0.965, 0.82, 0.78)
+
+[node name="TitleLabel" type="Label" parent="PendingRewardPreview" unique_id=487360519]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.055
+anchor_top = 0.06
+anchor_right = 0.945
+anchor_bottom = 0.28
+grow_horizontal = 2
+grow_vertical = 2
+text = "本次获得"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="SeedTexture" type="TextureRect" parent="PendingRewardPreview" unique_id=428644892]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.08
+anchor_top = 0.34
+anchor_right = 0.46
+anchor_bottom = 0.92
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PotionTexture" type="TextureRect" parent="PendingRewardPreview" unique_id=1225418464]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.54
+anchor_top = 0.34
+anchor_right = 0.92
+anchor_bottom = 0.92
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PlantingFxLayer" type="Control" parent="." unique_id=1805065394]
+visible = false
+z_index = 35
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SeedFxTexture" type="TextureRect" parent="PlantingFxLayer" unique_id=481784612]
+visible = false
+layout_mode = 0
+offset_right = 74.0
+offset_bottom = 74.0
+pivot_offset = Vector2(37, 37)
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="PotionFxTexture" type="TextureRect" parent="PlantingFxLayer" unique_id=701880931]
+visible = false
+layout_mode = 0
+offset_right = 74.0
+offset_bottom = 74.0
+pivot_offset = Vector2(37, 37)
+mouse_filter = 2
+expand_mode = 1
+stretch_mode = 5
+
 [node name="FlowerDisplayRoot" type="Control" parent="." unique_id=1149201589]
 layout_mode = 1
 anchors_preset = 15
@@ -394,6 +521,7 @@ offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="FlowerSlotRoot" type="Control" parent="." unique_id=1326061469]
 layout_mode = 1
@@ -405,6 +533,7 @@ offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="PinkRoseSlot_01" type="Panel" parent="FlowerSlotRoot" unique_id=861978539]
 self_modulate = Color(1, 1, 1, 0)
@@ -418,12 +547,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_slot_debug")
 metadata/_edit_use_anchors_ = true
 
 [node name="FlowerTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_01" unique_id=590198120]
+visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.05978261
-anchor_top = -0.56884056
-anchor_right = 1.2934783
-anchor_bottom = 1.518116
+anchor_left = 0.054347824
+anchor_top = -0.5615942
+anchor_right = 1.2880436
+anchor_bottom = 1.5253624
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -466,6 +596,70 @@ expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
+[node name="PinkRoseLavenderComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_01" unique_id=390729986]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05978261
+anchor_top = -0.56884056
+anchor_right = 1.2934783
+anchor_bottom = 1.518116
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_pink_lavender_01")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PinkRoseYellowRoseComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_01" unique_id=2014180921]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05978261
+anchor_top = -0.56884056
+anchor_right = 1.5163044
+anchor_bottom = 1.4891304
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_pink_yellow_01")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="YellowRoseLavenderComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_01" unique_id=1813068980]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05978261
+anchor_top = -0.56884056
+anchor_right = 1.7663044
+anchor_bottom = 1.7898551
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_yellow_lavender_01")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PinkRoseYellowRoseLavenderComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_01" unique_id=1693372158]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.05978261
+anchor_top = -0.56884056
+anchor_right = 1.4076087
+anchor_bottom = 1.6847826
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_pink_yellow_lavender_01")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
 [node name="PlantMarkerButton" type="Button" parent="FlowerSlotRoot/PinkRoseSlot_01" unique_id=717730199]
 visible = false
 z_index = 20
@@ -481,11 +675,16 @@ offset_right = 27.0
 offset_bottom = 27.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_q31nw")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_rwgxr")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ilir1")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_q31nw")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_7a6tl")
+theme_override_colors/font_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_focus_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_pressed_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_hover_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_disabled_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_whmto")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_rrxmg")
+theme_override_styles/hover = SubResource("StyleBoxFlat_5r1ps")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_whmto")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6hbe1")
 disabled = true
 
 [node name="NumberLabel" type="Label" parent="FlowerSlotRoot/PinkRoseSlot_01/PlantMarkerButton" unique_id=1700488173]
@@ -495,6 +694,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_font_sizes/font_size = 26
 text = "1"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -511,11 +712,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_slot_debug")
 metadata/_edit_use_anchors_ = true
 
 [node name="FlowerTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_02" unique_id=2072163862]
+visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -1.2285714
+anchor_left = -1.2142857
 anchor_top = -0.26136363
-anchor_right = 1.8714286
+anchor_right = 1.8857143
 anchor_bottom = 1.5113636
 grow_horizontal = 2
 grow_vertical = 2
@@ -546,14 +748,78 @@ visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -1.0714285
+anchor_left = -1.1
 anchor_top = -0.6818182
-anchor_right = 1.7428571
+anchor_right = 1.7142857
 anchor_bottom = 1.4545455
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("18_lavender_02")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PinkRoseLavenderComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_02" unique_id=1912440477]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.4999999
+anchor_top = -1.25
+anchor_right = 2.0857143
+anchor_bottom = 1.8636364
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_pink_lavender_02")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PinkRoseYellowRoseComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_02" unique_id=1845279803]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.2571429
+anchor_top = -0.26136363
+anchor_right = 1.8428571
+anchor_bottom = 1.5113636
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_pink_yellow_02")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="YellowRoseLavenderComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_02" unique_id=408459213]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.3
+anchor_top = -0.6136364
+anchor_right = 1.8
+anchor_bottom = 1.7272727
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_yellow_lavender_02")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PinkRoseYellowRoseLavenderComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_02" unique_id=561932193]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.7285714
+anchor_top = -0.3409091
+anchor_right = 1.3714286
+anchor_bottom = 1.7727273
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_pink_yellow_lavender_02")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
@@ -573,11 +839,16 @@ offset_right = 27.0
 offset_bottom = 27.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_yf6ex")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_vq2co")
-theme_override_styles/hover = SubResource("StyleBoxFlat_psvo6")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_yf6ex")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_ugrdw")
+theme_override_colors/font_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_focus_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_pressed_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_hover_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_disabled_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_akyio")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_fpkyn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_y8cwk")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_akyio")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ha03s")
 disabled = true
 
 [node name="NumberLabel" type="Label" parent="FlowerSlotRoot/PinkRoseSlot_02/PlantMarkerButton" unique_id=987627332]
@@ -587,6 +858,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_font_sizes/font_size = 26
 text = "2"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -603,6 +876,7 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_slot_debug")
 metadata/_edit_use_anchors_ = true
 
 [node name="FlowerTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_03" unique_id=1482940734]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.020942409
@@ -637,13 +911,74 @@ visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.14659685
-anchor_right = 0.85340315
+anchor_left = -0.19109948
+anchor_top = -0.17222223
+anchor_right = 1.0183245
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("19_lavender_03")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PinkRoseLavenderComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_03" unique_id=1192085220]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.04712042
+anchor_right = 0.9528796
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_pink_lavender_03")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PinkRoseYellowRoseComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_03" unique_id=1460227277]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.06282722
+anchor_right = 0.9371728
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_pink_yellow_03")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="YellowRoseLavenderComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_03" unique_id=1084829591]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.08376963
+anchor_right = 0.9162304
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_yellow_lavender_03")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PinkRoseYellowRoseLavenderComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_03" unique_id=1068282200]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.12565444
+anchor_top = -0.2361111
+anchor_right = 1.0575917
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_pink_yellow_lavender_03")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
@@ -663,11 +998,16 @@ offset_right = 27.0
 offset_bottom = 27.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_lmtys")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_1c2nk")
-theme_override_styles/hover = SubResource("StyleBoxFlat_jux68")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_lmtys")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_4pqia")
+theme_override_colors/font_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_focus_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_pressed_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_hover_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_disabled_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_dvw5k")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_a57l4")
+theme_override_styles/hover = SubResource("StyleBoxFlat_6ok7d")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_dvw5k")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_qocqr")
 disabled = true
 
 [node name="NumberLabel" type="Label" parent="FlowerSlotRoot/PinkRoseSlot_03/PlantMarkerButton" unique_id=810731214]
@@ -677,6 +1017,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_font_sizes/font_size = 26
 text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -695,12 +1037,13 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_slot_debug")
 metadata/_edit_use_anchors_ = true
 
 [node name="FlowerTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_04" unique_id=1698433505]
+visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.053097345
-anchor_top = -0.30714285
-anchor_right = 1.2345133
-anchor_bottom = 1.3428571
+anchor_left = -0.048672568
+anchor_top = -0.31428573
+anchor_right = 1.2079647
+anchor_bottom = 1.3357143
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -720,7 +1063,7 @@ anchor_bottom = 1.3857143
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("16_yellow_rose_07")
+texture = ExtResource("13_yellow_rose_04")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
@@ -742,6 +1085,69 @@ expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
+[node name="PinkRoseLavenderComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_04" unique_id=1367007652]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.048672568
+anchor_top = -0.4
+anchor_right = 1.2389381
+anchor_bottom = 1.25
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_pink_lavender_04")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PinkRoseYellowRoseComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_04" unique_id=1366749253]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.053097345
+anchor_top = -0.30714285
+anchor_right = 1.2345133
+anchor_bottom = 1.3428571
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_pink_yellow_04")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="YellowRoseLavenderComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_04" unique_id=1129765505]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.053097345
+anchor_top = -0.34285715
+anchor_right = 1.2345133
+anchor_bottom = 1.307143
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_yellow_lavender_04")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PinkRoseYellowRoseLavenderComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_04" unique_id=1319103302]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.084070794
+anchor_top = -0.34285715
+anchor_right = 1.2035398
+anchor_bottom = 1.3071429
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_pink_yellow_lavender_04")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
 [node name="PlantMarkerButton" type="Button" parent="FlowerSlotRoot/PinkRoseSlot_04" unique_id=254222029]
 visible = false
 z_index = 20
@@ -757,11 +1163,16 @@ offset_right = 27.0
 offset_bottom = 27.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_n6cqr")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_wha5j")
-theme_override_styles/hover = SubResource("StyleBoxFlat_4ymgl")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_n6cqr")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_5bbgc")
+theme_override_colors/font_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_focus_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_pressed_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_hover_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_disabled_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_aqpwy")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_6h1xt")
+theme_override_styles/hover = SubResource("StyleBoxFlat_one7w")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_aqpwy")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_n840l")
 disabled = true
 
 [node name="NumberLabel" type="Label" parent="FlowerSlotRoot/PinkRoseSlot_04/PlantMarkerButton" unique_id=1521450239]
@@ -771,6 +1182,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_font_sizes/font_size = 26
 text = "4"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -787,11 +1200,12 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_slot_debug")
 metadata/_edit_use_anchors_ = true
 
 [node name="FlowerTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_05" unique_id=928969590]
+visible = false
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -1.6351353
+anchor_left = -1.6216218
 anchor_top = -0.63596493
-anchor_right = 1.4189188
+anchor_right = 1.4324322
 anchor_bottom = 0.99561405
 grow_horizontal = 2
 grow_vertical = 2
@@ -835,6 +1249,69 @@ expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
 
+[node name="PinkRoseLavenderComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_05" unique_id=1195541324]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.6418918
+anchor_top = -0.622807
+anchor_right = 1.3986485
+anchor_bottom = 0.99122804
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_pink_lavender_05")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PinkRoseYellowRoseComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_05" unique_id=1172613008]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.7702705
+anchor_top = -0.63596493
+anchor_right = 1.2837836
+anchor_bottom = 0.99561405
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_pink_yellow_05")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="YellowRoseLavenderComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_05" unique_id=1855897789]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.6891892
+anchor_top = -0.63596493
+anchor_right = 1.3648648
+anchor_bottom = 0.99561405
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_yellow_lavender_05")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PinkRoseYellowRoseLavenderComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_05" unique_id=608379920]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -1.6013514
+anchor_top = -0.6315789
+anchor_right = 1.4949869
+anchor_bottom = 0.99561405
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_pink_yellow_lavender_05")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
 [node name="PlantMarkerButton" type="Button" parent="FlowerSlotRoot/PinkRoseSlot_05" unique_id=430353651]
 visible = false
 z_index = 20
@@ -850,11 +1327,16 @@ offset_right = 27.0
 offset_bottom = 27.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_qbuax")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ola2q")
-theme_override_styles/hover = SubResource("StyleBoxFlat_47sys")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_qbuax")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_s7ydq")
+theme_override_colors/font_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_focus_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_pressed_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_hover_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_disabled_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_g8qr7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ewie7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_k1tyc")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_g8qr7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_257jm")
 disabled = true
 
 [node name="NumberLabel" type="Label" parent="FlowerSlotRoot/PinkRoseSlot_05/PlantMarkerButton" unique_id=1530659027]
@@ -864,6 +1346,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_font_sizes/font_size = 26
 text = "5"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -874,13 +1358,14 @@ layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.27222222
 anchor_top = 0.5125
-anchor_right = 0.4125
+anchor_right = 0.3888889
 anchor_bottom = 0.59375
 mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_slot_debug")
 metadata/_edit_use_anchors_ = true
 
 [node name="FlowerTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_06" unique_id=1056773203]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -0.31683168
@@ -916,14 +1401,77 @@ visible = false
 z_index = 1
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.22772278
-anchor_top = -0.09615385
-anchor_right = 1.1782178
-anchor_bottom = 1.5865384
+anchor_left = -0.20238104
+anchor_top = -0.1923077
+anchor_right = 1.3809521
+anchor_bottom = 1.7026963
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("22_lavender_06")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PinkRoseLavenderComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_06" unique_id=2087710394]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.33333328
+anchor_top = -0.44230768
+anchor_right = 1.4404762
+anchor_bottom = 2.0865386
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_pink_lavender_06")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PinkRoseYellowRoseComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_06" unique_id=27063852]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.16206977
+anchor_top = -0.13461539
+anchor_right = 1.2933756
+anchor_bottom = 1.7788461
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_pink_yellow_06")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="YellowRoseLavenderComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_06" unique_id=539488155]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.29761904
+anchor_top = -0.39423078
+anchor_right = 1.7619047
+anchor_bottom = 2.2019231
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_yellow_lavender_06")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PinkRoseYellowRoseLavenderComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_06" unique_id=217426285]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -0.8452382
+anchor_top = -0.75961536
+anchor_right = 1.6071428
+anchor_bottom = 2.0673077
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_pink_yellow_lavender_06")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
@@ -943,11 +1491,16 @@ offset_right = 27.0
 offset_bottom = 27.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_spei7")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_073l4")
-theme_override_styles/hover = SubResource("StyleBoxFlat_4uywk")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_spei7")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_qd0dx")
+theme_override_colors/font_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_focus_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_pressed_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_hover_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_disabled_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_o836l")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wbg4b")
+theme_override_styles/hover = SubResource("StyleBoxFlat_uglvq")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_o836l")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_6iglj")
 disabled = true
 
 [node name="NumberLabel" type="Label" parent="FlowerSlotRoot/PinkRoseSlot_06/PlantMarkerButton" unique_id=974789756]
@@ -957,6 +1510,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_font_sizes/font_size = 26
 text = "6"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -977,10 +1532,10 @@ metadata/_edit_use_anchors_ = true
 [node name="FlowerTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_07" unique_id=153857121]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -1.8942307
+anchor_left = -1.9038461
 anchor_top = -0.46296296
 anchor_right = 2.0384614
-anchor_bottom = 0.9351852
+anchor_bottom = 0.9398148
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -1000,7 +1555,7 @@ anchor_bottom = 0.662037
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("13_yellow_rose_04")
+texture = ExtResource("16_yellow_rose_07")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
@@ -1011,13 +1566,76 @@ z_index = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = -2.7884614
-anchor_top = -0.17592593
+anchor_top = -0.1712963
 anchor_right = 0.9230769
-anchor_bottom = 1.1898148
+anchor_bottom = 1.1944444
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 texture = ExtResource("23_lavender_07")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PinkRoseLavenderComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_07" unique_id=125358909]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -3.3846154
+anchor_top = -1.0092592
+anchor_right = 1.7884616
+anchor_bottom = 1.0925926
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_pink_lavender_07")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PinkRoseYellowRoseComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_07" unique_id=1034724320]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -3.6923077
+anchor_top = -1.0138888
+anchor_right = 2.25
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_pink_yellow_07")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="YellowRoseLavenderComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_07" unique_id=1764576689]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -2.5384614
+anchor_top = -0.3287037
+anchor_right = 0.90384614
+anchor_bottom = 0.9259259
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_yellow_lavender_07")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="PinkRoseYellowRoseLavenderComboTexture" type="TextureRect" parent="FlowerSlotRoot/PinkRoseSlot_07" unique_id=553454698]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = -3.1923077
+anchor_top = -0.8194444
+anchor_right = 1.6730769
+anchor_bottom = 0.8148148
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("combo_pink_yellow_lavender_07")
 expand_mode = 1
 stretch_mode = 5
 metadata/_edit_use_anchors_ = true
@@ -1037,11 +1655,16 @@ offset_right = 27.0
 offset_bottom = 27.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/normal = SubResource("StyleBoxFlat_p44bc")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_hcblt")
-theme_override_styles/hover = SubResource("StyleBoxFlat_wp0d1")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_p44bc")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_i2mbb")
+theme_override_colors/font_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_focus_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_pressed_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_hover_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_colors/font_disabled_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_styles/normal = SubResource("StyleBoxFlat_c5elq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_img4n")
+theme_override_styles/hover = SubResource("StyleBoxFlat_kojb8")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_c5elq")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_i3irc")
 disabled = true
 
 [node name="NumberLabel" type="Label" parent="FlowerSlotRoot/PinkRoseSlot_07/PlantMarkerButton" unique_id=489343384]
@@ -1051,6 +1674,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_colors/font_color = Color(0.17, 0.13, 0.09, 1)
+theme_override_font_sizes/font_size = 26
 text = "7"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -1060,30 +1685,171 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = -4.0
+offset_right = -2.0
+offset_bottom = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="SettingsButton" type="Button" parent="ButtonRoot" unique_id=2050890928]
+layout_mode = 0
+offset_left = 608.0
+offset_top = 24.0
+offset_right = 696.0
+offset_bottom = 76.0
+text = "设置"
+
+[node name="PotionSignRoot" type="Node2D" parent="ButtonRoot" unique_id=2017197237]
+position = Vector2(398, 420)
+
+[node name="SignLabel" type="Label" parent="ButtonRoot/PotionSignRoot" unique_id=1922633528]
+offset_left = 46.0
+offset_top = 44.0
+offset_right = 238.0
+offset_bottom = 94.0
+rotation = 0.07853982
+pivot_offset = Vector2(96, 25)
+theme_override_colors/font_color = Color(0.18, 0.1, 0.04, 1)
+theme_override_fonts/font = ExtResource("2_source_han_sans_regular")
+theme_override_font_sizes/font_size = 30
+text = "调试药剂"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SignClickArea" type="Area2D" parent="ButtonRoot/PotionSignRoot" unique_id=955691932]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ButtonRoot/PotionSignRoot/SignClickArea" unique_id=1443336806]
+polygon = PackedVector2Array(15, 14, 242, 31, 313, 87, 228, 127, 6, 108)
+metadata/_edit_lock_ = true
+
+[node name="PlantSignRoot" type="Node2D" parent="ButtonRoot" unique_id=1040174041]
+position = Vector2(390, 580)
+
+[node name="SignLabel" type="Label" parent="ButtonRoot/PlantSignRoot" unique_id=1891889740]
+offset_left = 51.0
+offset_top = 55.0
+offset_right = 257.0
+offset_bottom = 105.0
+rotation = -0.17453292
+pivot_offset = Vector2(103, 25)
+theme_override_colors/font_color = Color(0.18, 0.1, 0.04, 1)
+theme_override_fonts/font = ExtResource("2_source_han_sans_regular")
+theme_override_font_sizes/font_size = 30
+text = "种植/铲除"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SignClickArea" type="Area2D" parent="ButtonRoot/PlantSignRoot" unique_id=325535790]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ButtonRoot/PlantSignRoot/SignClickArea" unique_id=72895661]
+polygon = PackedVector2Array(13, 56, 237, 17, 320, 55, 253, 114, 22, 149)
+metadata/_edit_lock_ = true
+
+[node name="WarehouseSignRoot" type="Node2D" parent="ButtonRoot" unique_id=1527016608]
+position = Vector2(375, 740)
+
+[node name="SignLabel" type="Label" parent="ButtonRoot/WarehouseSignRoot" unique_id=487875109]
+offset_left = 78.0
+offset_top = 52.0
+offset_right = 250.0
+offset_bottom = 100.0
+rotation = 0.15707964
+pivot_offset = Vector2(86, 24)
+theme_override_colors/font_color = Color(0.18, 0.1, 0.04, 1)
+theme_override_fonts/font = ExtResource("2_source_han_sans_regular")
+theme_override_font_sizes/font_size = 30
+text = "仓库"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SignClickArea" type="Area2D" parent="ButtonRoot/WarehouseSignRoot" unique_id=1064002950]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ButtonRoot/WarehouseSignRoot/SignClickArea" unique_id=1878139893]
+polygon = PackedVector2Array(10, 58, 91, 17, 282, 52, 269, 151, 79, 113)
 
 [node name="StartGameButton" type="Button" parent="ButtonRoot" unique_id=2098283976]
+visible = false
 layout_mode = 0
-offset_left = 392.0
-offset_top = 560.0
-offset_right = 708.0
-offset_bottom = 712.0
+offset_left = 450.0
+offset_top = 467.0
+offset_right = 636.0
+offset_bottom = 525.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.18, 0.1, 0.04, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.1, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.14, 0.08, 0.03, 1)
+theme_override_colors/font_hover_color = Color(0.24, 0.14, 0.06, 1)
+theme_override_colors/font_disabled_color = Color(0.18, 0.1, 0.04, 0.5)
+theme_override_fonts/font = ExtResource("2_source_han_sans_regular")
+theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxEmpty_transparent")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_transparent")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_transparent")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_transparent")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_transparent")
+text = "调试药剂"
+flat = true
+
+[node name="PlantingSignButton" type="Button" parent="ButtonRoot" unique_id=633788945]
+visible = false
+layout_mode = 0
+offset_left = 454.0
+offset_top = 632.0
+offset_right = 648.0
+offset_bottom = 710.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.18, 0.1, 0.04, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.1, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.14, 0.08, 0.03, 1)
+theme_override_colors/font_hover_color = Color(0.24, 0.14, 0.06, 1)
+theme_override_colors/font_disabled_color = Color(0.18, 0.1, 0.04, 0.5)
+theme_override_fonts/font = ExtResource("2_source_han_sans_regular")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_transparent")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_transparent")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_transparent")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_transparent")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_transparent")
+text = "种植页面"
+flat = true
+
+[node name="WarehouseSignButton" type="Button" parent="ButtonRoot" unique_id=1482176710]
+visible = false
+layout_mode = 0
+offset_left = 456.0
+offset_top = 796.0
+offset_right = 638.0
+offset_bottom = 862.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.18, 0.1, 0.04, 1)
+theme_override_colors/font_focus_color = Color(0.18, 0.1, 0.04, 1)
+theme_override_colors/font_pressed_color = Color(0.14, 0.08, 0.03, 1)
+theme_override_colors/font_hover_color = Color(0.24, 0.14, 0.06, 1)
+theme_override_colors/font_disabled_color = Color(0.18, 0.1, 0.04, 0.5)
+theme_override_fonts/font = ExtResource("2_source_han_sans_regular")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_transparent")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_transparent")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_transparent")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_transparent")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_transparent")
+text = "仓库"
 flat = true
 
 [node name="LevelSelectButton" type="Button" parent="ButtonRoot" unique_id=1416189139]
+visible = false
 layout_mode = 0
 offset_left = 437.0
 offset_top = 785.0
-offset_right = 665.0
+offset_right = 664.0
 offset_bottom = 861.0
+mouse_filter = 2
 theme_override_styles/normal = SubResource("StyleBoxEmpty_transparent")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_transparent")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_transparent")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_transparent")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_transparent")
 flat = true

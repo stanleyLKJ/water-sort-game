@@ -20,10 +20,15 @@ config/icon="res://icon.svg"
 window/size/viewport_width=720
 window/size/viewport_height=1280
 window/stretch/mode="canvas_items"
+window/handheld/orientation=1
 
 [dotnet]
 
-project/assembly_name="倒水小游戏"
+project/assembly_name="MagicGardener"
+
+[gui]
+
+theme/custom="res://assets/ui/themes/default_ui_theme.tres"
 
 [physics]
 
@@ -34,3 +39,4 @@ project/assembly_name="倒水小游戏"
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true

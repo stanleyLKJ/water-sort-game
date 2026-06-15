@@ -1,0 +1,7 @@
+interface:
+  display_name: "Magic Gardener"
+  short_description: "倒水小游戏项目执行规范"
+  default_prompt: "Use $magic-gardener to make a minimal, verified change in the Magic Gardener project."
+
+policy:
+  allow_implicit_invocation: true

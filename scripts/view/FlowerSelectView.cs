@@ -9,34 +9,63 @@ namespace WaterSortGame.View;
 
 public sealed partial class FlowerSelectView : Control
 {
-    private const string SelectTexturePathFormat = "res://assets/flowers/{0}/select/{0}_select.png";
+    private const int SlotCount = FlowerSelectSystem.BaseFlowerCount;
 
-    private static readonly Color[] FlowerColors =
-    {
-        new(0.96f, 0.31f, 0.39f),
-        new(0.94f, 0.72f, 0.24f),
-        new(0.26f, 0.48f, 0.86f),
-        new(0.96f, 0.76f, 0.48f),
-        new(0.3f, 0.52f, 0.98f),
-        new(0.78f, 0.43f, 0.7f)
-    };
+    private readonly FlowerSlotNode[] _slots = new FlowerSlotNode[SlotCount];
+    private readonly TemporaryTipHandle _temporaryTip = new();
 
-    private GridContainer _optionRoot = null!;
+    private Label _titleLabel = null!;
     private Label _hintLabel = null!;
+    private Label _temporaryTipLabel = null!;
+    private Button _backButton = null!;
     private IReadOnlyList<FlowerOption>? _pendingOptions;
     private string _defaultHintText = string.Empty;
     private bool _isReady;
+    private LocalizationManager? _localizationManager;
 
     public event Action<string>? TargetFlowerSelected;
     public event Action? BackRequested;
 
+    public void SetLocalizationManager(LocalizationManager localizationManager)
+    {
+        _localizationManager = localizationManager ?? throw new ArgumentNullException(nameof(localizationManager));
+        if (_isReady)
+        {
+            ApplyLocalizedText();
+            if (_pendingOptions != null)
+            {
+                RefreshOptions(_pendingOptions);
+            }
+        }
+    }
+
     public override void _Ready()
     {
-        _optionRoot = GetNode<GridContainer>("Panel/OptionRoot");
+        _titleLabel = GetNode<Label>("Panel/TitleLabel");
         _hintLabel = GetNode<Label>("Panel/HintLabel");
-        _defaultHintText = _hintLabel.Text;
-        GetNode<Button>("Panel/BackButton").Pressed += OnBackPressed;
+        _temporaryTipLabel = GetNode<Label>("Panel/TemporaryTipLabel");
+        _backButton = GetNode<Button>("Panel/BackButton");
+        _backButton.Pressed += OnBackPressed;
+
+        Control slotRoot = GetNode<Control>("Panel/FlowerSlots");
+        for (int i = 0; i < SlotCount; i++)
+        {
+            int slotIndex = i;
+            Control root = slotRoot.GetNode<Control>($"FlowerSlot_{slotIndex + 1:00}");
+            Button hotAreaButton = root.GetNode<Button>("HotAreaButton");
+            hotAreaButton.Pressed += () => OnFlowerSlotPressed(slotIndex);
+
+            _slots[slotIndex] = new FlowerSlotNode(
+                root,
+                root.GetNode<TextureRect>("OpenCardTexture"),
+                root.GetNode<TextureRect>("DisabledCardTexture"),
+                root.GetNode<Label>("FlowerName"),
+                root.GetNode<Label>("StatusLabel"),
+                hotAreaButton);
+        }
+
         _isReady = true;
+        ApplyLocalizedText();
 
         if (_pendingOptions != null)
         {
@@ -54,90 +83,6 @@ public sealed partial class FlowerSelectView : Control
         }
     }
 
-    private void RefreshOptions(IReadOnlyList<FlowerOption> options)
-    {
-        ShowMessage(_defaultHintText);
-
-        foreach (Node child in _optionRoot.GetChildren())
-        {
-            child.QueueFree();
-        }
-
-        foreach (FlowerOption option in options)
-        {
-            _optionRoot.AddChild(CreateFlowerOptionButton(option));
-        }
-    }
-
-    private Button CreateFlowerOptionButton(FlowerOption option)
-    {
-        Color flowerColor = option.IsSelectable ? GetFlowerColor(option.Index) : new Color(0.56f, 0.56f, 0.52f);
-        Color background = option.IsSelectable ? new Color(1f, 0.98f, 0.91f, 0.92f) : new Color(0.74f, 0.74f, 0.68f, 0.82f);
-        Color hoverBackground = option.IsSelectable ? new Color(1f, 0.96f, 0.84f, 0.98f) : new Color(0.78f, 0.78f, 0.72f, 0.86f);
-        StyleBoxFlat normalStyle = CreateOptionStyle(background, flowerColor);
-        StyleBoxFlat hoverStyle = CreateOptionStyle(hoverBackground, flowerColor.Lightened(0.08f));
-
-        Button button = new()
-        {
-            CustomMinimumSize = new Vector2(156f, 184f),
-            ThemeTypeVariation = "FlowerSelectButton"
-        };
-        button.AddThemeStyleboxOverride("normal", normalStyle);
-        button.AddThemeStyleboxOverride("hover", hoverStyle);
-        button.AddThemeStyleboxOverride("pressed", hoverStyle);
-
-        button.AddChild(CreateFlowerVisual(option, flowerColor));
-
-        Label label = new()
-        {
-            Name = "FlowerName",
-            Text = option.DisplayName,
-            MouseFilter = MouseFilterEnum.Ignore,
-            HorizontalAlignment = HorizontalAlignment.Center,
-            VerticalAlignment = VerticalAlignment.Center
-        };
-        label.SetAnchorsPreset(LayoutPreset.FullRect);
-        label.OffsetTop = 138f;
-        label.OffsetBottom = -8f;
-        label.AddThemeFontSizeOverride("font_size", 18);
-        label.AddThemeColorOverride("font_color", option.IsSelectable ? new Color(0.2f, 0.15f, 0.1f) : new Color(0.32f, 0.31f, 0.28f));
-        button.AddChild(label);
-
-        string statusText = option.IsOpen ? option.IsFull ? "已种满" : string.Empty : "待开放";
-        if (!string.IsNullOrEmpty(statusText))
-        {
-            Label statusLabel = new()
-            {
-                Name = "StatusLabel",
-                Text = statusText,
-                MouseFilter = MouseFilterEnum.Ignore,
-                HorizontalAlignment = HorizontalAlignment.Center,
-                VerticalAlignment = VerticalAlignment.Center
-            };
-            statusLabel.SetAnchorsPreset(LayoutPreset.TopWide);
-            statusLabel.OffsetLeft = 18f;
-            statusLabel.OffsetTop = 14f;
-            statusLabel.OffsetRight = -18f;
-            statusLabel.OffsetBottom = 44f;
-            statusLabel.AddThemeFontSizeOverride("font_size", 16);
-            statusLabel.AddThemeColorOverride("font_color", new Color(0.32f, 0.3f, 0.27f));
-            button.AddChild(statusLabel);
-        }
-
-        button.Pressed += () =>
-        {
-            if (option.IsSelectable)
-            {
-                TargetFlowerSelected?.Invoke(option.FlowerId);
-                return;
-            }
-
-            ShowMessage(option.UnavailableMessage);
-        };
-
-        return button;
-    }
-
     public void ShowMessage(string message)
     {
         if (!_isReady)
@@ -145,91 +90,65 @@ public sealed partial class FlowerSelectView : Control
             return;
         }
 
-        _hintLabel.Text = message;
+        _temporaryTip.Show(_temporaryTipLabel, message);
     }
 
-    private static Node CreateFlowerVisual(FlowerOption option, Color flowerColor)
+    private void RefreshOptions(IReadOnlyList<FlowerOption> options)
     {
-        string texturePath = BuildSelectTexturePath(option.FlowerId);
-        if (ResourceLoader.Exists(texturePath))
+        ShowFixedHint(_defaultHintText);
+
+        for (int i = 0; i < SlotCount; i++)
         {
-            TextureRect flowerIcon = new()
+            if (i >= options.Count)
             {
-                Name = "FlowerIcon",
-                Texture = GD.Load<Texture2D>(texturePath),
-                MouseFilter = MouseFilterEnum.Ignore,
-                ExpandMode = TextureRect.ExpandModeEnum.IgnoreSize,
-                StretchMode = TextureRect.StretchModeEnum.KeepAspectCentered
-            };
-            ApplyVisualBounds(flowerIcon);
-            return flowerIcon;
+                _slots[i].Root.Visible = false;
+                continue;
+            }
+
+            ApplyOptionToSlot(_slots[i], options[i]);
+        }
+    }
+
+    private void ApplyOptionToSlot(FlowerSlotNode slot, FlowerOption option)
+    {
+        slot.Root.Visible = true;
+        slot.OpenCardTexture.Visible = option.IsSelectable;
+        slot.DisabledCardTexture.Visible = !option.IsSelectable;
+        slot.FlowerNameLabel.Text = option.DisplayName;
+        slot.HotAreaButton.TooltipText = option.DisplayName;
+
+        string statusText = option.IsOpen
+            ? option.IsFull ? Tr("flower_select.full") : string.Empty
+            : Tr("flower_select.coming_soon");
+
+        slot.StatusLabel.Text = statusText;
+        slot.StatusLabel.Visible = !string.IsNullOrEmpty(statusText);
+    }
+
+    private void OnFlowerSlotPressed(int slotIndex)
+    {
+        if (_pendingOptions == null || slotIndex < 0 || slotIndex >= _pendingOptions.Count)
+        {
+            return;
         }
 
-        GD.PushWarning($"FlowerSelect select texture not found: {texturePath}. Showing safe placeholder for {option.FlowerId}.");
-        return CreateMissingTexturePlaceholder(option.FlowerId, flowerColor);
-    }
-
-    private static Control CreateMissingTexturePlaceholder(string flowerId, Color flowerColor)
-    {
-        Control root = new()
+        FlowerOption option = _pendingOptions[slotIndex];
+        if (option.IsSelectable)
         {
-            Name = "MissingSelectPlaceholder",
-            MouseFilter = MouseFilterEnum.Ignore
-        };
-        ApplyVisualBounds(root);
+            TargetFlowerSelected?.Invoke(option.FlowerId);
+            return;
+        }
 
-        ColorRect swatch = new()
-        {
-            Name = "PlaceholderSwatch",
-            Color = flowerColor.Lightened(0.45f),
-            MouseFilter = MouseFilterEnum.Ignore
-        };
-        swatch.SetAnchorsPreset(LayoutPreset.FullRect);
-        swatch.OffsetLeft = 8f;
-        swatch.OffsetTop = 8f;
-        swatch.OffsetRight = -8f;
-        swatch.OffsetBottom = -8f;
-        root.AddChild(swatch);
-
-        Label marker = new()
-        {
-            Name = "PlaceholderLabel",
-            Text = flowerId,
-            MouseFilter = MouseFilterEnum.Ignore,
-            HorizontalAlignment = HorizontalAlignment.Center,
-            VerticalAlignment = VerticalAlignment.Center,
-            AutowrapMode = TextServer.AutowrapMode.WordSmart
-        };
-        marker.SetAnchorsPreset(LayoutPreset.FullRect);
-        marker.OffsetLeft = 12f;
-        marker.OffsetTop = 12f;
-        marker.OffsetRight = -12f;
-        marker.OffsetBottom = -12f;
-        marker.AddThemeFontSizeOverride("font_size", 15);
-        marker.AddThemeColorOverride("font_color", new Color(0.28f, 0.22f, 0.16f));
-        root.AddChild(marker);
-
-        return root;
+        AudioManager.PlayGlobalClick();
+        ShowMessage(option.IsFull
+            ? Tr("flower_select.full_tip")
+            : Tr("flower_select.coming_soon_tip"));
     }
 
-    private static void ApplyVisualBounds(Control control)
+    private void ShowFixedHint(string message)
     {
-        control.SetAnchorsPreset(LayoutPreset.FullRect);
-        control.OffsetLeft = 12f;
-        control.OffsetTop = 12f;
-        control.OffsetRight = -12f;
-        control.OffsetBottom = -46f;
-    }
-
-    public static Color GetFlowerColor(int flowerId)
-    {
-        int index = Mathf.PosMod(flowerId, FlowerColors.Length);
-        return FlowerColors[index];
-    }
-
-    public static string BuildSelectTexturePath(string flowerId)
-    {
-        return string.Format(SelectTexturePathFormat, flowerId);
+        _hintLabel.Text = message;
+        _hintLabel.Visible = !string.IsNullOrWhiteSpace(message);
     }
 
     private void OnBackPressed()
@@ -237,24 +156,48 @@ public sealed partial class FlowerSelectView : Control
         BackRequested?.Invoke();
     }
 
-    private static StyleBoxFlat CreateOptionStyle(Color background, Color border)
+    private void ApplyLocalizedText()
     {
-        return new StyleBoxFlat
+        _titleLabel.Text = Tr("flower_select.title");
+        _defaultHintText = Tr("flower_select.hint");
+        ShowFixedHint(_defaultHintText);
+        _backButton.Text = Tr("common.back");
+        _backButton.TooltipText = Tr("common.back");
+    }
+
+    private string Tr(string key)
+    {
+        return _localizationManager?.Tr(key) ?? LocalizationManager.GetText(key);
+    }
+
+    private readonly struct FlowerSlotNode
+    {
+        public FlowerSlotNode(
+            Control root,
+            TextureRect openCardTexture,
+            TextureRect disabledCardTexture,
+            Label flowerNameLabel,
+            Label statusLabel,
+            Button hotAreaButton)
         {
-            BgColor = background,
-            BorderColor = border,
-            BorderWidthLeft = 3,
-            BorderWidthTop = 3,
-            BorderWidthRight = 3,
-            BorderWidthBottom = 3,
-            CornerRadiusTopLeft = 8,
-            CornerRadiusTopRight = 8,
-            CornerRadiusBottomRight = 8,
-            CornerRadiusBottomLeft = 8,
-            ContentMarginLeft = 8,
-            ContentMarginTop = 8,
-            ContentMarginRight = 8,
-            ContentMarginBottom = 8
-        };
+            Root = root;
+            OpenCardTexture = openCardTexture;
+            DisabledCardTexture = disabledCardTexture;
+            FlowerNameLabel = flowerNameLabel;
+            StatusLabel = statusLabel;
+            HotAreaButton = hotAreaButton;
+        }
+
+        public Control Root { get; }
+
+        public TextureRect OpenCardTexture { get; }
+
+        public TextureRect DisabledCardTexture { get; }
+
+        public Label FlowerNameLabel { get; }
+
+        public Label StatusLabel { get; }
+
+        public Button HotAreaButton { get; }
     }
 }

@@ -1,22 +1,32 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene format=3 uid="uid://cwwpu86raj1dy"]
 
-[ext_resource type="Script" path="res://scripts/view/FlowerSelectView.cs" id="1_flower_select_view"]
-[ext_resource type="Texture2D" path="res://assets/reward/reward_background.png" id="2_flower_select_background"]
-[ext_resource type="Texture2D" path="res://assets/reward/reward_flower_group.png" id="3_flower_select_decoration"]
+[ext_resource type="Script" uid="uid://dghnrtkblkhau" path="res://scripts/view/FlowerSelectView.cs" id="1_flower_select_view"]
+[ext_resource type="Texture2D" uid="uid://d1f6hp51j84re" path="res://assets/reward/reward_background.png" id="2_flower_select_background"]
+[ext_resource type="Texture2D" uid="uid://c6twwxsclljoh" path="res://assets/ui/flower_select/panel_base.png" id="3_panel_base"]
+[ext_resource type="Texture2D" uid="uid://bfi0fkhyv7f0t" path="res://assets/ui/flower_select/slot_01_open.png" id="4_slot_01_open"]
+[ext_resource type="Texture2D" uid="uid://cdexiibm2jco0" path="res://assets/ui/flower_select/slot_01_disabled.png" id="5_slot_01_disabled"]
+[ext_resource type="Texture2D" uid="uid://dypoxhpn7cuv6" path="res://assets/ui/flower_select/slot_02_open.png" id="6_slot_02_open"]
+[ext_resource type="Texture2D" uid="uid://c0q0jg251aa7r" path="res://assets/ui/flower_select/slot_02_disabled.png" id="7_slot_02_disabled"]
+[ext_resource type="Texture2D" uid="uid://dim10fjww52pp" path="res://assets/ui/flower_select/slot_03_open.png" id="8_slot_03_open"]
+[ext_resource type="Texture2D" uid="uid://dg63bkf826rak" path="res://assets/ui/flower_select/slot_03_disabled.png" id="9_slot_03_disabled"]
+[ext_resource type="Texture2D" uid="uid://b37iw8i3m0fvc" path="res://assets/ui/flower_select/slot_04_open.png" id="10_slot_04_open"]
+[ext_resource type="Texture2D" uid="uid://chkkio2548b1p" path="res://assets/ui/flower_select/slot_04_disabled.png" id="11_slot_04_disabled"]
+[ext_resource type="Texture2D" uid="uid://dfxgq6x6edavm" path="res://assets/ui/flower_select/slot_05_open.png" id="12_slot_05_open"]
+[ext_resource type="Texture2D" uid="uid://dqmp4ro07lx32" path="res://assets/ui/flower_select/slot_05_disabled.png" id="13_slot_05_disabled"]
+[ext_resource type="Texture2D" uid="uid://bhpdt82l4cljq" path="res://assets/ui/flower_select/slot_06_open.png" id="14_slot_06_open"]
+[ext_resource type="Texture2D" uid="uid://cos7tpbn6jl8h" path="res://assets/ui/flower_select/slot_06_disabled.png" id="15_slot_06_disabled"]
+[ext_resource type="Texture2D" uid="uid://bkrukalodoq53" path="res://assets/ui/flower_select/back_button.png" id="16_back_button"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
-bg_color = Color(0.98, 0.95, 0.86, 0.92)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.42, 0.31, 0.18, 0.42)
-corner_radius_left = 8
-corner_radius_top = 8
-corner_radius_right = 8
-corner_radius_bottom = 8
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hot_area"]
 
-[node name="FlowerSelect" type="Control"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_back_button"]
+content_margin_left = 18.0
+content_margin_top = 8.0
+content_margin_right = 18.0
+content_margin_bottom = 8.0
+texture = ExtResource("16_back_button")
+
+[node name="FlowerSelect" type="Control" unique_id=1100563983]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,8 +34,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_flower_select_view")
+metadata/_edit_lock_ = true
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=1834016107]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,63 +46,512 @@ grow_vertical = 2
 texture = ExtResource("2_flower_select_background")
 expand_mode = 1
 stretch_mode = 6
+metadata/_edit_lock_ = true
 
-[node name="FlowerGroupDecoration" type="TextureRect" parent="."]
-layout_mode = 0
-offset_left = 44.0
-offset_top = 884.0
-offset_right = 676.0
-offset_bottom = 1238.0
+[node name="Panel" type="Control" parent="." unique_id=585968117]
+anchors_preset = 0
+offset_left = 40.0
+offset_top = 74.0
+offset_right = 680.0
+offset_bottom = 1190.0
+metadata/_edit_lock_ = true
+
+[node name="PanelTexture" type="TextureRect" parent="Panel" unique_id=175876195]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("3_flower_select_decoration")
+texture = ExtResource("3_panel_base")
 expand_mode = 1
 stretch_mode = 5
+metadata/_edit_lock_ = true
 
-[node name="Panel" type="Panel" parent="."]
+[node name="TitleLabel" type="Label" parent="Panel" unique_id=1970043064]
 layout_mode = 0
-offset_left = 62.0
-offset_top = 120.0
-offset_right = 658.0
-offset_bottom = 1038.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
-
-[node name="TitleLabel" type="Label" parent="Panel"]
-layout_mode = 0
-offset_left = 42.0
-offset_top = 42.0
-offset_right = 554.0
-offset_bottom = 104.0
-theme_override_font_sizes/font_size = 32
-text = "选择目标花"
+offset_left = 80.0
+offset_top = 260.0
+offset_right = 560.0
+offset_bottom = 330.0
+theme_override_colors/font_color = Color(0.235294, 0.156863, 0.0941176, 1)
+theme_override_font_sizes/font_size = 44
+text = "选择一种花"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="HintLabel" type="Label" parent="Panel"]
+[node name="HintLabel" type="Label" parent="Panel" unique_id=1451320704]
 layout_mode = 0
-offset_left = 46.0
-offset_top = 114.0
-offset_right = 550.0
-offset_bottom = 164.0
-theme_override_font_sizes/font_size = 21
+offset_left = 44.0
+offset_top = 343.0
+offset_right = 596.0
+offset_bottom = 389.0
+theme_override_colors/font_color = Color(0.235294, 0.156863, 0.0941176, 1)
+theme_override_font_sizes/font_size = 22
 text = "选择 1 种花，完成药剂调试后回花园种植"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="OptionRoot" type="GridContainer" parent="Panel"]
+[node name="TemporaryTipLabel" type="Label" parent="Panel" unique_id=1033004156]
+visible = false
 layout_mode = 0
-offset_left = 42.0
-offset_top = 202.0
-offset_right = 554.0
-offset_bottom = 610.0
-theme_override_constants/h_separation = 22
-theme_override_constants/v_separation = 22
-columns = 3
+offset_left = 72.0
+offset_top = 402.0
+offset_right = 568.0
+offset_bottom = 442.0
+theme_override_colors/font_color = Color(0.62, 0.22, 0.08, 1)
+theme_override_font_sizes/font_size = 20
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="BackButton" type="Button" parent="Panel"]
+[node name="FlowerSlots" type="Control" parent="Panel" unique_id=581810031]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="FlowerSlot_01" type="Control" parent="Panel/FlowerSlots" unique_id=1726991948]
+anchors_preset = 0
+offset_left = 35.2
+offset_top = 398.4
+offset_right = 220.8
+offset_bottom = 665.6
+
+[node name="OpenCardTexture" type="TextureRect" parent="Panel/FlowerSlots/FlowerSlot_01" unique_id=1260362133]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_slot_01_open")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DisabledCardTexture" type="TextureRect" parent="Panel/FlowerSlots/FlowerSlot_01" unique_id=987854286]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_slot_01_disabled")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="FlowerName" type="Label" parent="Panel/FlowerSlots/FlowerSlot_01" unique_id=1581842255]
 layout_mode = 0
-offset_left = 200.0
-offset_top = 690.0
-offset_right = 396.0
-offset_bottom = 752.0
+offset_left = 12.0
+offset_top = 200.0
+offset_right = 173.6
+offset_bottom = 248.0
+theme_override_colors/font_color = Color(0.86, 0.16, 0.2, 1)
+theme_override_font_sizes/font_size = 26
+text = "粉玫瑰"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatusLabel" type="Label" parent="Panel/FlowerSlots/FlowerSlot_01" unique_id=1657868733]
+visible = false
+layout_mode = 0
+offset_left = 12.0
+offset_top = 80.0
+offset_right = 173.6
+offset_bottom = 126.0
+theme_override_colors/font_color = Color(0.32, 0.3, 0.27, 1)
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HotAreaButton" type="Button" parent="Panel/FlowerSlots/FlowerSlot_01" unique_id=108636578]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+
+[node name="FlowerSlot_02" type="Control" parent="Panel/FlowerSlots" unique_id=1626456058]
+anchors_preset = 0
+offset_left = 227.2
+offset_top = 398.4
+offset_right = 412.8
+offset_bottom = 665.6
+
+[node name="OpenCardTexture" type="TextureRect" parent="Panel/FlowerSlots/FlowerSlot_02" unique_id=574398200]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_slot_02_open")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DisabledCardTexture" type="TextureRect" parent="Panel/FlowerSlots/FlowerSlot_02" unique_id=1997810753]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_slot_02_disabled")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="FlowerName" type="Label" parent="Panel/FlowerSlots/FlowerSlot_02" unique_id=137237334]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 200.0
+offset_right = 173.6
+offset_bottom = 248.0
+theme_override_colors/font_color = Color(0.55, 0.32, 0.08, 1)
+theme_override_font_sizes/font_size = 26
+text = "黄玫瑰"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatusLabel" type="Label" parent="Panel/FlowerSlots/FlowerSlot_02" unique_id=575383539]
+visible = false
+layout_mode = 0
+offset_left = 12.0
+offset_top = 80.0
+offset_right = 173.6
+offset_bottom = 126.0
+theme_override_colors/font_color = Color(0.32, 0.3, 0.27, 1)
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HotAreaButton" type="Button" parent="Panel/FlowerSlots/FlowerSlot_02" unique_id=561604630]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+
+[node name="FlowerSlot_03" type="Control" parent="Panel/FlowerSlots" unique_id=314102760]
+anchors_preset = 0
+offset_left = 420.8
+offset_top = 398.4
+offset_right = 606.4
+offset_bottom = 665.6
+
+[node name="OpenCardTexture" type="TextureRect" parent="Panel/FlowerSlots/FlowerSlot_03" unique_id=1214685557]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("8_slot_03_open")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DisabledCardTexture" type="TextureRect" parent="Panel/FlowerSlots/FlowerSlot_03" unique_id=739362046]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("9_slot_03_disabled")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="FlowerName" type="Label" parent="Panel/FlowerSlots/FlowerSlot_03" unique_id=774607031]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 200.0
+offset_right = 173.6
+offset_bottom = 248.0
+theme_override_colors/font_color = Color(0.38, 0.24, 0.62, 1)
+theme_override_font_sizes/font_size = 26
+text = "薰衣草"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StatusLabel" type="Label" parent="Panel/FlowerSlots/FlowerSlot_03" unique_id=909211946]
+visible = false
+layout_mode = 0
+offset_left = 12.0
+offset_top = 80.0
+offset_right = 173.6
+offset_bottom = 126.0
+theme_override_colors/font_color = Color(0.32, 0.3, 0.27, 1)
+theme_override_font_sizes/font_size = 22
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HotAreaButton" type="Button" parent="Panel/FlowerSlots/FlowerSlot_03" unique_id=1837185439]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+
+[node name="FlowerSlot_04" type="Control" parent="Panel/FlowerSlots" unique_id=259999949]
+anchors_preset = 0
+offset_left = 35.2
+offset_top = 694.4
+offset_right = 220.8
+offset_bottom = 961.6
+
+[node name="OpenCardTexture" type="TextureRect" parent="Panel/FlowerSlots/FlowerSlot_04" unique_id=898247887]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("10_slot_04_open")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DisabledCardTexture" type="TextureRect" parent="Panel/FlowerSlots/FlowerSlot_04" unique_id=651174832]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("11_slot_04_disabled")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="FlowerName" type="Label" parent="Panel/FlowerSlots/FlowerSlot_04" unique_id=1822373404]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 192.0
+offset_right = 173.6
+offset_bottom = 250.0
+theme_override_colors/font_color = Color(0.36, 0.33, 0.28, 1)
+theme_override_font_sizes/font_size = 22
+text = "待定花 04"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="StatusLabel" type="Label" parent="Panel/FlowerSlots/FlowerSlot_04" unique_id=7718309]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 84.0
+offset_right = 173.6
+offset_bottom = 132.0
+theme_override_colors/font_color = Color(0.36, 0.33, 0.28, 1)
 theme_override_font_sizes/font_size = 24
-text = "返回花园"
+text = "待开放"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HotAreaButton" type="Button" parent="Panel/FlowerSlots/FlowerSlot_04" unique_id=403839708]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+
+[node name="FlowerSlot_05" type="Control" parent="Panel/FlowerSlots" unique_id=1765357683]
+anchors_preset = 0
+offset_left = 227.2
+offset_top = 694.4
+offset_right = 412.8
+offset_bottom = 961.6
+
+[node name="OpenCardTexture" type="TextureRect" parent="Panel/FlowerSlots/FlowerSlot_05" unique_id=1691207372]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("12_slot_05_open")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DisabledCardTexture" type="TextureRect" parent="Panel/FlowerSlots/FlowerSlot_05" unique_id=1521836]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("13_slot_05_disabled")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="FlowerName" type="Label" parent="Panel/FlowerSlots/FlowerSlot_05" unique_id=1567007145]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 192.0
+offset_right = 173.6
+offset_bottom = 250.0
+theme_override_colors/font_color = Color(0.36, 0.33, 0.28, 1)
+theme_override_font_sizes/font_size = 22
+text = "待定花 05"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="StatusLabel" type="Label" parent="Panel/FlowerSlots/FlowerSlot_05" unique_id=233325053]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 84.0
+offset_right = 173.6
+offset_bottom = 132.0
+theme_override_colors/font_color = Color(0.36, 0.33, 0.28, 1)
+theme_override_font_sizes/font_size = 24
+text = "待开放"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HotAreaButton" type="Button" parent="Panel/FlowerSlots/FlowerSlot_05" unique_id=338362334]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+
+[node name="FlowerSlot_06" type="Control" parent="Panel/FlowerSlots" unique_id=542612293]
+anchors_preset = 0
+offset_left = 420.8
+offset_top = 694.4
+offset_right = 606.4
+offset_bottom = 961.6
+
+[node name="OpenCardTexture" type="TextureRect" parent="Panel/FlowerSlots/FlowerSlot_06" unique_id=685623773]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("14_slot_06_open")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="DisabledCardTexture" type="TextureRect" parent="Panel/FlowerSlots/FlowerSlot_06" unique_id=1205624059]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("15_slot_06_disabled")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="FlowerName" type="Label" parent="Panel/FlowerSlots/FlowerSlot_06" unique_id=1454465777]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 192.0
+offset_right = 173.6
+offset_bottom = 250.0
+theme_override_colors/font_color = Color(0.36, 0.33, 0.28, 1)
+theme_override_font_sizes/font_size = 22
+text = "待定花 06"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="StatusLabel" type="Label" parent="Panel/FlowerSlots/FlowerSlot_06" unique_id=697767388]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 84.0
+offset_right = 173.6
+offset_bottom = 132.0
+theme_override_colors/font_color = Color(0.36, 0.33, 0.28, 1)
+theme_override_font_sizes/font_size = 24
+text = "待开放"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HotAreaButton" type="Button" parent="Panel/FlowerSlots/FlowerSlot_06" unique_id=590309785]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+
+[node name="BackButton" type="Button" parent="Panel" unique_id=370690641]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 987.2
+offset_right = 456.0
+offset_bottom = 1078.4
+focus_mode = 0
+theme_override_styles/normal = SubResource("StyleBoxTexture_back_button")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_back_button")
+theme_override_styles/hover = SubResource("StyleBoxTexture_back_button")
+theme_override_styles/focus = SubResource("StyleBoxTexture_back_button")
+
+[node name="Label" type="Label" parent="Panel/BackButton" unique_id=546665234]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.3970588
+anchor_top = 0.2280707
+anchor_right = 0.5735294
+anchor_bottom = 0.6118426
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 24
+text = "返回"
+metadata/_edit_use_anchors_ = true

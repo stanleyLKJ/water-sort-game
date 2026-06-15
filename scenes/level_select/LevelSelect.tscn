@@ -1,21 +1,77 @@
-[gd_scene load_steps=4 format=3]
+[gd_scene format=3 uid="uid://c7nr4ppek36tm"]
 
-[ext_resource type="Script" path="res://scripts/view/LevelSelectView.cs" id="1_level_select_view"]
-[ext_resource type="Texture2D" path="res://assets/reward/reward_background.png" id="2_reward_background"]
+[ext_resource type="Script" uid="uid://opiu3sr61q23" path="res://scripts/view/LevelSelectView.cs" id="1_level_select_view"]
+[ext_resource type="Texture2D" uid="uid://d1f6hp51j84re" path="res://assets/reward/reward_background.png" id="2_flower_select_background"]
+[ext_resource type="Texture2D" uid="uid://bmkmwq1ib0uhv" path="res://assets/flowers/pink_rose/level_select/panel.png" id="3__panel"]
+[ext_resource type="Texture2D" uid="uid://bh1ejbnkbxdgf" path="res://assets/flowers/pink_rose/level_select/level_01_available.png" id="4_pink_01_available"]
+[ext_resource type="Texture2D" uid="uid://46adiiugnomm" path="res://assets/flowers/pink_rose/level_select/level_01_completed.png" id="5_pink_01_completed"]
+[ext_resource type="Texture2D" uid="uid://dv32uswtk1wkj" path="res://assets/flowers/pink_rose/level_select/level_01_locked.png" id="6_pink_01_locked"]
+[ext_resource type="Texture2D" uid="uid://xv780mqrng04" path="res://assets/flowers/pink_rose/level_select/level_02_available.png" id="7_pink_02_available"]
+[ext_resource type="Texture2D" uid="uid://6oq4o8xkl0e1" path="res://assets/flowers/pink_rose/level_select/level_02_completed.png" id="8_pink_02_completed"]
+[ext_resource type="Texture2D" uid="uid://dwmtrcfci4css" path="res://assets/flowers/pink_rose/level_select/level_02_locked.png" id="9_pink_02_locked"]
+[ext_resource type="Texture2D" uid="uid://cko6bubcg2yts" path="res://assets/flowers/pink_rose/level_select/level_03_available.png" id="10_pink_03_available"]
+[ext_resource type="Texture2D" uid="uid://cb2idmhqtthg" path="res://assets/flowers/pink_rose/level_select/level_03_completed.png" id="11_pink_03_completed"]
+[ext_resource type="Texture2D" uid="uid://2vyr3txtonqh" path="res://assets/flowers/pink_rose/level_select/level_03_locked.png" id="12_pink_03_locked"]
+[ext_resource type="Texture2D" uid="uid://chpge2ww0fusi" path="res://assets/flowers/pink_rose/level_select/level_04_available.png" id="13_pink_04_available"]
+[ext_resource type="Texture2D" uid="uid://iev7fw0jbpir" path="res://assets/flowers/pink_rose/level_select/level_04_completed.png" id="14_pink_04_completed"]
+[ext_resource type="Texture2D" uid="uid://d3fwhg3uamsbm" path="res://assets/flowers/pink_rose/level_select/level_04_locked.png" id="15_pink_04_locked"]
+[ext_resource type="Texture2D" uid="uid://cfxxw63e3hrmj" path="res://assets/flowers/pink_rose/level_select/level_05_available.png" id="16_pink_05_available"]
+[ext_resource type="Texture2D" uid="uid://b2jlpd0pgh4oq" path="res://assets/flowers/pink_rose/level_select/level_05_completed.png" id="17_pink_05_completed"]
+[ext_resource type="Texture2D" uid="uid://45dq3wncbj4k" path="res://assets/flowers/pink_rose/level_select/level_05_locked.png" id="18_pink_05_locked"]
+[ext_resource type="Texture2D" uid="uid://037iwfkopbql" path="res://assets/flowers/pink_rose/level_select/level_06_available.png" id="19_pink_06_available"]
+[ext_resource type="Texture2D" uid="uid://c1gdlhpwlcfh1" path="res://assets/flowers/pink_rose/level_select/level_06_completed.png" id="20_pink_06_completed"]
+[ext_resource type="Texture2D" uid="uid://craqsit50uliu" path="res://assets/flowers/pink_rose/level_select/level_06_locked.png" id="21_pink_06_locked"]
+[ext_resource type="Texture2D" uid="uid://g3slof6wmyer" path="res://assets/flowers/pink_rose/level_select/level_07_available.png" id="22_pink_07_available"]
+[ext_resource type="Texture2D" uid="uid://cexoftynxm8c8" path="res://assets/flowers/pink_rose/level_select/level_07_completed.png" id="23_pink_07_completed"]
+[ext_resource type="Texture2D" uid="uid://cnomernq4w76c" path="res://assets/flowers/pink_rose/level_select/level_07_locked.png" id="24_pink_07_locked"]
+[ext_resource type="Texture2D" uid="uid://d3fl6ometn6t1" path="res://assets/flowers/yellow_rose/level_select/panel.png" id="25__panel"]
+[ext_resource type="Texture2D" uid="uid://d3ifufobwvwpf" path="res://assets/flowers/yellow_rose/level_select/level_01_available.png" id="26_yellow_01_available"]
+[ext_resource type="Texture2D" uid="uid://cntpk6ty8eyjt" path="res://assets/flowers/yellow_rose/level_select/level_01_completed.png" id="27_yellow_01_completed"]
+[ext_resource type="Texture2D" uid="uid://c5m4rkmcd71do" path="res://assets/flowers/yellow_rose/level_select/level_01_locked.png" id="28_yellow_01_locked"]
+[ext_resource type="Texture2D" uid="uid://ct4x0g4unv1nk" path="res://assets/flowers/yellow_rose/level_select/level_02_available.png" id="29_yellow_02_available"]
+[ext_resource type="Texture2D" uid="uid://qowannop47yg" path="res://assets/flowers/yellow_rose/level_select/level_02_completed.png" id="30_yellow_02_completed"]
+[ext_resource type="Texture2D" uid="uid://ckh2cw2rx4a0b" path="res://assets/flowers/yellow_rose/level_select/level_02_locked.png" id="31_yellow_02_locked"]
+[ext_resource type="Texture2D" uid="uid://cdpils4fn7w23" path="res://assets/flowers/yellow_rose/level_select/level_03_available.png" id="32_yellow_03_available"]
+[ext_resource type="Texture2D" uid="uid://cax4717qsy25j" path="res://assets/flowers/yellow_rose/level_select/level_03_completed.png" id="33_yellow_03_completed"]
+[ext_resource type="Texture2D" uid="uid://dpjq705r44ql0" path="res://assets/flowers/yellow_rose/level_select/level_03_locked.png" id="34_yellow_03_locked"]
+[ext_resource type="Texture2D" uid="uid://deehlxo2ol5xc" path="res://assets/flowers/yellow_rose/level_select/level_04_available.png" id="35_yellow_04_available"]
+[ext_resource type="Texture2D" uid="uid://hendlvyu07ac" path="res://assets/flowers/yellow_rose/level_select/level_04_completed.png" id="36_yellow_04_completed"]
+[ext_resource type="Texture2D" uid="uid://ctbv2svd203tr" path="res://assets/flowers/yellow_rose/level_select/level_04_locked.png" id="37_yellow_04_locked"]
+[ext_resource type="Texture2D" uid="uid://br17a1hbsx0x6" path="res://assets/flowers/yellow_rose/level_select/level_05_available.png" id="38_yellow_05_available"]
+[ext_resource type="Texture2D" uid="uid://dp53q3fqoagjt" path="res://assets/flowers/yellow_rose/level_select/level_05_completed.png" id="39_yellow_05_completed"]
+[ext_resource type="Texture2D" uid="uid://dj317uvihdfrm" path="res://assets/flowers/yellow_rose/level_select/level_05_locked.png" id="40_yellow_05_locked"]
+[ext_resource type="Texture2D" uid="uid://dd2xsju2e4mfv" path="res://assets/flowers/yellow_rose/level_select/level_06_available.png" id="41_yellow_06_available"]
+[ext_resource type="Texture2D" uid="uid://b4c6lm1ws4c85" path="res://assets/flowers/yellow_rose/level_select/level_06_completed.png" id="42_yellow_06_completed"]
+[ext_resource type="Texture2D" uid="uid://uoivg3njxpkr" path="res://assets/flowers/yellow_rose/level_select/level_06_locked.png" id="43_yellow_06_locked"]
+[ext_resource type="Texture2D" uid="uid://6afaa20pkb8o" path="res://assets/flowers/yellow_rose/level_select/level_07_available.png" id="44_yellow_07_available"]
+[ext_resource type="Texture2D" uid="uid://b3c3s2yxsn242" path="res://assets/flowers/yellow_rose/level_select/level_07_completed.png" id="45_yellow_07_completed"]
+[ext_resource type="Texture2D" uid="uid://r57jkraxofsh" path="res://assets/flowers/yellow_rose/level_select/level_07_locked.png" id="46_yellow_07_locked"]
+[ext_resource type="Texture2D" uid="uid://dtx1kd3twpelu" path="res://assets/flowers/lavender/level_select/panel.png" id="47__panel"]
+[ext_resource type="Texture2D" uid="uid://cuwtwe6at0j1m" path="res://assets/flowers/lavender/level_select/level_01_available.png" id="48_lavender_01_available"]
+[ext_resource type="Texture2D" uid="uid://g0gm0qi8i47r" path="res://assets/flowers/lavender/level_select/level_01_completed.png" id="49_lavender_01_completed"]
+[ext_resource type="Texture2D" uid="uid://bjmawo3pyykv6" path="res://assets/flowers/lavender/level_select/level_01_locked.png" id="50_lavender_01_locked"]
+[ext_resource type="Texture2D" uid="uid://dmy5mlbpg7h3u" path="res://assets/flowers/lavender/level_select/level_02_available.png" id="51_lavender_02_available"]
+[ext_resource type="Texture2D" uid="uid://cv182gqpn7nu" path="res://assets/flowers/lavender/level_select/level_02_completed.png" id="52_lavender_02_completed"]
+[ext_resource type="Texture2D" uid="uid://b3cap5trmnllr" path="res://assets/flowers/lavender/level_select/level_02_locked.png" id="53_lavender_02_locked"]
+[ext_resource type="Texture2D" uid="uid://dalfjcptks5a2" path="res://assets/flowers/lavender/level_select/level_03_available.png" id="54_lavender_03_available"]
+[ext_resource type="Texture2D" uid="uid://c1otd0tcggybq" path="res://assets/flowers/lavender/level_select/level_03_completed.png" id="55_lavender_03_completed"]
+[ext_resource type="Texture2D" uid="uid://dpxa7st6ui5ys" path="res://assets/flowers/lavender/level_select/level_03_locked.png" id="56_lavender_03_locked"]
+[ext_resource type="Texture2D" uid="uid://ccb7x4mqguf8t" path="res://assets/flowers/lavender/level_select/level_04_available.png" id="57_lavender_04_available"]
+[ext_resource type="Texture2D" uid="uid://dd51osb6sr2u3" path="res://assets/flowers/lavender/level_select/level_04_completed.png" id="58_lavender_04_completed"]
+[ext_resource type="Texture2D" uid="uid://35owbr6eek00" path="res://assets/flowers/lavender/level_select/level_04_locked.png" id="59_lavender_04_locked"]
+[ext_resource type="Texture2D" uid="uid://barewfh3ayte4" path="res://assets/flowers/lavender/level_select/level_05_available.png" id="60_lavender_05_available"]
+[ext_resource type="Texture2D" uid="uid://cqesugb4wt163" path="res://assets/flowers/lavender/level_select/level_05_completed.png" id="61_lavender_05_completed"]
+[ext_resource type="Texture2D" uid="uid://cg0oxia2huihg" path="res://assets/flowers/lavender/level_select/level_05_locked.png" id="62_lavender_05_locked"]
+[ext_resource type="Texture2D" uid="uid://kt2ufanl1o2w" path="res://assets/flowers/lavender/level_select/level_06_available.png" id="63_lavender_06_available"]
+[ext_resource type="Texture2D" uid="uid://bof8oidagvtww" path="res://assets/flowers/lavender/level_select/level_06_completed.png" id="64_lavender_06_completed"]
+[ext_resource type="Texture2D" uid="uid://dvy630ddxl7ik" path="res://assets/flowers/lavender/level_select/level_06_locked.png" id="65_lavender_06_locked"]
+[ext_resource type="Texture2D" uid="uid://bo4sqr8jda210" path="res://assets/flowers/lavender/level_select/level_07_available.png" id="66_lavender_07_available"]
+[ext_resource type="Texture2D" uid="uid://dycliqyrkii34" path="res://assets/flowers/lavender/level_select/level_07_completed.png" id="67_lavender_07_completed"]
+[ext_resource type="Texture2D" uid="uid://ffs7j3hlll2m" path="res://assets/flowers/lavender/level_select/level_07_locked.png" id="68_lavender_07_locked"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_panel"]
-bg_color = Color(0.96, 0.94, 0.86, 0.9)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.42, 0.31, 0.18, 0.42)
-corner_radius_left = 8
-corner_radius_top = 8
-corner_radius_right = 8
-corner_radius_bottom = 8
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hot_area"]
 
-[node name="LevelSelect" type="Control"]
+[node name="LevelSelect" type="Control" unique_id=650981617]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,50 +80,2694 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_level_select_view")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=669113860]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_reward_background")
+mouse_filter = 2
+texture = ExtResource("2_flower_select_background")
 expand_mode = 1
 stretch_mode = 6
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 0
-offset_left = 116.0
-offset_top = 290.0
-offset_right = 604.0
-offset_bottom = 680.0
-theme_override_styles/panel = SubResource("StyleBoxFlat_panel")
+[node name="FlowerPanelsRoot" type="Control" parent="." unique_id=250490754]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
-[node name="TitleLabel" type="Label" parent="Panel"]
+[node name="PinkRosePanelRoot" type="Control" parent="FlowerPanelsRoot" unique_id=1103062517]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelTexture" type="TextureRect" parent="FlowerPanelsRoot/PinkRosePanelRoot" unique_id=435205719]
 layout_mode = 0
-offset_left = 40.0
-offset_top = 44.0
-offset_right = 448.0
-offset_bottom = 96.0
+offset_top = 0.34
+offset_right = 720.0
+offset_bottom = 1279.66
+mouse_filter = 2
+texture = ExtResource("3__panel")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_lock_ = true
+
+[node name="LevelSlots" type="Control" parent="FlowerPanelsRoot/PinkRosePanelRoot" unique_id=2010474232]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="LevelSlot_01" type="Control" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots" unique_id=770095432]
+anchors_preset = 0
+offset_left = 58.15
+offset_top = 422.7
+offset_right = 358.09
+offset_bottom = 605.57
+mouse_filter = 2
+
+[node name="AvailableTexture" type="TextureRect" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_01" unique_id=931366009]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("4_pink_01_available")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CompletedTexture" type="TextureRect" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_01" unique_id=1628288666]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_pink_01_completed")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LockedTexture" type="TextureRect" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_01" unique_id=749782264]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("6_pink_01_locked")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextRoot" type="Control" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_01" unique_id=1247852178]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelNameNumberLabel" type="Label" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_01/TextRoot" unique_id=1292706775]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 92.0
+offset_top = 46.0
+offset_right = -18.0
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.247059, 0.227451, 0.196078, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "粉玫瑰 第1关"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StatusLabel" type="Label" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_01/TextRoot" unique_id=2009953052]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 102.850006
+offset_top = 92.0
+offset_right = -27.149994
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.36, 0.29, 0.23, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "可进入"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HotAreaButton" type="Button" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_01" unique_id=1743799134]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="LevelSlot_02" type="Control" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots" unique_id=819253859]
+anchors_preset = 0
+offset_left = 364.21
+offset_top = 421.93
+offset_right = 657.26
+offset_bottom = 606.33
+mouse_filter = 2
+
+[node name="AvailableTexture" type="TextureRect" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_02" unique_id=1437693938]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("7_pink_02_available")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CompletedTexture" type="TextureRect" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_02" unique_id=1217269056]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("8_pink_02_completed")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LockedTexture" type="TextureRect" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_02" unique_id=986465181]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("9_pink_02_locked")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextRoot" type="Control" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_02" unique_id=1600107269]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelNameNumberLabel" type="Label" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_02/TextRoot" unique_id=763570999]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 86.0
+offset_top = 46.0
+offset_right = -24.0
+offset_bottom = -88.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.247059, 0.227451, 0.196078, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "粉玫瑰 第2关"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StatusLabel" type="Label" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_02/TextRoot" unique_id=934488961]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 95.79001
+offset_top = 90.07001
+offset_right = -34.20999
+offset_bottom = -51.929993
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.36, 0.29, 0.23, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "未解锁"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HotAreaButton" type="Button" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_02" unique_id=1487501918]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="LevelSlot_03" type="Control" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots" unique_id=432168080]
+anchors_preset = 0
+offset_left = 59.68
+offset_top = 606.33
+offset_right = 358.09
+offset_bottom = 789.96
+mouse_filter = 2
+
+[node name="AvailableTexture" type="TextureRect" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_03" unique_id=955223992]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("10_pink_03_available")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CompletedTexture" type="TextureRect" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_03" unique_id=949040516]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("11_pink_03_completed")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LockedTexture" type="TextureRect" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_03" unique_id=1041079889]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("12_pink_03_locked")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextRoot" type="Control" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_03" unique_id=309574457]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelNameNumberLabel" type="Label" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_03/TextRoot" unique_id=525299785]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 89.0
+offset_top = 45.0
+offset_right = -21.0
+offset_bottom = -89.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.247059, 0.227451, 0.196078, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "粉玫瑰 第3关"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StatusLabel" type="Label" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_03/TextRoot" unique_id=507745867]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 99.0
+offset_top = 92.0
+offset_right = -31.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.36, 0.29, 0.23, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "未解锁"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HotAreaButton" type="Button" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_03" unique_id=1475150668]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="LevelSlot_04" type="Control" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots" unique_id=1890947639]
+anchors_preset = 0
+offset_left = 363.44
+offset_top = 607.86
+offset_right = 657.26
+offset_bottom = 789.96
+mouse_filter = 2
+
+[node name="AvailableTexture" type="TextureRect" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_04" unique_id=1103065153]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("13_pink_04_available")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CompletedTexture" type="TextureRect" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_04" unique_id=323163707]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("14_pink_04_completed")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LockedTexture" type="TextureRect" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_04" unique_id=2084138536]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("15_pink_04_locked")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextRoot" type="Control" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_04" unique_id=2019950166]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelNameNumberLabel" type="Label" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_04/TextRoot" unique_id=930757501]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 86.0
+offset_top = 48.0
+offset_right = -24.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.247059, 0.227451, 0.196078, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "粉玫瑰 第4关"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StatusLabel" type="Label" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_04/TextRoot" unique_id=219302663]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 97.0
+offset_top = 92.0
+offset_right = -33.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.36, 0.29, 0.23, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "未解锁"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HotAreaButton" type="Button" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_04" unique_id=241846477]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="LevelSlot_05" type="Control" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots" unique_id=2087771016]
+anchors_preset = 0
+offset_left = 58.92
+offset_top = 790.73
+offset_right = 357.33
+offset_bottom = 972.07
+mouse_filter = 2
+
+[node name="AvailableTexture" type="TextureRect" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_05" unique_id=1609625704]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("16_pink_05_available")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CompletedTexture" type="TextureRect" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_05" unique_id=338667173]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("17_pink_05_completed")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LockedTexture" type="TextureRect" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_05" unique_id=635163253]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("18_pink_05_locked")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextRoot" type="Control" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_05" unique_id=1711085971]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelNameNumberLabel" type="Label" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_05/TextRoot" unique_id=821101247]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 87.0
+offset_top = 48.0
+offset_right = -23.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.247059, 0.227451, 0.196078, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "粉玫瑰 第5关"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StatusLabel" type="Label" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_05/TextRoot" unique_id=676027305]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 96.0
+offset_top = 92.0
+offset_right = -34.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.36, 0.29, 0.23, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "未解锁"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HotAreaButton" type="Button" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_05" unique_id=252205602]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="LevelSlot_06" type="Control" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots" unique_id=1336378332]
+anchors_preset = 0
+offset_left = 363.44
+offset_top = 790.73
+offset_right = 657.26
+offset_bottom = 972.07
+mouse_filter = 2
+
+[node name="AvailableTexture" type="TextureRect" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_06" unique_id=1529947933]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("19_pink_06_available")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CompletedTexture" type="TextureRect" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_06" unique_id=1134394720]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("20_pink_06_completed")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LockedTexture" type="TextureRect" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_06" unique_id=1469673892]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("21_pink_06_locked")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextRoot" type="Control" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_06" unique_id=1269573011]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelNameNumberLabel" type="Label" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_06/TextRoot" unique_id=32848213]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 88.0
+offset_top = 48.0
+offset_right = -22.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.247059, 0.227451, 0.196078, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "粉玫瑰 第6关"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StatusLabel" type="Label" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_06/TextRoot" unique_id=1754235469]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 98.0
+offset_top = 92.0
+offset_right = -32.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.36, 0.29, 0.23, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "未解锁"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HotAreaButton" type="Button" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_06" unique_id=1570980945]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="LevelSlot_07" type="Control" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots" unique_id=1183971858]
+anchors_preset = 0
+offset_left = 173.69
+offset_top = 972.84
+offset_right = 540.96
+offset_bottom = 1109.8
+mouse_filter = 2
+
+[node name="AvailableTexture" type="TextureRect" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_07" unique_id=2080143306]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("22_pink_07_available")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CompletedTexture" type="TextureRect" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_07" unique_id=391694601]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("23_pink_07_completed")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LockedTexture" type="TextureRect" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_07" unique_id=932151453]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("24_pink_07_locked")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextRoot" type="Control" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_07" unique_id=456130758]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelNameNumberLabel" type="Label" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_07/TextRoot" unique_id=1581714849]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 73.0
+offset_top = 34.48001
+offset_right = -37.0
+offset_bottom = -72.48001
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.247059, 0.227451, 0.196078, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "粉玫瑰 第7关"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StatusLabel" type="Label" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_07/TextRoot" unique_id=1319131009]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 99.0
+offset_top = 75.98001
+offset_right = -62.0
+offset_bottom = -33.98001
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.36, 0.29, 0.23, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "未解锁"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HotAreaButton" type="Button" parent="FlowerPanelsRoot/PinkRosePanelRoot/LevelSlots/LevelSlot_07" unique_id=762447175]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="BackButton" type="Button" parent="FlowerPanelsRoot/PinkRosePanelRoot" unique_id=804832204]
+layout_mode = 0
+offset_left = 250.0
+offset_top = 1130.0
+offset_right = 465.0
+offset_bottom = 1193.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.34, 0.2, 0.1, 1)
+theme_override_colors/font_pressed_color = Color(0.22, 0.12, 0.06, 1)
+theme_override_colors/font_hover_color = Color(0.44, 0.26, 0.13, 1)
+theme_override_colors/font_disabled_color = Color(0.34, 0.2, 0.1, 0.45)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+text = "返回"
+flat = true
+
+[node name="YellowRosePanelRoot" type="Control" parent="FlowerPanelsRoot" unique_id=2082074786]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelTexture" type="TextureRect" parent="FlowerPanelsRoot/YellowRosePanelRoot" unique_id=1870746850]
+layout_mode = 0
+offset_top = 0.34
+offset_right = 720.0
+offset_bottom = 1279.66
+mouse_filter = 2
+texture = ExtResource("25__panel")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LevelSlots" type="Control" parent="FlowerPanelsRoot/YellowRosePanelRoot" unique_id=173682722]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelSlot_01" type="Control" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots" unique_id=1329588468]
+anchors_preset = 0
+offset_left = 58.15
+offset_top = 422.7
+offset_right = 358.09
+offset_bottom = 605.57
+mouse_filter = 2
+
+[node name="AvailableTexture" type="TextureRect" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_01" unique_id=657759129]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("26_yellow_01_available")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CompletedTexture" type="TextureRect" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_01" unique_id=248727992]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("27_yellow_01_completed")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LockedTexture" type="TextureRect" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_01" unique_id=233694757]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("28_yellow_01_locked")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextRoot" type="Control" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_01" unique_id=260205805]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelNameNumberLabel" type="Label" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_01/TextRoot" unique_id=20333027]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 89.0
+offset_top = 48.0
+offset_right = -21.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.247059, 0.227451, 0.196078, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "黄玫瑰 第1关"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StatusLabel" type="Label" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_01/TextRoot" unique_id=937781048]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 99.0
+offset_top = 92.0
+offset_right = -31.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.36, 0.29, 0.23, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "可进入"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HotAreaButton" type="Button" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_01" unique_id=998570793]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="LevelSlot_02" type="Control" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots" unique_id=808010117]
+anchors_preset = 0
+offset_left = 364.21
+offset_top = 421.93
+offset_right = 657.26
+offset_bottom = 606.33
+mouse_filter = 2
+
+[node name="AvailableTexture" type="TextureRect" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_02" unique_id=244754774]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("29_yellow_02_available")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CompletedTexture" type="TextureRect" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_02" unique_id=1254806533]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("30_yellow_02_completed")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LockedTexture" type="TextureRect" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_02" unique_id=1005899441]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("31_yellow_02_locked")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextRoot" type="Control" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_02" unique_id=2034607756]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelNameNumberLabel" type="Label" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_02/TextRoot" unique_id=296033208]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 86.0
+offset_top = 48.0
+offset_right = -24.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.247059, 0.227451, 0.196078, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "黄玫瑰 第2关"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StatusLabel" type="Label" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_02/TextRoot" unique_id=918085026]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 97.0
+offset_top = 92.0
+offset_right = -33.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.36, 0.29, 0.23, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "未解锁"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HotAreaButton" type="Button" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_02" unique_id=2009122055]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="LevelSlot_03" type="Control" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots" unique_id=1713625993]
+anchors_preset = 0
+offset_left = 59.68
+offset_top = 606.33
+offset_right = 358.09
+offset_bottom = 789.96
+mouse_filter = 2
+
+[node name="AvailableTexture" type="TextureRect" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_03" unique_id=1216301676]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("32_yellow_03_available")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CompletedTexture" type="TextureRect" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_03" unique_id=675890836]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("33_yellow_03_completed")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LockedTexture" type="TextureRect" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_03" unique_id=1801712107]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("34_yellow_03_locked")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextRoot" type="Control" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_03" unique_id=262206909]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelNameNumberLabel" type="Label" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_03/TextRoot" unique_id=2057514185]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 88.0
+offset_top = 48.0
+offset_right = -22.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.247059, 0.227451, 0.196078, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "黄玫瑰 第3关"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StatusLabel" type="Label" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_03/TextRoot" unique_id=1567910293]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 99.0
+offset_top = 92.0
+offset_right = -31.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.36, 0.29, 0.23, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "未解锁"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HotAreaButton" type="Button" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_03" unique_id=873341336]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="LevelSlot_04" type="Control" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots" unique_id=252201968]
+anchors_preset = 0
+offset_left = 363.44
+offset_top = 607.86
+offset_right = 657.26
+offset_bottom = 789.96
+mouse_filter = 2
+
+[node name="AvailableTexture" type="TextureRect" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_04" unique_id=984141605]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("35_yellow_04_available")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CompletedTexture" type="TextureRect" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_04" unique_id=2124031066]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("36_yellow_04_completed")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LockedTexture" type="TextureRect" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_04" unique_id=366219351]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("37_yellow_04_locked")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextRoot" type="Control" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_04" unique_id=1415504338]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelNameNumberLabel" type="Label" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_04/TextRoot" unique_id=178639068]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 87.0
+offset_top = 48.0
+offset_right = -23.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.247059, 0.227451, 0.196078, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "黄玫瑰 第4关"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StatusLabel" type="Label" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_04/TextRoot" unique_id=804804999]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 97.0
+offset_top = 92.0
+offset_right = -33.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.36, 0.29, 0.23, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "未解锁"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HotAreaButton" type="Button" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_04" unique_id=1105514318]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="LevelSlot_05" type="Control" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots" unique_id=1966088666]
+anchors_preset = 0
+offset_left = 58.92
+offset_top = 790.73
+offset_right = 357.33
+offset_bottom = 972.07
+mouse_filter = 2
+
+[node name="AvailableTexture" type="TextureRect" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_05" unique_id=103141948]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("38_yellow_05_available")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CompletedTexture" type="TextureRect" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_05" unique_id=1133931482]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("39_yellow_05_completed")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LockedTexture" type="TextureRect" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_05" unique_id=2133015264]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("40_yellow_05_locked")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextRoot" type="Control" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_05" unique_id=6499207]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelNameNumberLabel" type="Label" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_05/TextRoot" unique_id=1779674919]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 88.0
+offset_top = 48.0
+offset_right = -22.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.247059, 0.227451, 0.196078, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "黄玫瑰 第5关"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StatusLabel" type="Label" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_05/TextRoot" unique_id=881123059]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 98.0
+offset_top = 92.0
+offset_right = -32.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.36, 0.29, 0.23, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "未解锁"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HotAreaButton" type="Button" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_05" unique_id=1768762681]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="LevelSlot_06" type="Control" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots" unique_id=606834808]
+anchors_preset = 0
+offset_left = 363.44
+offset_top = 790.73
+offset_right = 657.26
+offset_bottom = 972.07
+mouse_filter = 2
+
+[node name="AvailableTexture" type="TextureRect" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_06" unique_id=938589042]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("41_yellow_06_available")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CompletedTexture" type="TextureRect" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_06" unique_id=1611162740]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("42_yellow_06_completed")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LockedTexture" type="TextureRect" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_06" unique_id=1676853161]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("43_yellow_06_locked")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextRoot" type="Control" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_06" unique_id=161109871]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelNameNumberLabel" type="Label" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_06/TextRoot" unique_id=1306831985]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 86.0
+offset_top = 48.0
+offset_right = -24.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.247059, 0.227451, 0.196078, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "黄玫瑰 第6关"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StatusLabel" type="Label" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_06/TextRoot" unique_id=1576471189]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 97.0
+offset_top = 92.0
+offset_right = -33.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.36, 0.29, 0.23, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "未解锁"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HotAreaButton" type="Button" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_06" unique_id=1618022478]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="LevelSlot_07" type="Control" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots" unique_id=862410934]
+anchors_preset = 0
+offset_left = 173.69
+offset_top = 972.84
+offset_right = 540.96
+offset_bottom = 1109.8
+mouse_filter = 2
+
+[node name="AvailableTexture" type="TextureRect" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_07" unique_id=1836097211]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("44_yellow_07_available")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CompletedTexture" type="TextureRect" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_07" unique_id=871291643]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("45_yellow_07_completed")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LockedTexture" type="TextureRect" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_07" unique_id=1162969675]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("46_yellow_07_locked")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextRoot" type="Control" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_07" unique_id=1719869724]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelNameNumberLabel" type="Label" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_07/TextRoot" unique_id=1669031774]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 73.0
+offset_top = 34.48001
+offset_right = -37.0
+offset_bottom = -72.48001
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.247059, 0.227451, 0.196078, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "黄玫瑰 第7关"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StatusLabel" type="Label" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_07/TextRoot" unique_id=1240540449]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 98.0
+offset_top = 75.98001
+offset_right = -63.0
+offset_bottom = -33.98001
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.36, 0.29, 0.23, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "未解锁"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HotAreaButton" type="Button" parent="FlowerPanelsRoot/YellowRosePanelRoot/LevelSlots/LevelSlot_07" unique_id=762255152]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="BackButton" type="Button" parent="FlowerPanelsRoot/YellowRosePanelRoot" unique_id=1414406932]
+layout_mode = 0
+offset_left = 252.0
+offset_top = 1127.0
+offset_right = 467.0
+offset_bottom = 1190.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.34, 0.2, 0.1, 1)
+theme_override_colors/font_pressed_color = Color(0.22, 0.12, 0.06, 1)
+theme_override_colors/font_hover_color = Color(0.44, 0.26, 0.13, 1)
+theme_override_colors/font_disabled_color = Color(0.34, 0.2, 0.1, 0.45)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+text = "返回"
+flat = true
+
+[node name="LavenderPanelRoot" type="Control" parent="FlowerPanelsRoot" unique_id=1470244451]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="PanelTexture" type="TextureRect" parent="FlowerPanelsRoot/LavenderPanelRoot" unique_id=1974329712]
+layout_mode = 0
+offset_top = 0.34
+offset_right = 720.0
+offset_bottom = 1279.66
+mouse_filter = 2
+texture = ExtResource("47__panel")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LevelSlots" type="Control" parent="FlowerPanelsRoot/LavenderPanelRoot" unique_id=1181791462]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelSlot_01" type="Control" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots" unique_id=1734405182]
+anchors_preset = 0
+offset_left = 58.15
+offset_top = 422.7
+offset_right = 358.09
+offset_bottom = 605.57
+mouse_filter = 2
+
+[node name="AvailableTexture" type="TextureRect" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_01" unique_id=1429417179]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("48_lavender_01_available")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CompletedTexture" type="TextureRect" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_01" unique_id=696472685]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("49_lavender_01_completed")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LockedTexture" type="TextureRect" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_01" unique_id=994505150]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("50_lavender_01_locked")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextRoot" type="Control" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_01" unique_id=1237694725]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelNameNumberLabel" type="Label" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_01/TextRoot" unique_id=1464754147]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 83.0
+offset_top = 48.0
+offset_right = -27.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.247059, 0.227451, 0.196078, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "薰衣草 第1关"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StatusLabel" type="Label" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_01/TextRoot" unique_id=831903070]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 93.0
+offset_top = 92.0
+offset_right = -37.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.36, 0.29, 0.23, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "可进入"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HotAreaButton" type="Button" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_01" unique_id=1168901331]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="LevelSlot_02" type="Control" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots" unique_id=325098817]
+anchors_preset = 0
+offset_left = 364.21
+offset_top = 421.93
+offset_right = 657.26
+offset_bottom = 606.33
+mouse_filter = 2
+
+[node name="AvailableTexture" type="TextureRect" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_02" unique_id=564642294]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("51_lavender_02_available")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CompletedTexture" type="TextureRect" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_02" unique_id=1027552906]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("52_lavender_02_completed")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LockedTexture" type="TextureRect" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_02" unique_id=942802634]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("53_lavender_02_locked")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextRoot" type="Control" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_02" unique_id=859551899]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelNameNumberLabel" type="Label" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_02/TextRoot" unique_id=1271607041]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 86.0
+offset_top = 48.0
+offset_right = -24.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.247059, 0.227451, 0.196078, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "薰衣草 第2关"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StatusLabel" type="Label" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_02/TextRoot" unique_id=284947330]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 97.0
+offset_top = 92.0
+offset_right = -33.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.36, 0.29, 0.23, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "未解锁"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HotAreaButton" type="Button" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_02" unique_id=104136284]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="LevelSlot_03" type="Control" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots" unique_id=1411636693]
+anchors_preset = 0
+offset_left = 59.68
+offset_top = 606.33
+offset_right = 358.09
+offset_bottom = 789.96
+mouse_filter = 2
+
+[node name="AvailableTexture" type="TextureRect" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_03" unique_id=2051803481]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("54_lavender_03_available")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CompletedTexture" type="TextureRect" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_03" unique_id=827417039]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("55_lavender_03_completed")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LockedTexture" type="TextureRect" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_03" unique_id=301955912]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("56_lavender_03_locked")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextRoot" type="Control" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_03" unique_id=1853271809]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelNameNumberLabel" type="Label" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_03/TextRoot" unique_id=77288491]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 87.0
+offset_top = 48.0
+offset_right = -23.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.247059, 0.227451, 0.196078, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "薰衣草 第3关"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StatusLabel" type="Label" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_03/TextRoot" unique_id=175563317]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 98.0
+offset_top = 92.0
+offset_right = -32.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.36, 0.29, 0.23, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "未解锁"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HotAreaButton" type="Button" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_03" unique_id=316543591]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="LevelSlot_04" type="Control" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots" unique_id=1423286952]
+anchors_preset = 0
+offset_left = 363.44
+offset_top = 607.86
+offset_right = 657.26
+offset_bottom = 789.96
+mouse_filter = 2
+
+[node name="AvailableTexture" type="TextureRect" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_04" unique_id=345931856]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("57_lavender_04_available")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CompletedTexture" type="TextureRect" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_04" unique_id=414496720]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("58_lavender_04_completed")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LockedTexture" type="TextureRect" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_04" unique_id=2036484697]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("59_lavender_04_locked")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextRoot" type="Control" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_04" unique_id=863298412]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelNameNumberLabel" type="Label" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_04/TextRoot" unique_id=648152866]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 86.0
+offset_top = 48.0
+offset_right = -24.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.247059, 0.227451, 0.196078, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "薰衣草 第4关"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StatusLabel" type="Label" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_04/TextRoot" unique_id=1730709419]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 97.0
+offset_top = 92.0
+offset_right = -33.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.36, 0.29, 0.23, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "未解锁"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HotAreaButton" type="Button" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_04" unique_id=2136472325]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="LevelSlot_05" type="Control" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots" unique_id=603139827]
+anchors_preset = 0
+offset_left = 58.92
+offset_top = 790.73
+offset_right = 357.33
+offset_bottom = 972.07
+mouse_filter = 2
+
+[node name="AvailableTexture" type="TextureRect" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_05" unique_id=2058796740]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("60_lavender_05_available")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CompletedTexture" type="TextureRect" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_05" unique_id=1767822227]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("61_lavender_05_completed")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LockedTexture" type="TextureRect" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_05" unique_id=1614238114]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("62_lavender_05_locked")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextRoot" type="Control" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_05" unique_id=943285035]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelNameNumberLabel" type="Label" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_05/TextRoot" unique_id=188709489]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 87.0
+offset_top = 48.0
+offset_right = -23.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.247059, 0.227451, 0.196078, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "薰衣草 第5关"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StatusLabel" type="Label" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_05/TextRoot" unique_id=1346747416]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 98.0
+offset_top = 92.0
+offset_right = -32.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.36, 0.29, 0.23, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "未解锁"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HotAreaButton" type="Button" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_05" unique_id=643976006]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="LevelSlot_06" type="Control" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots" unique_id=1449097736]
+anchors_preset = 0
+offset_left = 363.44
+offset_top = 790.73
+offset_right = 657.26
+offset_bottom = 972.07
+mouse_filter = 2
+
+[node name="AvailableTexture" type="TextureRect" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_06" unique_id=453252096]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("63_lavender_06_available")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CompletedTexture" type="TextureRect" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_06" unique_id=1390274160]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("64_lavender_06_completed")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LockedTexture" type="TextureRect" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_06" unique_id=1547623875]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("65_lavender_06_locked")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextRoot" type="Control" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_06" unique_id=1564715578]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelNameNumberLabel" type="Label" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_06/TextRoot" unique_id=1991065934]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 87.0
+offset_top = 48.0
+offset_right = -23.0
+offset_bottom = -86.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.247059, 0.227451, 0.196078, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "薰衣草 第6关"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StatusLabel" type="Label" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_06/TextRoot" unique_id=277972741]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 97.0
+offset_top = 92.0
+offset_right = -33.0
+offset_bottom = -50.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.36, 0.29, 0.23, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "未解锁"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HotAreaButton" type="Button" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_06" unique_id=1588488596]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="LevelSlot_07" type="Control" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots" unique_id=2051507720]
+anchors_preset = 0
+offset_left = 173.69
+offset_top = 972.84
+offset_right = 540.96
+offset_bottom = 1109.8
+mouse_filter = 2
+
+[node name="AvailableTexture" type="TextureRect" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_07" unique_id=406672013]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("66_lavender_07_available")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="CompletedTexture" type="TextureRect" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_07" unique_id=1240802938]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("67_lavender_07_completed")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="LockedTexture" type="TextureRect" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_07" unique_id=972909625]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("68_lavender_07_locked")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="TextRoot" type="Control" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_07" unique_id=1195769912]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="LevelNameNumberLabel" type="Label" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_07/TextRoot" unique_id=91211796]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 70.0
+offset_top = 34.48001
+offset_right = -40.0
+offset_bottom = -72.48001
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.247059, 0.227451, 0.196078, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 20
+text = "薰衣草 第7关"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="StatusLabel" type="Label" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_07/TextRoot" unique_id=590780260]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 95.0
+offset_top = 75.98001
+offset_right = -66.0
+offset_bottom = -33.98001
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0.36, 0.29, 0.23, 1)
+theme_override_colors/font_shadow_color = Color(1, 0.96, 0.86, 0.72)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 18
+text = "未解锁"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="HotAreaButton" type="Button" parent="FlowerPanelsRoot/LavenderPanelRoot/LevelSlots/LevelSlot_07" unique_id=1260670427]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(1, 1, 1, 0)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 0)
+theme_override_colors/font_disabled_color = Color(1, 1, 1, 0)
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+flat = true
+metadata/_edit_lock_ = true
+
+[node name="BackButton" type="Button" parent="FlowerPanelsRoot/LavenderPanelRoot" unique_id=1284304673]
+layout_mode = 0
+offset_left = 249.0
+offset_top = 1150.0
+offset_right = 464.0
+offset_bottom = 1213.0
+focus_mode = 0
+theme_override_colors/font_color = Color(0.34, 0.2, 0.1, 1)
+theme_override_colors/font_pressed_color = Color(0.22, 0.12, 0.06, 1)
+theme_override_colors/font_hover_color = Color(0.44, 0.26, 0.13, 1)
+theme_override_colors/font_disabled_color = Color(0.34, 0.2, 0.1, 0.45)
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hot_area")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_hot_area")
+text = "返回"
+flat = true
+
+[node name="CommonTextRoot" type="Control" parent="." unique_id=1462047374]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="TitleLabel" type="Label" parent="CommonTextRoot" unique_id=1619575879]
+layout_mode = 0
+offset_left = 107.12
+offset_top = 268.14
+offset_right = 612.88
+offset_bottom = 309.46
+theme_override_colors/font_color = Color(0.14, 0.08, 0.04, 1)
 theme_override_font_sizes/font_size = 30
-text = "选择关卡"
+text = "关卡选择"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="LevelOneButton" type="Button" parent="Panel"]
+[node name="MessageLabel" type="Label" parent="CommonTextRoot" unique_id=825740380]
 layout_mode = 0
-offset_left = 112.0
-offset_top = 142.0
-offset_right = 376.0
-offset_bottom = 210.0
-theme_override_font_sizes/font_size = 24
-text = "第 1 关"
-
-[node name="BackButton" type="Button" parent="Panel"]
-layout_mode = 0
-offset_left = 112.0
-offset_top = 258.0
-offset_right = 376.0
-offset_bottom = 326.0
+offset_left = 122.42
+offset_top = 326.29
+offset_right = 597.57
+offset_bottom = 358.43
+theme_override_colors/font_color = Color(0.22, 0.15, 0.08, 1)
 theme_override_font_sizes/font_size = 22
-text = "返回"
+text = "选择当前可玩关卡"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TemporaryTipLabel" type="Label" parent="CommonTextRoot" unique_id=568523107]
+visible = false
+layout_mode = 0
+offset_left = 130.07
+offset_top = 361.49
+offset_right = 589.92
+offset_bottom = 387.5
+theme_override_colors/font_color = Color(0.46, 0.18, 0.08, 1)
+theme_override_font_sizes/font_size = 18
+horizontal_alignment = 1
+vertical_alignment = 1

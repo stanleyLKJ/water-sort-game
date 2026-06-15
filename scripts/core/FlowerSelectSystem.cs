@@ -1,5 +1,6 @@
 #nullable enable
 
+using System;
 using WaterSortGame.Model;
 
 namespace WaterSortGame.Core;
@@ -27,23 +28,6 @@ public readonly struct FlowerOption
 
     public bool IsSelectable => IsOpen && !IsFull;
 
-    public string UnavailableMessage
-    {
-        get
-        {
-            if (!IsOpen)
-            {
-                return "该花将在后续版本开放";
-            }
-
-            if (IsFull)
-            {
-                return "该花已种满，请选择其他花";
-            }
-
-            return string.Empty;
-        }
-    }
 }
 
 public sealed class FlowerSelectSystem
@@ -60,7 +44,7 @@ public sealed class FlowerSelectSystem
         new(5, "flower_06", "待定花 06")
     };
 
-    public FlowerOption[] CreateBaseFlowerOptions(RunSessionState? state = null)
+    public FlowerOption[] CreateBaseFlowerOptions(RunSessionState? state = null, Func<string, string>? displayNameProvider = null)
     {
         FlowerOption[] options = new FlowerOption[BaseFlowers.Length];
         for (int i = 0; i < BaseFlowers.Length; i++)
@@ -68,7 +52,8 @@ public sealed class FlowerSelectSystem
             FlowerDefinition definition = BaseFlowers[i];
             bool isOpen = RunSessionState.IsOpenFlowerId(definition.FlowerId);
             bool isFull = isOpen && state?.IsFlowerFull(definition.FlowerId) == true;
-            options[i] = new FlowerOption(definition.Index, definition.FlowerId, definition.DisplayName, isOpen, isFull);
+            string displayName = displayNameProvider?.Invoke(definition.FlowerId) ?? definition.DisplayName;
+            options[i] = new FlowerOption(definition.Index, definition.FlowerId, displayName, isOpen, isFull);
         }
 
         return options;
